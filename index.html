@@ -620,6 +620,78 @@
   .depo-nome { font-size:0.84rem; font-weight:700; color:var(--preto); }
   .depo-cargo { font-size:0.73rem; color:var(--suave); line-height:1.3; }
 
+  /* ─── NOTÍCIAS ─── */
+  #noticias { background: var(--bg); }
+  .noticias-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem; gap: 2rem; flex-wrap: wrap;
+  }
+  .noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .noticia-card {
+    background: var(--branco);
+    border-radius: var(--r-card);
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.25s, transform 0.2s;
+    cursor: default;
+  }
+  .noticia-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .noticia-foto {
+    height: 200px;
+    background: linear-gradient(135deg, #c4805a 0%, #904428 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    overflow: hidden;
+  }
+  .nf-2 { background: linear-gradient(135deg, #7ab07e 0%, #4a7a50 100%); }
+  .nf-3 { background: linear-gradient(135deg, #d4b060 0%, #a07820 100%); }
+  .nf-4 { background: linear-gradient(135deg, #8a7ab0 0%, #5a4a80 100%); }
+  .nf-5 { background: linear-gradient(135deg, #6a9ab0 0%, #3a6a80 100%); }
+  .nf-6 { background: linear-gradient(135deg, #b06040 0%, #803020 100%); }
+  .noticia-body { padding: 1.3rem 1.5rem 1.6rem; }
+  .noticia-meta {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.63rem; font-weight: 800; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.6rem;
+  }
+  .noticia-meta-sep { color: var(--borda); font-size: 0.8rem; font-weight: 300; }
+  .noticia-meta-date { font-weight: 500; letter-spacing: 0.02em; text-transform: none; font-size: 0.68rem; color: var(--suave); }
+  .noticia-body h3 {
+    font-size: 0.96rem; font-weight: 800; color: var(--preto);
+    line-height: 1.45; margin-bottom: 1rem; letter-spacing: -0.02em;
+  }
+
+  /* ─── GALERIA ─── */
+  #galeria { background: var(--branco); }
+  .galeria-header { margin-bottom: 2.5rem; }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.8rem;
+  }
+  .gal-foto {
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #c4805a 0%, #904428 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .gal-foto:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
+  .gal-foto-1 { grid-row: span 2; aspect-ratio: 3/4; }
+  .gal-foto-2 { aspect-ratio: 3/2; }
+  .gal-foto-3 { aspect-ratio: 3/2; }
+  .gal-foto-4 { background: linear-gradient(135deg, #7ab07e 0%, #4a7a50 100%); aspect-ratio: 3/2; }
+  .gal-foto-5 { background: linear-gradient(135deg, #d4b060 0%, #a07820 100%); grid-row: span 2; aspect-ratio: 3/4; }
+  .gal-foto-6 { background: linear-gradient(135deg, #8a7ab0 0%, #5a4a80 100%); aspect-ratio: 3/2; }
+
   /* ─── RECONHECIMENTOS ─── */
   #reconhecimentos { background: var(--branco); }
   .rec-grid {
@@ -869,8 +941,10 @@
     .ling-grid { grid-template-columns: repeat(3, 1fr); }
     #como-participar { padding:5rem 1.5rem; }
     .map-wrap { height: 280px; order: 0; }
-    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr 1fr; }
+    .projetos-grid, .apoie-grid, .depo-grid, .noticias-grid { grid-template-columns:1fr 1fr; }
     .rec-grid { grid-template-columns:1fr 1fr; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
+    .gal-foto-1, .gal-foto-5 { grid-row: span 1; aspect-ratio: 3/2; }
     .logos-grid, .logos-grid-3 { grid-template-columns:1fr 1fr; }
     .sobre-foto { aspect-ratio:16/9; }
     .fotos-duo { display:none; }
@@ -890,8 +964,9 @@
   }
   @media (max-width:640px) {
     #hero h1 { font-size:2.7rem; }
-    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr; }
+    .projetos-grid, .apoie-grid, .depo-grid, .noticias-grid { grid-template-columns:1fr; }
     .ling-grid { grid-template-columns: repeat(2, 1fr); }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
     .f-row { grid-template-columns:1fr; }
     .form-box { padding:1.6rem; }
     .footer-cols { grid-template-columns:1fr 1fr; }
@@ -907,8 +982,8 @@
     <li><a href="#sobre">Quem Somos</a></li>
     <li><a href="#oficinas">Oficinas</a></li>
     <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#noticias">Notícias</a></li>
     <li><a href="#apoie">Apoie</a></li>
-    <li><a href="#doe">Doação PIX</a></li>
     <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
   </ul>
 </nav>
@@ -1330,6 +1405,88 @@
   </div>
 </section>
 
+<!-- NOTÍCIAS E REGISTROS -->
+<section id="noticias" class="sec-wrap">
+  <div class="noticias-header">
+    <div class="reveal">
+      <div class="sec-label">Registros</div>
+      <h2>Notícias e acontecimentos</h2>
+      <p class="sec-sub">Acompanhe as ações, projetos, apresentações e eventos que movimentam a OBDC na comunidade.</p>
+    </div>
+    <a href="#contato" class="link-arrow reveal d1">Ver todas as ações</a>
+  </div>
+  <div class="noticias-grid">
+    <div class="noticia-card reveal">
+      <div class="noticia-foto">🎭</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Evento <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">Março de 2024</span></div>
+        <h3>OBDC recebe certificação de Ponto de Cultura pelo Ministério da Cultura</h3>
+        <a href="#reconhecimentos" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal d1">
+      <div class="noticia-foto nf-2">🍞</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Ação Social <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">Contínuo</span></div>
+        <h3>Projeto Pão com Amor beneficia dezenas de famílias em vulnerabilidade social</h3>
+        <a href="#projetos" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal d2">
+      <div class="noticia-foto nf-3">🎵</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Oficina <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">Temporada 2025</span></div>
+        <h3>Oficinas gratuitas de artes cênicas, música e capoeira com novas turmas abertas</h3>
+        <a href="#oficinas" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal">
+      <div class="noticia-foto nf-4">⚽</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Projeto <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">2025</span></div>
+        <h3>Esporte Cidadania promove formação de valores para crianças e adolescentes</h3>
+        <a href="#projetos" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal d1">
+      <div class="noticia-foto nf-5">👩</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Evento <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">2025</span></div>
+        <h3>Mulher Mais realiza roda de conversa sobre empoderamento e saúde da mulher</h3>
+        <a href="#projetos" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal d2">
+      <div class="noticia-foto nf-6">🌿</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Instituição <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">2024</span></div>
+        <h3>OBDC participa do Fórum Municipal de Culturas Populares em Aparecida de Goiânia</h3>
+        <a href="#contato" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="sec-wrap">
+  <div class="galeria-header reveal">
+    <div class="sec-label">Galeria</div>
+    <h2>Registros em imagens</h2>
+    <p class="sec-sub">Momentos das nossas ações, oficinas, apresentações culturais e projetos comunitários.</p>
+  </div>
+  <div class="galeria-grid reveal d1">
+    <div class="gal-foto gal-foto-1">🎭</div>
+    <div class="gal-foto gal-foto-2">🎵</div>
+    <div class="gal-foto gal-foto-3">💃</div>
+    <div class="gal-foto gal-foto-4">📚</div>
+    <div class="gal-foto gal-foto-5">🤝</div>
+    <div class="gal-foto gal-foto-6">🎨</div>
+  </div>
+  <p style="text-align:center; margin-top:1.5rem; font-size:0.82rem; color:var(--suave);">
+    Envie suas fotos para <a href="mailto:ongobdc@gmail.com" style="color:var(--laranja); font-weight:600;">ongobdc@gmail.com</a> e apareça aqui.
+  </p>
+</section>
+
 <!-- PARCEIROS -->
 <section id="parceiros" class="sec-wrap-sm">
   <div class="parceiros-header reveal">
@@ -1537,6 +1694,8 @@
         <div class="footer-col-title">Atuação</div>
         <a href="#oficinas">Oficinas</a>
         <a href="#projetos">Projetos</a>
+        <a href="#noticias">Notícias</a>
+        <a href="#galeria">Galeria</a>
         <a href="#depoimentos">Depoimentos</a>
       </div>
       <div class="footer-col">
