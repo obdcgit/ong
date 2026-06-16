@@ -5,89 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ONG OBDC – Educando com Arte | Apoie essa causa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --laranja: #e05c2b;
     --laranja-hover: #c9501f;
-    --laranja-suave: rgba(224,92,43,0.1);
-    --cinza-bg: #f4f5f7;
+    --laranja-bg: rgba(224,92,43,0.08);
+    --bg: #f0f2f5;
     --branco: #ffffff;
-    --preto: #111111;
-    --texto: #1f2937;
-    --texto-suave: #6b7280;
+    --preto: #0f0f0f;
+    --texto: #1a1a1a;
+    --suave: #6b7280;
     --borda: rgba(0,0,0,0.07);
-    --escuro: #2b1a11;
-    --escuro-2: #3d2416;
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-    --radius-card: 16px;
-    --radius-btn: 100px;
-    --shadow: 0 2px 16px rgba(0,0,0,0.06);
-    --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+    --escuro: #1c1008;
+    --font: 'Inter', sans-serif;
+    --r-card: 16px;
+    --r-btn: 100px;
+    --shadow: 0 1px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 6px 28px rgba(0,0,0,0.1);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-
   body {
-    background: var(--cinza-bg);
+    background: var(--bg);
     color: var(--texto);
-    font-family: var(--font-body);
+    font-family: var(--font);
     font-weight: 400;
     overflow-x: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+  a { text-decoration: none; }
+  img { display: block; max-width: 100%; }
 
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(16px);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--borda);
-    height: 72px;
+    height: 68px;
     display: flex; align-items: center;
-    padding: 0 4rem;
+    padding: 0 3.5rem;
     justify-content: space-between;
+    gap: 2rem;
   }
   .logo {
-    font-family: var(--font-display);
+    font-size: 1.6rem;
     font-weight: 900;
-    font-size: 1.5rem;
     color: var(--preto);
-    text-decoration: none;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.04em;
     line-height: 1;
+    flex-shrink: 0;
   }
-  .logo em { font-style: italic; color: var(--laranja); }
+  .logo span { color: var(--laranja); }
   .logo small {
     display: block;
-    font-family: var(--font-body);
-    font-style: normal;
-    font-size: 0.55rem;
+    font-size: 0.52rem;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--texto-suave);
-    margin-top: 0.2rem;
+    color: var(--suave);
+    margin-top: 0.15rem;
   }
-  nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
-  nav a {
-    color: var(--texto);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--laranja); }
+  nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+  nav ul a { color: var(--texto); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+  nav ul a:hover { color: var(--laranja); }
   .nav-cta {
-    background: var(--laranja) !important;
+    background: var(--laranja);
     color: #fff !important;
-    padding: 0.6rem 1.4rem;
-    border-radius: var(--radius-btn);
-    font-weight: 600 !important;
-    font-size: 0.88rem !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: var(--r-btn);
+    font-weight: 700 !important;
+    font-size: 0.86rem !important;
     transition: background 0.2s, transform 0.15s !important;
     white-space: nowrap;
   }
@@ -96,234 +86,262 @@
   /* ─── TICKER ─── */
   .ticker-wrap {
     background: var(--preto);
-    color: rgba(255,255,255,0.7);
-    padding: 0.55rem 0;
+    color: rgba(255,255,255,0.55);
+    padding: 0.5rem 0;
     overflow: hidden;
     white-space: nowrap;
-    margin-top: 72px;
+    margin-top: 68px;
   }
   .ticker {
     display: inline-block;
     animation: ticker 40s linear infinite;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
   @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-  .ticker-sep { margin: 0 2rem; color: var(--laranja); }
+  .ticker span { margin: 0 2rem; color: var(--laranja); }
 
   /* ─── HERO ─── */
   #hero {
-    min-height: 90vh;
+    min-height: 88vh;
     background:
-      linear-gradient(to bottom, rgba(27,15,8,0.72) 0%, rgba(27,15,8,0.55) 60%, rgba(27,15,8,0.8) 100%),
-      linear-gradient(135deg, #2b1a11 0%, #5c3520 40%, #8b5a3c 70%, #c47840 100%);
+      linear-gradient(to bottom, rgba(15,9,4,0.65) 0%, rgba(15,9,4,0.45) 50%, rgba(15,9,4,0.78) 100%),
+      linear-gradient(135deg, #1c1008 0%, #4a2810 35%, #8b4820 65%, #b86030 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 0 4rem 5rem;
+    padding: 0 3.5rem 5rem;
     position: relative;
     overflow: hidden;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.45rem;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
     color: #fff;
-    font-size: 0.72rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.35rem 0.9rem;
-    border-radius: var(--radius-btn);
+    border-radius: var(--r-btn);
     margin-bottom: 1.5rem;
     width: fit-content;
     backdrop-filter: blur(8px);
   }
-  .hero-badge::before { content: '●'; font-size: 0.45rem; color: #4ade80; animation: pulse 2s infinite; }
+  .hero-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#4ade80; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 6vw, 5.5rem);
+  #hero h1 {
+    font-size: clamp(3.2rem, 6vw, 5.5rem);
     font-weight: 900;
     line-height: 1.02;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     color: #fff;
     margin-bottom: 1.2rem;
-    max-width: 750px;
+    max-width: 700px;
   }
-  h1 em { font-style: italic; color: #ffb899; }
-
+  #hero h1 em { font-style: normal; color: #ffb07a; }
   .hero-sub {
-    font-size: 1.05rem;
-    color: rgba(255,255,255,0.75);
-    max-width: 580px;
-    line-height: 1.7;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px;
+    line-height: 1.75;
     margin-bottom: 2.5rem;
   }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-
-  .btn-primario {
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-p {
     background: var(--laranja);
     color: #fff;
-    text-decoration: none;
-    padding: 0.9rem 2rem;
-    border-radius: var(--radius-btn);
+    padding: 0.85rem 1.8rem;
+    border-radius: var(--r-btn);
     font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 0.01em;
+    font-size: 0.88rem;
     transition: background 0.2s, transform 0.15s;
     display: inline-flex; align-items: center; gap: 0.4rem;
     white-space: nowrap;
   }
-  .btn-primario:hover { background: var(--laranja-hover); transform: translateY(-2px); }
-
-  .btn-contorno {
+  .btn-p:hover { background: var(--laranja-hover); transform: translateY(-2px); }
+  .btn-o {
     background: transparent;
     color: #fff;
-    text-decoration: none;
-    padding: 0.9rem 2rem;
-    border-radius: var(--radius-btn);
+    padding: 0.85rem 1.8rem;
+    border-radius: var(--r-btn);
     font-weight: 600;
-    font-size: 0.9rem;
-    border: 1.5px solid rgba(255,255,255,0.5);
+    font-size: 0.88rem;
+    border: 1.5px solid rgba(255,255,255,0.45);
     transition: border-color 0.2s, background 0.2s, transform 0.15s;
     display: inline-flex; align-items: center; gap: 0.4rem;
     white-space: nowrap;
   }
-  .btn-contorno:hover { border-color: #fff; background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .btn-o:hover { border-color:#fff; background:rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .btn-dark {
+    background: var(--preto);
+    color: #fff;
+    padding: 0.8rem 1.6rem;
+    border-radius: var(--r-btn);
+    font-weight: 700;
+    font-size: 0.86rem;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    white-space: nowrap;
+  }
+  .btn-dark:hover { background: #2a2a2a; transform: translateY(-1px); }
 
   /* ─── SECTION UTILS ─── */
+  .sec-wrap { padding: 6rem 3.5rem; }
+  .sec-wrap-sm { padding: 5rem 3.5rem; }
   .sec-label {
     display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--texto-suave);
-    margin-bottom: 1rem;
+    color: var(--suave);
+    margin-bottom: 0.9rem;
   }
-  .sec-label::before {
-    content: '——';
-    color: var(--laranja);
-    font-weight: 400;
-    letter-spacing: -0.05em;
-  }
-
+  .sec-label::before { content:'——'; color:var(--laranja); letter-spacing:-0.05em; }
   h2 {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-size: clamp(2rem, 3.2vw, 2.6rem);
     font-weight: 900;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     line-height: 1.1;
     color: var(--preto);
     margin-bottom: 1rem;
   }
-  h2 em { font-style: italic; color: var(--laranja); }
-
-  /* ─── SOBRE / IMPACTO ─── */
-  #impacto {
-    background: var(--branco);
-    padding: 6rem 4rem;
+  .sec-sub {
+    font-size: 0.97rem;
+    color: var(--suave);
+    line-height: 1.75;
+    max-width: 580px;
+    margin-bottom: 0;
   }
+  .link-arrow {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.88rem; font-weight: 600;
+    color: var(--laranja);
+    transition: gap 0.2s, color 0.2s;
+  }
+  .link-arrow:hover { gap: 0.7rem; }
+  .link-arrow::after { content: '→'; }
+
+  /* ─── SOBRE (texto + foto) ─── */
+  #sobre { background: var(--branco); }
   .sobre-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    margin-top: 3rem;
-    align-items: start;
+    gap: 5rem;
+    align-items: center;
   }
   .sobre-esq p {
     font-size: 0.97rem;
-    color: var(--texto-suave);
+    color: var(--suave);
     line-height: 1.85;
     margin-bottom: 1.2rem;
   }
-  .sobre-esq strong { color: var(--texto); font-weight: 600; }
-  .tags-wrap { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0; }
+  .sobre-esq p strong { color: var(--texto); font-weight: 600; }
+  .sobre-foto {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 4/5;
+    background: linear-gradient(135deg, #d4a57a 0%, #b07040 40%, #8b5030 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .foto-placeholder {
+    text-align: center;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2rem;
+  }
+  .foto-placeholder span { display: block; font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
+
+  /* ─── TAGS ─── */
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 2rem; }
   .tag {
-    display: inline-flex; align-items: center; gap: 0.35rem;
-    background: var(--cinza-bg);
-    color: var(--texto);
+    background: var(--bg);
     border: 1px solid var(--borda);
-    padding: 0.35rem 0.8rem;
-    border-radius: var(--radius-btn);
+    color: var(--texto);
+    padding: 0.3rem 0.85rem;
+    border-radius: var(--r-btn);
     font-size: 0.78rem;
     font-weight: 500;
   }
 
-  /* ─── TIMELINE ─── */
-  .timeline { display: flex; flex-direction: column; }
-  .tl-item {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 1.5rem;
-    padding: 1.4rem 0;
-    border-bottom: 1px solid var(--borda);
-  }
-  .tl-item:last-child { border-bottom: none; }
-  .tl-ano {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: var(--laranja);
-    padding-top: 0.3rem;
-    line-height: 1;
-  }
-  .tl-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--preto); margin-bottom: 0.25rem; }
-  .tl-body p { font-size: 0.85rem; color: var(--texto-suave); line-height: 1.65; }
-  .tl-chip {
-    display: inline-block;
-    background: var(--laranja-suave);
-    color: var(--laranja);
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 0.15rem 0.55rem;
-    border-radius: var(--radius-btn);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-  .tl-chip.destaque { background: var(--laranja); color: #fff; }
-
-  /* ─── PROJETOS ─── */
-  #projetos {
-    background: var(--cinza-bg);
-    padding: 6rem 4rem;
-  }
+  /* ─── PROJETOS com foto ─── */
+  #projetos { background: var(--bg); }
+  .projetos-header { margin-bottom: 3rem; }
   .projetos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.2rem;
-    margin-top: 3rem;
   }
   .proj-card {
     background: var(--branco);
-    border-radius: var(--radius-card);
-    padding: 2rem 1.8rem;
+    border-radius: var(--r-card);
+    overflow: hidden;
     box-shadow: var(--shadow);
-    transition: box-shadow 0.25s, transform 0.2s;
     border: 1px solid var(--borda);
+    transition: box-shadow 0.25s, transform 0.2s;
   }
-  .proj-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
-  .proj-icon-wrap {
-    width: 52px; height: 52px;
-    background: var(--laranja-suave);
-    border-radius: 12px;
+  .proj-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .proj-foto {
+    height: 200px;
+    background: linear-gradient(135deg, #d4906a 0%, #a85a30 100%);
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
   }
-  .proj-card h3 { font-size: 1rem; font-weight: 700; color: var(--preto); margin-bottom: 0.5rem; }
-  .proj-card p { font-size: 0.85rem; color: var(--texto-suave); line-height: 1.7; }
+  .proj-foto-2 { background: linear-gradient(135deg, #7a9e7e 0%, #4a7a50 100%); }
+  .proj-foto-3 { background: linear-gradient(135deg, #d4b060 0%, #a07a20 100%); }
+  .proj-foto-4 { background: linear-gradient(135deg, #b06040 0%, #803020 100%); }
+  .proj-foto-5 { background: linear-gradient(135deg, #8a7ab0 0%, #5a4a80 100%); }
+  .proj-foto-6 { background: linear-gradient(135deg, #6a9ab0 0%, #3a6a80 100%); }
+  .proj-body { padding: 1.5rem 1.5rem 1.8rem; }
+  .proj-cat {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 0.5rem;
+  }
+  .proj-body h3 { font-size: 1rem; font-weight: 800; color: var(--preto); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .proj-body p { font-size: 0.84rem; color: var(--suave); line-height: 1.7; margin-bottom: 1.2rem; }
+
+  /* ─── OFICINAS (texto+foto dupla) ─── */
+  #oficinas { background: var(--branco); }
+  .oficinas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .oficinas-esq p { font-size: 0.97rem; color: var(--suave); line-height: 1.85; margin-bottom: 1.2rem; }
+  .fotos-duo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 1rem;
+  }
+  .foto-duo {
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+  }
+  .foto-duo-1 { background: linear-gradient(135deg, #c4805a 0%, #904428 100%); grid-row: span 2; }
+  .foto-duo-2 { background: linear-gradient(135deg, #7ab07e 0%, #4a7a50 100%); }
+  .foto-duo-3 { background: linear-gradient(135deg, #d4b060 0%, #a07820 100%); }
 
   /* ─── APOIE ─── */
-  #apoie {
-    background: var(--branco);
-    padding: 6rem 4rem;
-  }
+  #apoie { background: var(--bg); }
   .apoie-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -331,318 +349,300 @@
     margin-top: 3rem;
   }
   .apoie-card {
-    background: var(--cinza-bg);
+    background: var(--branco);
     border: 1px solid var(--borda);
-    border-radius: var(--radius-card);
+    border-radius: var(--r-card);
     padding: 2rem 1.8rem;
-    transition: box-shadow 0.25s, transform 0.2s, background 0.2s;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.25s, transform 0.2s;
   }
-  .apoie-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); background: var(--branco); }
-  .apoie-card.destaque {
+  .apoie-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .apoie-card.dest {
     background: var(--laranja);
     border-color: var(--laranja);
-    color: #fff;
-    position: relative;
   }
-  .apoie-card.destaque:hover { background: var(--laranja-hover); border-color: var(--laranja-hover); }
   .apoie-chip {
     display: inline-block;
-    font-size: 0.65rem;
+    font-size: 0.64rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--laranja);
-    background: var(--laranja-suave);
-    padding: 0.2rem 0.6rem;
-    border-radius: var(--radius-btn);
-    margin-bottom: 0.8rem;
+    background: var(--laranja-bg);
+    padding: 0.18rem 0.6rem;
+    border-radius: var(--r-btn);
+    margin-bottom: 0.7rem;
   }
-  .apoie-card.destaque .apoie-chip { background: rgba(255,255,255,0.2); color: #fff; }
-  .apoie-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--preto); margin-bottom: 0.6rem; }
-  .apoie-card.destaque h3 { color: #fff; }
-  .apoie-card p { font-size: 0.85rem; color: var(--texto-suave); line-height: 1.7; margin-bottom: 1.4rem; }
-  .apoie-card.destaque p { color: rgba(255,255,255,0.85); }
-  .apoie-lista { list-style: none; margin-bottom: 1.8rem; }
+  .apoie-card.dest .apoie-chip { background: rgba(255,255,255,0.2); color: #fff; }
+  .apoie-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--preto); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .apoie-card.dest h3 { color: #fff; }
+  .apoie-card p { font-size: 0.84rem; color: var(--suave); line-height: 1.7; margin-bottom: 1.3rem; }
+  .apoie-card.dest p { color: rgba(255,255,255,0.82); }
+  .apoie-lista { list-style:none; margin-bottom:1.6rem; }
   .apoie-lista li {
-    font-size: 0.82rem;
-    color: var(--texto-suave);
-    padding: 0.35rem 0;
+    font-size: 0.82rem; color: var(--suave);
+    padding: 0.32rem 0;
     border-bottom: 1px solid var(--borda);
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex; align-items: center; gap: 0.45rem;
   }
-  .apoie-card.destaque .apoie-lista li { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.15); }
-  .apoie-lista li::before { content: '→'; color: var(--laranja); font-weight: 600; }
-  .apoie-card.destaque .apoie-lista li::before { color: rgba(255,255,255,0.7); }
+  .apoie-lista li::before { content:'→'; color:var(--laranja); font-weight:700; }
+  .apoie-card.dest .apoie-lista li { color:rgba(255,255,255,0.82); border-color:rgba(255,255,255,0.15); }
+  .apoie-card.dest .apoie-lista li::before { color:rgba(255,255,255,0.6); }
   .btn-apoie {
-    display: block; text-align: center;
-    background: var(--laranja); color: #fff;
-    text-decoration: none;
-    padding: 0.8rem 1.4rem;
-    border-radius: var(--radius-btn);
-    font-weight: 700; font-size: 0.85rem;
-    transition: background 0.2s, transform 0.15s;
+    display:block; text-align:center;
+    background:var(--laranja); color:#fff;
+    padding:0.78rem 1.4rem;
+    border-radius:var(--r-btn);
+    font-weight:700; font-size:0.84rem;
+    transition:background 0.2s, transform 0.15s;
   }
-  .btn-apoie:hover { background: var(--laranja-hover); transform: translateY(-1px); }
-  .btn-apoie.inv {
-    background: var(--preto); color: #fff;
-  }
-  .btn-apoie.inv:hover { background: #222; }
-  .btn-apoie.outline {
-    background: transparent;
-    border: 1.5px solid var(--borda);
-    color: var(--texto);
-  }
-  .btn-apoie.outline:hover { border-color: var(--laranja); color: var(--laranja); }
+  .btn-apoie:hover { background:var(--laranja-hover); transform:translateY(-1px); }
+  .btn-apoie.inv { background:var(--preto); }
+  .btn-apoie.inv:hover { background:#2a2a2a; }
+  .btn-apoie.out { background:transparent; border:1.5px solid var(--borda); color:var(--texto); }
+  .btn-apoie.out:hover { border-color:var(--laranja); color:var(--laranja); }
 
   /* ─── CTA ESCURO ─── */
-  #cta-bloco {
-    background: linear-gradient(135deg, var(--escuro) 0%, var(--escuro-2) 100%);
-    padding: 5rem 4rem;
+  #cta {
+    background: linear-gradient(135deg, var(--escuro) 0%, #3d2010 100%);
+    padding: 5rem 3.5rem;
     text-align: center;
   }
-  #cta-bloco h2 { color: #fff; font-size: clamp(1.8rem, 3vw, 2.5rem); max-width: 680px; margin: 0 auto 1rem; }
-  #cta-bloco h2 em { color: #ffb899; }
-  #cta-bloco p { color: rgba(255,255,255,0.65); font-size: 0.97rem; max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.75; }
-  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-cta-outline {
-    background: transparent;
-    border: 1.5px solid rgba(255,255,255,0.35);
-    color: #fff;
-    text-decoration: none;
-    padding: 0.85rem 1.8rem;
-    border-radius: var(--radius-btn);
-    font-weight: 600; font-size: 0.9rem;
-    transition: border-color 0.2s, background 0.2s;
+  #cta h2 { color:#fff; max-width:640px; margin:0 auto 1rem; }
+  #cta p { color:rgba(255,255,255,0.6); max-width:500px; margin:0 auto 2.5rem; font-size:0.97rem; line-height:1.75; }
+  .cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
+  .btn-cta-out {
+    background:transparent; color:#fff;
+    border:1.5px solid rgba(255,255,255,0.3);
+    padding:0.85rem 1.8rem;
+    border-radius:var(--r-btn);
+    font-weight:600; font-size:0.88rem;
+    transition:border-color 0.2s, background 0.2s;
   }
-  .btn-cta-outline:hover { border-color: #fff; background: rgba(255,255,255,0.07); }
+  .btn-cta-out:hover { border-color:#fff; background:rgba(255,255,255,0.07); }
 
   /* ─── PIX ─── */
-  #doe {
-    background: var(--cinza-bg);
-    padding: 6rem 4rem;
-  }
+  #doe { background: var(--branco); }
   .doe-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 5rem;
     align-items: center;
     margin-top: 3rem;
   }
-  .doe-esq p { font-size: 0.97rem; color: var(--texto-suave); line-height: 1.85; margin-bottom: 1.2rem; }
-  .doe-esq strong { color: var(--laranja); font-weight: 600; }
-
+  .doe-esq p { font-size:0.97rem; color:var(--suave); line-height:1.85; margin-bottom:1.2rem; }
+  .doe-esq strong { color:var(--laranja); font-weight:600; }
   .pix-card {
-    background: var(--branco);
+    background: var(--bg);
     border-radius: 20px;
-    padding: 2.5rem;
-    box-shadow: var(--shadow);
+    padding: 2rem 2.2rem;
     border: 1px solid var(--borda);
   }
-  .pix-header {
-    display: flex; align-items: center; gap: 0.5rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #22c55e;
-    margin-bottom: 1.5rem;
+  .pix-ok {
+    display:flex; align-items:center; gap:0.4rem;
+    font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:#16a34a; margin-bottom:1.3rem;
   }
-  .pix-header::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
-  .pix-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-  .pix-field label { display: block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: 0.2rem; }
-  .pix-field span { font-size: 0.88rem; font-weight: 500; color: var(--preto); }
-  .pix-copy-box {
-    background: var(--cinza-bg);
-    border: 1.5px dashed rgba(224,92,43,0.3);
-    border-radius: 10px;
-    padding: 1rem 1.4rem;
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    cursor: pointer; margin-bottom: 1.2rem;
-    transition: border-color 0.2s, background 0.2s;
+  .pix-ok::before { content:''; width:8px; height:8px; border-radius:50%; background:#22c55e; }
+  .pix-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; margin-bottom:1.3rem; }
+  .pix-f label { display:block; font-size:0.62rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--suave); margin-bottom:0.15rem; }
+  .pix-f span { font-size:0.88rem; font-weight:600; color:var(--preto); }
+  .pix-copy {
+    background:var(--branco);
+    border:1.5px dashed rgba(224,92,43,0.35);
+    border-radius:10px;
+    padding:0.9rem 1.2rem;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    cursor:pointer; margin-bottom:1rem;
+    transition:border-color 0.2s, background 0.2s;
   }
-  .pix-copy-box:hover { border-color: var(--laranja); background: rgba(224,92,43,0.04); }
-  .pix-cnpj { font-family: monospace; font-size: 0.92rem; font-weight: 700; color: var(--laranja); letter-spacing: 0.03em; }
-  .pix-copy-label { font-size: 0.72rem; color: var(--texto-suave); font-weight: 600; white-space: nowrap; }
-  .pix-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(34,197,94,0.08);
-    border: 1px solid rgba(34,197,94,0.2);
-    color: #16a34a;
-    padding: 0.4rem 0.9rem;
-    border-radius: var(--radius-btn);
-    font-size: 0.75rem; font-weight: 500;
-    margin-bottom: 1.2rem;
-  }
+  .pix-copy:hover { border-color:var(--laranja); background:rgba(224,92,43,0.03); }
+  .pix-cnpj { font-family:monospace; font-size:0.9rem; font-weight:700; color:var(--laranja); }
+  .pix-label { font-size:0.7rem; color:var(--suave); font-weight:600; white-space:nowrap; }
 
   /* ─── DEPOIMENTOS ─── */
-  #depoimentos {
-    background: var(--branco);
-    padding: 6rem 4rem;
-  }
+  #depoimentos { background: var(--bg); }
   .depo-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.2rem;
-    margin-top: 3rem;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.2rem;
+    margin-top:3rem;
   }
   .depo-card {
-    background: var(--cinza-bg);
-    border-radius: var(--radius-card);
-    padding: 2rem;
-    border: 1px solid var(--borda);
-    transition: box-shadow 0.2s;
+    background:var(--branco);
+    border-radius:var(--r-card);
+    padding:1.8rem;
+    border:1px solid var(--borda);
+    box-shadow:var(--shadow);
+    transition:box-shadow 0.2s;
   }
-  .depo-card:hover { box-shadow: var(--shadow-hover); }
-  .depo-aspas { font-family: var(--font-display); font-size: 3.5rem; color: var(--laranja); opacity: 0.25; line-height: 1; margin-bottom: -0.8rem; }
-  .depo-texto { font-size: 0.88rem; color: var(--texto-suave); line-height: 1.8; margin-bottom: 1.5rem; }
-  .depo-autor { display: flex; align-items: center; gap: 0.8rem; }
-  .depo-avatar {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--laranja), #ff8c5a);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 0.8rem; color: #fff; flex-shrink: 0;
+  .depo-card:hover { box-shadow:var(--shadow-lg); }
+  .depo-aspas { font-size:3rem; color:var(--laranja); opacity:0.2; line-height:1; margin-bottom:-0.6rem; font-family:Georgia, serif; }
+  .depo-texto { font-size:0.87rem; color:var(--suave); line-height:1.8; margin-bottom:1.4rem; }
+  .depo-aut { display:flex; align-items:center; gap:0.75rem; }
+  .depo-av {
+    width:40px; height:40px; border-radius:50%;
+    background:linear-gradient(135deg, var(--laranja), #ff8c5a);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:0.78rem; color:#fff; flex-shrink:0;
   }
-  .depo-nome { font-size: 0.85rem; font-weight: 700; color: var(--preto); }
-  .depo-cargo { font-size: 0.75rem; color: var(--texto-suave); line-height: 1.3; }
+  .depo-nome { font-size:0.84rem; font-weight:700; color:var(--preto); }
+  .depo-cargo { font-size:0.73rem; color:var(--suave); line-height:1.3; }
 
   /* ─── RECONHECIMENTOS ─── */
-  #reconhecimentos {
-    background: var(--cinza-bg);
-    padding: 6rem 4rem;
-  }
+  #reconhecimentos { background: var(--branco); }
   .rec-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-top: 3rem;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1rem;
+    margin-top:3rem;
   }
   .rec-card {
-    background: var(--branco);
-    border-radius: var(--radius-card);
-    padding: 1.6rem 1.2rem;
-    border: 1px solid var(--borda);
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: box-shadow 0.2s, transform 0.2s;
+    background:var(--bg);
+    border-radius:var(--r-card);
+    padding:1.5rem 1.2rem;
+    border:1px solid var(--borda);
+    text-align:center;
+    transition:box-shadow 0.2s, transform 0.2s;
   }
-  .rec-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
-  .rec-icon-wrap {
-    width: 48px; height: 48px;
-    background: var(--laranja-suave);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin: 0 auto 0.8rem;
+  .rec-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-2px); background:var(--branco); }
+  .rec-ico {
+    width:48px; height:48px;
+    background:var(--laranja-bg);
+    border-radius:12px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem;
+    margin:0 auto 0.7rem;
   }
-  .rec-card h4 { font-size: 0.82rem; font-weight: 700; color: var(--preto); line-height: 1.4; margin-bottom: 0.25rem; }
-  .rec-card small { font-size: 0.72rem; color: var(--texto-suave); line-height: 1.4; }
+  .rec-card h4 { font-size:0.8rem; font-weight:700; color:var(--preto); line-height:1.4; margin-bottom:0.25rem; }
+  .rec-card small { font-size:0.7rem; color:var(--suave); line-height:1.4; }
+
+  /* ─── PARCEIROS ─── */
+  #parceiros { background: var(--bg); }
+  .parceiros-header { text-align:center; margin-bottom:3rem; }
+  .parceiros-header .sec-label { justify-content:center; }
+  .parceiros-header .sec-label::before { display:none; }
+  .parceiros-header h2 { font-size:2rem; }
+  .parceiros-header p { color:var(--suave); font-size:0.95rem; max-width:580px; margin:0.8rem auto 0; line-height:1.75; }
+  .parceiros-sub-label {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--suave); text-align:center; margin:2.5rem 0 1.2rem;
+  }
+  .logos-grid {
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1rem;
+  }
+  .logo-card {
+    background:var(--branco);
+    border-radius:var(--r-card);
+    border:1px solid var(--borda);
+    height:100px;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+    padding:1.5rem;
+    transition:box-shadow 0.2s, transform 0.2s;
+  }
+  .logo-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-2px); }
+  .logo-card-txt {
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--suave);
+    text-align:center;
+    letter-spacing:0.03em;
+    line-height:1.4;
+  }
+  .logos-grid-3 { grid-template-columns:repeat(3, 1fr); }
+  .parceiros-nota { text-align:center; font-size:0.78rem; color:var(--suave); margin-top:1.5rem; }
 
   /* ─── CONTATO ─── */
-  #contato {
-    background: var(--branco);
-    padding: 6rem 4rem;
-  }
+  #contato { background: var(--branco); }
   .contato-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: start;
-    margin-top: 3rem;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:5rem;
+    align-items:start;
+    margin-top:3rem;
   }
-  .contato-esq p { font-size: 0.97rem; color: var(--texto-suave); line-height: 1.85; margin-bottom: 1.5rem; }
-  .contato-infos { display: flex; flex-direction: column; gap: 1rem; }
-  .c-info { display: flex; align-items: flex-start; gap: 0.9rem; }
-  .c-info-ico {
-    width: 40px; height: 40px;
-    background: var(--laranja-suave);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
+  .contato-esq p { font-size:0.97rem; color:var(--suave); line-height:1.85; margin-bottom:1.5rem; }
+  .c-infos { display:flex; flex-direction:column; gap:1rem; }
+  .c-info { display:flex; align-items:flex-start; gap:0.9rem; }
+  .c-ico {
+    width:40px; height:40px; background:var(--laranja-bg);
+    border-radius:10px; display:flex; align-items:center; justify-content:center;
+    font-size:1rem; flex-shrink:0;
   }
-  .c-info-txt label { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-suave); margin-bottom: 0.15rem; }
-  .c-info-txt span { font-size: 0.9rem; color: var(--preto); }
-
-  .form-card {
-    background: var(--cinza-bg);
-    border-radius: 20px;
-    padding: 2.5rem;
-    border: 1px solid var(--borda);
-    display: flex; flex-direction: column; gap: 1.1rem;
+  .c-txt label { display:block; font-size:0.62rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--suave); margin-bottom:0.12rem; }
+  .c-txt span { font-size:0.9rem; color:var(--preto); }
+  .form-box {
+    background:var(--bg);
+    border-radius:20px;
+    padding:2.2rem;
+    border:1px solid var(--borda);
+    display:flex; flex-direction:column; gap:1rem;
   }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
-  .form-field label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texto-suave); }
-  .form-field input, .form-field select, .form-field textarea {
-    background: var(--branco);
-    border: 1.5px solid var(--borda);
-    color: var(--preto);
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    font-family: var(--font-body);
-    font-size: 0.88rem;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    resize: vertical;
+  .f-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .f-field { display:flex; flex-direction:column; gap:0.3rem; }
+  .f-field label { font-size:0.7rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--suave); }
+  .f-field input, .f-field select, .f-field textarea {
+    background:var(--branco); border:1.5px solid var(--borda);
+    color:var(--preto); padding:0.78rem 0.95rem;
+    border-radius:10px; font-family:var(--font); font-size:0.88rem;
+    outline:none; transition:border-color 0.2s, box-shadow 0.2s; resize:vertical;
   }
-  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
-    border-color: var(--laranja);
-    box-shadow: 0 0 0 3px rgba(224,92,43,0.1);
+  .f-field input:focus, .f-field select:focus, .f-field textarea:focus {
+    border-color:var(--laranja); box-shadow:0 0 0 3px rgba(224,92,43,0.1);
   }
-  .form-field input::placeholder, .form-field textarea::placeholder { color: rgba(107,114,128,0.5); }
-  .btn-enviar {
-    background: var(--laranja);
-    color: #fff;
-    border: none;
-    padding: 0.9rem 2rem;
-    border-radius: var(--radius-btn);
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
-    width: 100%;
+  .f-field input::placeholder, .f-field textarea::placeholder { color:rgba(107,114,128,0.5); }
+  .btn-send {
+    background:var(--laranja); color:#fff; border:none;
+    padding:0.85rem 2rem; border-radius:var(--r-btn);
+    font-family:var(--font); font-weight:700; font-size:0.88rem;
+    cursor:pointer; transition:background 0.2s, transform 0.15s; width:100%;
   }
-  .btn-enviar:hover { background: var(--laranja-hover); transform: translateY(-1px); }
+  .btn-send:hover { background:var(--laranja-hover); transform:translateY(-1px); }
 
   /* ─── FOOTER ─── */
   footer {
-    background: var(--preto);
-    color: rgba(255,255,255,0.5);
-    padding: 2.5rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 1.5rem;
-    border-top: 3px solid var(--laranja);
+    background:var(--preto); color:rgba(255,255,255,0.4);
+    padding:2.5rem 3.5rem;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:1.5rem;
+    border-top:3px solid var(--laranja);
   }
-  .footer-logo { font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; color: #fff; }
-  .footer-logo small { display: block; font-family: var(--font-body); font-size: 0.65rem; font-weight: 400; color: rgba(255,255,255,0.35); margin-top: 0.15rem; }
-  .footer-links { display: flex; gap: 1.8rem; flex-wrap: wrap; }
-  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--laranja); }
-  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+  .f-logo { font-size:1.3rem; font-weight:900; color:#fff; letter-spacing:-0.03em; }
+  .f-logo span { color:var(--laranja); }
+  .f-logo small { display:block; font-size:0.6rem; font-weight:400; color:rgba(255,255,255,0.3); margin-top:0.1rem; letter-spacing:0.05em; }
+  .f-links { display:flex; gap:1.8rem; flex-wrap:wrap; }
+  .f-links a { font-size:0.82rem; color:rgba(255,255,255,0.4); transition:color 0.2s; }
+  .f-links a:hover { color:var(--laranja); }
+  .f-copy { font-size:0.72rem; }
 
   /* ─── REVEAL ─── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .d1 { transition-delay: 0.1s; }
-  .d2 { transition-delay: 0.2s; }
-  .d3 { transition-delay: 0.3s; }
+  .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s}
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 1100px) {
-    nav { padding: 0 2rem; }
-    nav ul { display: none; }
-    #hero { padding: 0 2rem 4rem; min-height: 80vh; }
-    #impacto, #projetos, #apoie, #doe, #depoimentos, #reconhecimentos, #contato, #cta-bloco { padding: 4rem 2rem; }
-    .sobre-grid, .doe-grid, .contato-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns: 1fr 1fr; }
-    .rec-grid { grid-template-columns: 1fr 1fr; }
-    footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+  @media (max-width:1100px) {
+    nav { padding:0 1.5rem; }
+    nav ul { display:none; }
+    #hero, .sec-wrap, .sec-wrap-sm { padding-left:1.5rem; padding-right:1.5rem; }
+    #cta { padding:4rem 1.5rem; }
+    footer { padding:2rem 1.5rem; flex-direction:column; align-items:flex-start; }
+    .sobre-grid, .oficinas-grid, .doe-grid, .contato-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr 1fr; }
+    .rec-grid { grid-template-columns:1fr 1fr; }
+    .logos-grid, .logos-grid-3 { grid-template-columns:1fr 1fr; }
+    .sobre-foto { aspect-ratio:16/9; }
+    .fotos-duo { display:none; }
+    .oficinas-esq .fotos-duo { display:grid; }
   }
-  @media (max-width: 640px) {
-    h1 { font-size: 2.6rem; }
-    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .form-card { padding: 1.8rem; }
+  @media (max-width:640px) {
+    #hero h1 { font-size:2.7rem; }
+    .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr; }
+    .f-row { grid-template-columns:1fr; }
+    .form-box { padding:1.6rem; }
   }
 </style>
 </head>
@@ -650,15 +650,12 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">
-    OB<em>DC</em>
-    <small>Educando com Arte desde 1999</small>
-  </a>
+  <a href="#" class="logo">OB<span>DC</span><small>Educando com Arte desde 1999</small></a>
   <ul>
-    <li><a href="#impacto">Quem Somos</a></li>
+    <li><a href="#sobre">Quem Somos</a></li>
     <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#oficinas">Oficinas</a></li>
     <li><a href="#apoie">Apoie</a></li>
-    <li><a href="#doe">Doação PIX</a></li>
     <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
   </ul>
 </nav>
@@ -666,44 +663,40 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
-    PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span class="ticker-sep">◆</span>
-    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span class="ticker-sep">◆</span>
-    EDUCANDO COM ARTE DESDE 1999<span class="ticker-sep">◆</span>
-    UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span class="ticker-sep">◆</span>
-    APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span class="ticker-sep">◆</span>
-    PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span class="ticker-sep">◆</span>
-    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span class="ticker-sep">◆</span>
-    EDUCANDO COM ARTE DESDE 1999<span class="ticker-sep">◆</span>
-    UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span class="ticker-sep">◆</span>
-    APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span class="ticker-sep">◆</span>
+    PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span>◆</span>
+    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
+    EDUCANDO COM ARTE DESDE 1999<span>◆</span>
+    UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span>◆</span>
+    APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span>◆</span>
+    PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span>◆</span>
+    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
+    EDUCANDO COM ARTE DESDE 1999<span>◆</span>
+    UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span>◆</span>
+    APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span>◆</span>
   </div>
 </div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-badge">Ponto de Cultura · ID 13312 · MinC</div>
-  <h1>Arte que<br><em>transforma</em><br>a comunidade.</h1>
-  <p class="hero-sub">
-    Há 25 anos levamos cultura, educação e cidadania para comunidades
-    em vulnerabilidade social. Com teatro, música, dança e muito afeto,
-    construímos futuros melhores.
-  </p>
+  <h1>Onde a arte <em>transforma</em> a comunidade.</h1>
+  <p class="hero-sub">Há 25 anos levamos cultura, educação e cidadania para comunidades em vulnerabilidade social. Com teatro, música, dança e muito afeto, construímos futuros melhores.</p>
   <div class="hero-btns">
-    <a href="#doe" class="btn-primario">❤ Doe agora via PIX</a>
-    <a href="#apoie" class="btn-contorno">Seja um patrocinador →</a>
+    <a href="#doe" class="btn-p">❤ Doe agora via PIX</a>
+    <a href="#apoie" class="btn-o">Seja um patrocinador →</a>
   </div>
 </section>
 
-<!-- QUEM SOMOS / HISTÓRIA -->
-<section id="impacto">
-  <div class="sec-label reveal">Sobre a OBDC</div>
-  <h2 class="reveal d1">Arte, transformação<br>e <em>cidadania</em>.</h2>
+<!-- SOBRE / QUEM SOMOS -->
+<section id="sobre" class="sec-wrap">
   <div class="sobre-grid">
-    <div class="sobre-esq reveal d1">
-      <p>A <strong>OBDC – Organização Brasileira de Desenvolvimento e Cidadania</strong> nasceu em Goiânia em setembro de 1999, acreditando que a cultura é a ferramenta mais poderosa de transformação social.</p>
-      <p>Ao longo de mais de duas décadas, construímos uma rede de projetos que integram arte, saúde, habitação e educação para comunidades que mais precisam.</p>
+    <div class="sobre-esq reveal">
+      <div class="sec-label">Sobre Nós</div>
+      <h2>Quem é a OBDC?</h2>
+      <p>A <strong>OBDC – Organização Brasileira de Desenvolvimento e Cidadania</strong> é uma associação sem fins lucrativos fundada em Goiânia em setembro de 1999 que fortalece pessoas, famílias e comunidades por meio da arte, da cultura, da educação e de ações sociais.</p>
+      <p>Nascida da crença no poder transformador da cultura, a instituição cresceu junto com a comunidade e se tornou um espaço de convivência, formação, acolhimento e fortalecimento comunitário.</p>
       <p>Somos um <strong>Ponto de Cultura certificado</strong> pelo Ministério da Cultura e reconhecidos como <strong>Utilidade Pública Municipal</strong> pelo município de Aparecida de Goiânia.</p>
-      <div class="tags-wrap">
+      <div class="tags">
         <span class="tag">🎭 Artes Cênicas</span>
         <span class="tag">🎵 Música</span>
         <span class="tag">💃 Dança</span>
@@ -711,95 +704,116 @@
         <span class="tag">🤝 Cidadania</span>
         <span class="tag">🌿 Inclusão Social</span>
       </div>
-      <a href="#apoie" class="btn-primario" style="display:inline-flex; margin-top:0.5rem">Apoiar essa missão →</a>
+      <a href="#apoie" class="btn-dark">Saiba mais →</a>
     </div>
-    <div class="timeline reveal d2">
-      <div class="tl-item">
-        <div class="tl-ano">1999</div>
-        <div class="tl-body">
-          <span class="tl-chip">Fundação</span>
-          <h4>Nasce a OBDC em Goiânia</h4>
-          <p>Fundada em 30 de setembro com a missão de transformar realidades por meio da cultura, esporte e cidadania.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-ano">2012</div>
-        <div class="tl-body">
-          <span class="tl-chip">Expansão</span>
-          <h4>Projeto Educando com Arte</h4>
-          <p>Início formal no Jardim dos Ipês, em parceria com a OVG, levando arte às escolas e comunidades.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-ano">2013</div>
-        <div class="tl-body">
-          <span class="tl-chip">Sede Própria</span>
-          <h4>Casa de Cultura e Cidadania OBDC</h4>
-          <p>Abertura da sede no Setor Garavelo, Aparecida de Goiânia, com cursos de artes cênicas, capoeira e ballet.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-ano">2014</div>
-        <div class="tl-body">
-          <span class="tl-chip">Reconhecimento</span>
-          <h4>Utilidade Pública Municipal</h4>
-          <p>Lei nº 3.191 — Prefeitura de Aparecida de Goiânia reconhece a OBDC como Utilidade Pública.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-ano">2024</div>
-        <div class="tl-body">
-          <span class="tl-chip destaque">🏆 Marco Histórico</span>
-          <h4>Ponto de Cultura pelo MinC</h4>
-          <p>Certificação oficial pelo Ministério da Cultura (ID: 13312), consolidando décadas de trabalho cultural comunitário.</p>
-        </div>
+    <div class="sobre-foto reveal d2">
+      <div class="foto-placeholder">
+        <span>📸</span>
+        Foto da OBDC<br>em ação
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJETOS -->
-<section id="projetos">
-  <div class="sec-label reveal">O que fazemos</div>
-  <h2 class="reveal d1">Projetos que <em>mudam</em> vidas.</h2>
+<section id="projetos" class="sec-wrap">
+  <div class="projetos-header reveal">
+    <div class="sec-label">🌟 Projetos</div>
+    <h2>Nossos projetos</h2>
+    <p class="sec-sub">Conheça as iniciativas da OBDC que unem cultura, educação, solidariedade, cuidado e fortalecimento comunitário.</p>
+  </div>
   <div class="projetos-grid">
     <div class="proj-card reveal">
-      <div class="proj-icon-wrap">🎭</div>
-      <h3>Educando com Arte</h3>
-      <p>Teatro social e contação de histórias para crianças, abordando saúde, meio ambiente, preconceito racial e cidadania. Realizado em escolas, praças e espaços alternativos.</p>
+      <div class="proj-foto">🎭</div>
+      <div class="proj-body">
+        <div class="proj-cat">Arte e Educação</div>
+        <h3>Educando com Arte</h3>
+        <p>Teatro social e contação de histórias para crianças, abordando saúde, meio ambiente, preconceito racial e cidadania. Realizado em escolas, praças e espaços alternativos.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
     </div>
     <div class="proj-card reveal d1">
-      <div class="proj-icon-wrap">🍞</div>
-      <h3>Pão com Amor</h3>
-      <p>Distribuição de alimentos, vestuário e itens de necessidade básica para famílias em vulnerabilidade, combinando assistência social com atividades culturais.</p>
+      <div class="proj-foto proj-foto-2">🍞</div>
+      <div class="proj-body">
+        <div class="proj-cat">Assistência Social</div>
+        <h3>Pão com Amor</h3>
+        <p>Distribuição de alimentos, vestuário e itens básicos para famílias em vulnerabilidade, combinando assistência social com atividades culturais.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
     </div>
     <div class="proj-card reveal d2">
-      <div class="proj-icon-wrap">⚽</div>
-      <h3>Esporte Cidadania</h3>
-      <p>Formação esportiva e de valores para crianças e adolescentes, promovendo disciplina, trabalho em equipe e desenvolvimento integral.</p>
+      <div class="proj-foto proj-foto-3">⚽</div>
+      <div class="proj-body">
+        <div class="proj-cat">Esporte e Cidadania</div>
+        <h3>Esporte Cidadania</h3>
+        <p>Formação esportiva e de valores para crianças e adolescentes, promovendo disciplina, trabalho em equipe e desenvolvimento integral.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
     </div>
     <div class="proj-card reveal">
-      <div class="proj-icon-wrap">🧓</div>
-      <h3>Vida Melhor</h3>
-      <p>Acolhimento e atividades socioculturais para a pessoa idosa — pintura, coral, artesanato e eventos que promovem alegria e dignidade na terceira idade.</p>
+      <div class="proj-foto proj-foto-4">🧓</div>
+      <div class="proj-body">
+        <div class="proj-cat">Terceira Idade</div>
+        <h3>Vida Melhor</h3>
+        <p>Acolhimento e atividades socioculturais para a pessoa idosa — pintura, coral, artesanato e eventos que promovem alegria e dignidade.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
     </div>
     <div class="proj-card reveal d1">
-      <div class="proj-icon-wrap">👩</div>
-      <h3>Mulher Mais</h3>
-      <p>Rodas de conversa, oficinas e ações de empoderamento feminino para mulheres em situação de vulnerabilidade, com doação de insumos essenciais.</p>
+      <div class="proj-foto proj-foto-5">👩</div>
+      <div class="proj-body">
+        <div class="proj-cat">Empoderamento Feminino</div>
+        <h3>Mulher Mais</h3>
+        <p>Rodas de conversa, oficinas e ações de empoderamento feminino para mulheres em situação de vulnerabilidade.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
     </div>
     <div class="proj-card reveal d2">
-      <div class="proj-icon-wrap">🏠</div>
-      <h3>PROHAB + PROBEN</h3>
-      <p>Programas de habitação popular e acesso a benefícios de saúde, garantindo direitos básicos para comunidades de baixa renda.</p>
+      <div class="proj-foto proj-foto-6">🏠</div>
+      <div class="proj-body">
+        <div class="proj-cat">Habitação e Saúde</div>
+        <h3>PROHAB + PROBEN</h3>
+        <p>Programas de habitação popular e acesso a benefícios de saúde, garantindo direitos básicos para comunidades de baixa renda.</p>
+        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFICINAS -->
+<section id="oficinas" class="sec-wrap">
+  <div class="oficinas-grid">
+    <div class="oficinas-esq reveal">
+      <div class="sec-label">🎭 Oficinas</div>
+      <h2>Oficinas gratuitas para aprender, criar e conviver</h2>
+      <p>As oficinas da OBDC são espaços de formação, encontro e descoberta, onde cada participante pode experimentar linguagens artísticas, desenvolver habilidades e construir novas formas de expressão.</p>
+      <p>As atividades são conduzidas de forma prática, acolhedora e inclusiva, valorizando o aprendizado coletivo, a criatividade e a participação comunitária.</p>
+      <div class="tags">
+        <span class="tag">Artes Cênicas</span>
+        <span class="tag">Capoeira</span>
+        <span class="tag">Ballet</span>
+        <span class="tag">Música</span>
+        <span class="tag">Pintura</span>
+        <span class="tag">Artesanato</span>
+        <span class="tag">Contação de Histórias</span>
+      </div>
+      <a href="#contato" class="btn-p" style="margin-top:0.5rem">Saiba sobre as oficinas →</a>
+    </div>
+    <div class="fotos-duo reveal d2">
+      <div class="foto-duo foto-duo-1">🎨</div>
+      <div class="foto-duo foto-duo-2">🎵</div>
+      <div class="foto-duo foto-duo-3">💃</div>
     </div>
   </div>
 </section>
 
 <!-- APOIE -->
-<section id="apoie">
-  <div class="sec-label reveal">Faça parte dessa história</div>
-  <h2 class="reveal d1">Como você pode <em>apoiar</em>?</h2>
+<section id="apoie" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">❤ Faça Parte</div>
+    <h2>Como você pode apoiar?</h2>
+    <p class="sec-sub">A OBDC realiza suas ações com o apoio de pessoas, empresas e instituições que acreditam no poder transformador da cultura.</p>
+  </div>
   <div class="apoie-grid">
     <div class="apoie-card reveal">
       <div class="apoie-chip">Doação Individual</div>
@@ -813,7 +827,7 @@
       </ul>
       <a href="#doe" class="btn-apoie">Doar via PIX agora</a>
     </div>
-    <div class="apoie-card destaque reveal d1">
+    <div class="apoie-card dest reveal d1">
       <div class="apoie-chip">Patrocínio Empresarial</div>
       <h3>Torne-se parceiro</h3>
       <p>Associe sua marca a uma causa real e atuante há 25 anos. Visibilidade, impacto social e benefícios fiscais.</p>
@@ -836,71 +850,62 @@
         <li>Contrapartidas sociais e culturais</li>
         <li>Co-realização de eventos</li>
       </ul>
-      <a href="#contato" class="btn-apoie outline">Falar sobre parceria</a>
+      <a href="#contato" class="btn-apoie out">Falar sobre parceria</a>
     </div>
   </div>
 </section>
 
 <!-- CTA ESCURO -->
-<section id="cta-bloco">
-  <h2>A arte salva, <em>educa</em><br>e transforma vidas.</h2>
+<section id="cta">
+  <h2>A arte salva, educa e transforma vidas.</h2>
   <p>A OBDC mantém suas ações graças ao apoio de pessoas e organizações que acreditam no poder da cultura. Junte-se a nós.</p>
   <div class="cta-btns">
-    <a href="#doe" class="btn-primario">❤ Doe agora via PIX</a>
-    <a href="#contato" class="btn-cta-outline">Ver oficinas</a>
-    <a href="#contato" class="btn-cta-outline">Entrar em contato</a>
+    <a href="#doe" class="btn-p">❤ Doe agora via PIX</a>
+    <a href="#oficinas" class="btn-cta-out">Ver oficinas</a>
+    <a href="#contato" class="btn-cta-out">Entrar em contato</a>
   </div>
 </section>
 
 <!-- PIX -->
-<section id="doe">
-  <div class="sec-label reveal">Doação Direta</div>
-  <h2 class="reveal d1">Doe via <em>PIX</em> —<br>simples e seguro.</h2>
+<section id="doe" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">💳 Doação Direta</div>
+    <h2>Doe via PIX —<br>simples e seguro.</h2>
+  </div>
   <div class="doe-grid">
     <div class="doe-esq reveal d1">
       <p>Sua doação vai diretamente para a conta oficial da OBDC. Qualquer valor, feito com amor, já garante que a gente continue levando arte e esperança para quem mais precisa.</p>
       <p>Após a doação, envie seu comprovante para <strong>ongobdc@gmail.com</strong> e receba seu certificado de doador.</p>
     </div>
     <div class="pix-card reveal d2">
-      <div class="pix-header">Dados para doação via PIX</div>
-      <div class="pix-info-grid">
-        <div class="pix-field">
-          <label>Instituição</label>
-          <span>Banco 290 — PagSeguro</span>
-        </div>
-        <div class="pix-field">
-          <label>Agência / Conta</label>
-          <span>0001 / 75003394-6</span>
-        </div>
-        <div class="pix-field">
-          <label>Chave PIX (CNPJ)</label>
-          <span>03.605.483/0001-46</span>
-        </div>
-        <div class="pix-field">
-          <label>Favorecido</label>
-          <span>ONG OBDC</span>
-        </div>
+      <div class="pix-ok">Conta verificada · Entidade certificada pelo MinC</div>
+      <div class="pix-grid">
+        <div class="pix-f"><label>Instituição</label><span>Banco 290 — PagSeguro</span></div>
+        <div class="pix-f"><label>Agência / Conta</label><span>0001 / 75003394-6</span></div>
+        <div class="pix-f"><label>Chave PIX (CNPJ)</label><span>03.605.483/0001-46</span></div>
+        <div class="pix-f"><label>Favorecido</label><span>ONG OBDC</span></div>
       </div>
-      <div class="pix-copy-box" onclick="copiarPix()" title="Clique para copiar">
+      <div class="pix-copy" onclick="copiarPix()" title="Clique para copiar">
         <span class="pix-cnpj">03.605.483/0001-46</span>
-        <span class="pix-copy-label" id="pix-copy-text">📋 Copiar CNPJ</span>
+        <span class="pix-label" id="pix-copy-text">📋 Copiar CNPJ</span>
       </div>
-      <div class="pix-badge">✅ Conta verificada · Entidade certificada pelo MinC</div>
-      <a href="mailto:ongobdc@gmail.com?subject=Comprovante%20de%20doa%C3%A7%C3%A3o" class="btn-primario" style="justify-content:center; border-radius:10px;">📧 Enviar comprovante por e-mail</a>
+      <a href="mailto:ongobdc@gmail.com?subject=Comprovante%20de%20doa%C3%A7%C3%A3o" class="btn-p" style="justify-content:center; border-radius:10px;">📧 Enviar comprovante por e-mail</a>
     </div>
   </div>
 </section>
 
 <!-- DEPOIMENTOS -->
-<section id="depoimentos">
-  <div class="sec-label reveal">Vozes da comunidade</div>
-  <h2 class="reveal d1">O que dizem sobre <em>nosso trabalho</em>.</h2>
+<section id="depoimentos" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">💬 Vozes da comunidade</div>
+    <h2>O que dizem sobre nosso trabalho.</h2>
+  </div>
   <div class="depo-grid">
     <div class="depo-card reveal">
       <div class="depo-aspas">"</div>
       <p class="depo-texto">A OBDC desenvolve regularmente ações culturais por meio de projetos teatrais, cultura popular, capacitações, palestras e ações sociais em Aparecida de Goiânia. As ações desta entidade contribuem positivamente com o trabalho junto às crianças atendidas.</p>
-      <div class="depo-autor">
-        <div class="depo-avatar">KE</div>
+      <div class="depo-aut">
+        <div class="depo-av">KE</div>
         <div>
           <div class="depo-nome">Kate Ellen da Silva e Sousa</div>
           <div class="depo-cargo">Gestora · CMEI Similiana Lemes Viana</div>
@@ -910,8 +915,8 @@
     <div class="depo-card reveal d1">
       <div class="depo-aspas">"</div>
       <p class="depo-texto">A ONG OBDC desenvolve ações culturais que contribuem positivamente para o setor sociocultural do município. Reconhecida como Utilidade Pública Municipal desde 2014, é referência em cultura e cidadania em Aparecida de Goiânia.</p>
-      <div class="depo-autor">
-        <div class="depo-avatar">FC</div>
+      <div class="depo-aut">
+        <div class="depo-av">FC</div>
         <div>
           <div class="depo-nome">Felipe Cortez</div>
           <div class="depo-cargo">2° Vice-presidente · Câmara Municipal de Aparecida de Goiânia</div>
@@ -921,8 +926,8 @@
     <div class="depo-card reveal d2">
       <div class="depo-aspas">"</div>
       <p class="depo-texto">As ações da OBDC contribuem para o desenvolvimento da cultura quilombola, assim como diversas outras áreas da arte e cultura de Aparecida de Goiânia. Um trabalho sério, contínuo e que representa as raízes do povo goiano.</p>
-      <div class="depo-autor">
-        <div class="depo-avatar">CC</div>
+      <div class="depo-aut">
+        <div class="depo-av">CC</div>
         <div>
           <div class="depo-nome">Célio dos Reis Caldas (Mestre Dragão)</div>
           <div class="depo-cargo">Presidente · Ponto de Cultura Quilombo Capoeira</div>
@@ -933,103 +938,80 @@
 </section>
 
 <!-- RECONHECIMENTOS -->
-<section id="reconhecimentos">
-  <div class="sec-label reveal">Legitimidade e Reconhecimento</div>
-  <h2 class="reveal d1">Uma organização <em>séria</em> e certificada.</h2>
+<section id="reconhecimentos" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">🏆 Legitimidade</div>
+    <h2>Uma organização séria e certificada.</h2>
+  </div>
   <div class="rec-grid">
-    <div class="rec-card reveal">
-      <div class="rec-icon-wrap">🏆</div>
-      <h4>Ponto de Cultura Certificado</h4>
-      <small>Ministério da Cultura · ID 13312 · 2024</small>
-    </div>
-    <div class="rec-card reveal d1">
-      <div class="rec-icon-wrap">⚖️</div>
-      <h4>Utilidade Pública Municipal</h4>
-      <small>Lei nº 3.191 · Aparecida de Goiânia · 2014</small>
-    </div>
-    <div class="rec-card reveal d2">
-      <div class="rec-icon-wrap">📋</div>
-      <h4>CNPJ Ativo</h4>
-      <small>03.605.483/0001-46 · Desde 1999</small>
-    </div>
-    <div class="rec-card reveal d3">
-      <div class="rec-icon-wrap">🌐</div>
-      <h4>Rede Nacional Cultura Viva</h4>
-      <small>Membro ativo · Rede Municipal e Estadual</small>
-    </div>
-    <div class="rec-card reveal">
-      <div class="rec-icon-wrap">🤝</div>
-      <h4>Conselho Municipal de Cultura</h4>
-      <small>Membro e Ex-Presidente · Aparecida de Goiânia</small>
-    </div>
-    <div class="rec-card reveal d1">
-      <div class="rec-icon-wrap">👶</div>
-      <h4>Conselho Municipal da Criança</h4>
-      <small>Membro ativo · CMDCA</small>
-    </div>
-    <div class="rec-card reveal d2">
-      <div class="rec-icon-wrap">👴</div>
-      <h4>Conselho Municipal do Idoso</h4>
-      <small>Membro ativo · Aparecida de Goiânia</small>
-    </div>
-    <div class="rec-card reveal d3">
-      <div class="rec-icon-wrap">🌱</div>
-      <h4>Raízes Quilombolas Kalunga</h4>
-      <small>Descendência Kalunga certificada · Sobrado/Limoeiro</small>
-    </div>
+    <div class="rec-card reveal"><div class="rec-ico">🏆</div><h4>Ponto de Cultura Certificado</h4><small>Ministério da Cultura · ID 13312 · 2024</small></div>
+    <div class="rec-card reveal d1"><div class="rec-ico">⚖️</div><h4>Utilidade Pública Municipal</h4><small>Lei nº 3.191 · Aparecida de Goiânia · 2014</small></div>
+    <div class="rec-card reveal d2"><div class="rec-ico">📋</div><h4>CNPJ Ativo</h4><small>03.605.483/0001-46 · Desde 1999</small></div>
+    <div class="rec-card reveal d3"><div class="rec-ico">🌐</div><h4>Rede Nacional Cultura Viva</h4><small>Membro ativo · Rede Municipal e Estadual</small></div>
+    <div class="rec-card reveal"><div class="rec-ico">🤝</div><h4>Conselho Municipal de Cultura</h4><small>Membro e Ex-Presidente · Aparecida de Goiânia</small></div>
+    <div class="rec-card reveal d1"><div class="rec-ico">👶</div><h4>Conselho Municipal da Criança</h4><small>Membro ativo · CMDCA</small></div>
+    <div class="rec-card reveal d2"><div class="rec-ico">👴</div><h4>Conselho Municipal do Idoso</h4><small>Membro ativo · Aparecida de Goiânia</small></div>
+    <div class="rec-card reveal d3"><div class="rec-ico">🌱</div><h4>Raízes Quilombolas Kalunga</h4><small>Descendência Kalunga · Comunidade Sobrado/Limoeiro</small></div>
   </div>
 </section>
 
+<!-- PARCEIROS -->
+<section id="parceiros" class="sec-wrap-sm">
+  <div class="parceiros-header reveal">
+    <div class="sec-label">🤝 Parceiros</div>
+    <h2>Apoio e realização</h2>
+    <p>A OBDC realiza suas ações com o apoio de parceiros, instituições, políticas públicas de incentivo à cultura e iniciativas que contribuem para o desenvolvimento social e comunitário.</p>
+  </div>
+  <div class="parceiros-sub-label reveal">Realização</div>
+  <div class="logos-grid logos-grid-3 reveal d1">
+    <div class="logo-card"><div class="logo-card-txt">🏛️<br>Ministério da Cultura<br>Governo do Brasil</div></div>
+    <div class="logo-card"><div class="logo-card-txt">🏛️<br>Secretaria de Cultura<br>Estado de Goiás</div></div>
+    <div class="logo-card"><div class="logo-card-txt">🏛️<br>Prefeitura Municipal<br>Aparecida de Goiânia</div></div>
+  </div>
+  <div class="parceiros-sub-label reveal" style="margin-top:2rem">Parcerias</div>
+  <div class="logos-grid reveal d1">
+    <div class="logo-card"><div class="logo-card-txt">🤝<br>OVG<br>Org. das Voluntárias de Goiás</div></div>
+    <div class="logo-card"><div class="logo-card-txt">🎭<br>Rede Cultura Viva<br>Pontos de Cultura</div></div>
+    <div class="logo-card"><div class="logo-card-txt">🌿<br>Quilombo Capoeira<br>Ponto de Cultura</div></div>
+    <div class="logo-card"><div class="logo-card-txt">📚<br>CMEI Similiana<br>Lemes Viana</div></div>
+  </div>
+  <p class="parceiros-nota reveal">Este espaço reúne instituições, parceiros e iniciativas que contribuem para a realização das ações da OBDC.</p>
+</section>
+
 <!-- CONTATO -->
-<section id="contato">
-  <div class="sec-label reveal">Fale Conosco</div>
-  <h2 class="reveal d1">Vamos construir algo <em>juntos?</em></h2>
+<section id="contato" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">✉️ Fale Conosco</div>
+    <h2>Vamos construir algo juntos?</h2>
+  </div>
   <div class="contato-grid">
     <div class="contato-esq reveal d1">
       <p>Se você quer apoiar, patrocinar, fazer parceria ou simplesmente saber mais sobre nosso trabalho, entre em contato. Respondemos com carinho.</p>
-      <div class="contato-infos">
+      <div class="c-infos">
         <div class="c-info">
-          <div class="c-info-ico">📍</div>
-          <div class="c-info-txt">
-            <label>Endereço</label>
-            <span>Rua 1001, Qd. 20, Lt. 11, Setor Pedro Ludovico, Goiânia–GO</span>
-          </div>
+          <div class="c-ico">📍</div>
+          <div class="c-txt"><label>Endereço</label><span>Rua 1001, Qd. 20, Lt. 11, Setor Pedro Ludovico, Goiânia–GO</span></div>
         </div>
         <div class="c-info">
-          <div class="c-info-ico">📱</div>
-          <div class="c-info-txt">
-            <label>WhatsApp / Telefone</label>
-            <span>(62) 98581-6625 · Weyder Moreira</span>
-          </div>
+          <div class="c-ico">📱</div>
+          <div class="c-txt"><label>WhatsApp / Telefone</label><span>(62) 98581-6625 · Weyder Moreira</span></div>
         </div>
         <div class="c-info">
-          <div class="c-info-ico">✉️</div>
-          <div class="c-info-txt">
-            <label>E-mail</label>
-            <span>ongobdc@gmail.com</span>
-          </div>
+          <div class="c-ico">✉️</div>
+          <div class="c-txt"><label>E-mail</label><span>ongobdc@gmail.com</span></div>
         </div>
         <div class="c-info">
-          <div class="c-info-ico">📸</div>
-          <div class="c-info-txt">
-            <label>Redes Sociais</label>
-            <span>@ongobdc · ongobdc.org</span>
-          </div>
+          <div class="c-ico">📸</div>
+          <div class="c-txt"><label>Redes Sociais</label><span>@ongobdc · ongobdc.org</span></div>
         </div>
       </div>
     </div>
-    <div class="form-card reveal d2">
-      <div class="form-row">
-        <div class="form-field">
-          <label>Seu nome</label>
-          <input type="text" placeholder="Nome completo">
-        </div>
-        <div class="form-field">
-          <label>E-mail</label>
-          <input type="email" placeholder="seu@email.com">
-        </div>
+    <div class="form-box reveal d2">
+      <div class="f-row">
+        <div class="f-field"><label>Seu nome</label><input type="text" placeholder="Nome completo"></div>
+        <div class="f-field"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
       </div>
-      <div class="form-field">
+      <div class="f-field">
         <label>Tipo de interesse</label>
         <select>
           <option value="">Selecione uma opção</option>
@@ -1041,43 +1023,34 @@
           <option>Outro assunto</option>
         </select>
       </div>
-      <div class="form-field">
-        <label>Empresa / Organização (opcional)</label>
-        <input type="text" placeholder="Nome da sua empresa ou organização">
-      </div>
-      <div class="form-field">
-        <label>Mensagem</label>
-        <textarea rows="4" placeholder="Conte-nos como você gostaria de colaborar..."></textarea>
-      </div>
-      <button class="btn-enviar" onclick="enviarFormulario()">✉ Enviar mensagem</button>
+      <div class="f-field"><label>Empresa / Organização (opcional)</label><input type="text" placeholder="Nome da sua empresa ou organização"></div>
+      <div class="f-field"><label>Mensagem</label><textarea rows="4" placeholder="Conte-nos como você gostaria de colaborar..."></textarea></div>
+      <button class="btn-send" onclick="enviarFormulario()">✉ Enviar mensagem</button>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    OBDC
-    <small>Organização Brasileira de Desenvolvimento e Cidadania</small>
-  </div>
-  <div class="footer-links">
-    <a href="#impacto">Quem Somos</a>
+  <div class="f-logo">OB<span>DC</span><small>Organização Brasileira de Desenvolvimento e Cidadania</small></div>
+  <div class="f-links">
+    <a href="#sobre">Quem Somos</a>
     <a href="#projetos">Projetos</a>
+    <a href="#oficinas">Oficinas</a>
     <a href="#apoie">Apoie</a>
     <a href="#doe">PIX</a>
     <a href="#contato">Contato</a>
   </div>
-  <div class="footer-copy">CNPJ 03.605.483/0001-46 · Ponto de Cultura ID 13312 · © 2025 ONG OBDC</div>
+  <div class="f-copy">CNPJ 03.605.483/0001-46 · Ponto de Cultura ID 13312 · © 2025 ONG OBDC</div>
 </footer>
 
 <script>
-  // SCROLL REVEAL
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
+  const obs = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.08 }
+  );
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-  // COPIAR PIX
   function copiarPix() {
     navigator.clipboard.writeText('03.605.483/0001-46').then(() => {
       const el = document.getElementById('pix-copy-text');
@@ -1086,7 +1059,6 @@
     });
   }
 
-  // FORMULÁRIO
   function enviarFormulario() {
     const nome = document.querySelector('input[placeholder="Nome completo"]').value;
     const email = document.querySelector('input[type="email"]').value;
@@ -1098,7 +1070,6 @@
     window.location.href = `mailto:ongobdc@gmail.com?subject=${subject}&body=${body}`;
   }
 
-  // SMOOTH SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
@@ -1106,6 +1077,5 @@
     });
   });
 </script>
-
 </body>
 </html>
