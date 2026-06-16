@@ -864,15 +864,25 @@
   .footer-col a:hover { color: var(--laranja); }
   .footer-bottom {
     padding: 1.8rem 3.5rem;
-    display: flex; flex-direction: column; gap: 1rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
   }
   .footer-info {
-    display: flex; gap: 3rem; flex-wrap: wrap;
+    display: flex; gap: 3rem; flex-wrap: wrap; align-items: center;
   }
   .fi-item { display: flex; flex-direction: column; gap: 0.2rem; }
-  .fi-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .fi-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.1rem; }
   .fi-item a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
   .fi-item a:hover { color: var(--laranja); }
+  .footer-social { display: flex; gap: 0.6rem; align-items: center; }
+  .f-soc-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5); transition: border-color 0.2s, color 0.2s;
+  }
+  .f-soc-btn:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+  .footer-bottom-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.5rem; }
   .f-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); line-height: 1.5; }
 
   /* ─── FAQ ─── */
@@ -930,33 +940,55 @@
   #localizacao { background: var(--branco); }
   .local-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 4rem;
+    grid-template-columns: 1fr 480px;
+    gap: 5rem;
     align-items: start;
     margin-top: 3rem;
   }
+  .local-texto { display: flex; flex-direction: column; gap: 0; }
+  .local-texto .sec-label { margin-bottom: 0.9rem; }
+  .local-texto h2 { margin-bottom: 1rem; }
+  .local-texto > p { font-size: 0.97rem; color: var(--suave); line-height: 1.85; margin-bottom: 1.5rem; }
+  .local-texto > p a { color: var(--laranja); font-weight: 600; }
+  .local-endereco {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.9rem; color: var(--preto); line-height: 1.55;
+    margin-bottom: 2rem;
+  }
+  .local-endereco::before { content: '📍'; flex-shrink: 0; margin-top: 0.1rem; }
   .map-wrap {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    height: 380px;
+    height: 400px;
     background: var(--bg);
-    order: -1;
   }
   .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .local-cards { display: flex; flex-direction: column; gap: 1rem; }
-  .local-card {
-    background: var(--bg);
-    border-radius: var(--r-card);
-    padding: 1.5rem 1.8rem;
-    border: 1px solid var(--borda);
+
+  /* ─── REDES SOCIAIS ─── */
+  #redes { background: var(--bg); padding: 0 3.5rem 5rem; }
+  .redes-card {
+    background: #111827;
+    border-radius: 24px;
+    padding: 3.5rem 3rem;
+    text-align: center;
   }
-  .local-card h4 {
-    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.45rem;
+  #redes h2 { color: #fff; max-width: 600px; margin: 0 auto 0.8rem; font-size: clamp(1.5rem, 2.5vw, 2rem); }
+  #redes p { color: rgba(255,255,255,0.55); max-width: 500px; margin: 0 auto 2.2rem; font-size: 0.95rem; line-height: 1.7; }
+  .redes-btns { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .rede-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 0.72rem 1.5rem;
+    border-radius: var(--r-btn);
+    font-size: 0.86rem; font-weight: 600;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    white-space: nowrap;
   }
-  .local-card p { font-size: 0.9rem; color: var(--preto); line-height: 1.6; }
-  .local-card small { font-size: 0.78rem; color: var(--suave); line-height: 1.5; display: block; margin-top: 0.2rem; }
+  .rede-btn:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-1px); }
+  .rede-btn svg { flex-shrink: 0; }
 
   /* ─── REVEAL ─── */
   .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
@@ -976,6 +1008,8 @@
     .gal-grid-4 { grid-template-columns: repeat(2, 1fr); }
     .form-central { padding: 2rem 1.5rem; }
     #como-participar { padding:5rem 1.5rem; }
+    #redes { padding: 0 1.5rem 4rem; }
+    .redes-card { padding: 2.5rem 1.5rem; }
     .map-wrap { height: 280px; order: 0; }
     .projetos-grid, .apoie-grid, .depo-grid, .noticias-grid { grid-template-columns:1fr 1fr; }
     .rec-grid { grid-template-columns:1fr 1fr; }
@@ -1636,37 +1670,27 @@
 
 <!-- LOCALIZAÇÃO -->
 <section id="localizacao" class="sec-wrap">
-  <div class="reveal">
-    <div class="sec-label">Localização</div>
-    <h2>Onde encontrar a OBDC</h2>
-    <p class="sec-sub">Estamos em Goiânia-GO. Venha nos conhecer, participar das oficinas ou conversar sobre parceria.</p>
-  </div>
   <div class="local-grid">
+    <div class="local-texto reveal">
+      <div class="sec-label">Onde Estamos</div>
+      <h2>Visite a sede de atividades da OBDC</h2>
+      <p>A OBDC realiza suas oficinas, encontros e ações culturais em Goiânia-GO. Consulte o mapa para localizar o espaço e planejar sua visita.</p>
+      <div class="local-endereco">
+        <div>
+          Rua 1001, Qd. 20, Lt. 11<br>
+          Setor Pedro Ludovico — Goiânia, GO
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=Rua+1001+Setor+Pedro+Ludovico+Goiania+GO" target="_blank" class="btn-dark" style="width:fit-content;">
+        Abrir no Google Maps →
+      </a>
+    </div>
     <div class="map-wrap reveal d1">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3822.3!2d-49.2831!3d-16.7061!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef20c3b2a7a43%3A0x123456789!2sRua%201001%2C%20Setor%20Pedro%20Ludovico%2C%20Goi%C3%A2nia%20-%20GO!5e0!3m2!1spt!2sbr!4v1700000000000"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         title="Localização da OBDC em Goiânia">
       </iframe>
-    </div>
-    <div class="local-cards reveal d2">
-      <div class="local-card">
-        <h4>Endereço</h4>
-        <p>Rua 1001, Qd. 20, Lt. 11<br>Setor Pedro Ludovico<br>Goiânia – GO</p>
-      </div>
-      <div class="local-card">
-        <h4>Horário de Atendimento</h4>
-        <p>Segunda a Sexta</p>
-        <small>8h às 17h</small>
-      </div>
-      <div class="local-card">
-        <h4>Contato Direto</h4>
-        <p>(62) 98581-6625</p>
-        <small>WhatsApp · Weyder Moreira</small>
-      </div>
-      <a href="https://maps.google.com/?q=Rua+1001+Setor+Pedro+Ludovico+Goiania+GO" target="_blank" class="btn-dark" style="justify-content:center;">
-        📍 Abrir no Google Maps
-      </a>
     </div>
   </div>
 </section>
@@ -1739,6 +1763,28 @@
   </div>
 </section>
 
+<!-- REDES SOCIAIS -->
+<section id="redes">
+  <div class="redes-card reveal">
+    <h2>Acompanhe a OBDC nas redes sociais</h2>
+    <p>Fique por dentro das oficinas, apresentações, projetos, notícias, ações sociais e registros do dia a dia da instituição.</p>
+    <div class="redes-btns">
+      <a href="https://instagram.com/ongobdc" class="rede-btn" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="https://facebook.com/ongobdc" class="rede-btn" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        Facebook
+      </a>
+      <a href="https://wa.me/5562985816625" class="rede-btn" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1783,13 +1829,22 @@
         <a href="mailto:ongobdc@gmail.com">ongobdc@gmail.com</a>
       </div>
       <div class="fi-item">
-        <span class="fi-label">WhatsApp / Telefone</span>
-        <a href="https://wa.me/5562985816625">(62) 98581-6625 · Weyder Moreira</a>
+        <span class="fi-label">Telefone / WhatsApp</span>
+        <a href="https://wa.me/5562985816625">(62) 98581-6625</a>
       </div>
       <div class="fi-item">
-        <span class="fi-label">Redes Sociais</span>
-        <a href="#">Instagram</a>
-        <a href="#">Facebook</a>
+        <span class="fi-label">Conecte-se</span>
+        <div class="footer-social">
+          <a href="https://instagram.com/ongobdc" class="f-soc-btn" target="_blank" title="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://facebook.com/ongobdc" class="f-soc-btn" target="_blank" title="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/5562985816625" class="f-soc-btn" target="_blank" title="WhatsApp">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="opacity:0.7"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
     <div class="f-copy">CNPJ 03.605.483/0001-46 · ONG OBDC — Organização Brasileira de Desenvolvimento e Cidadania · © 2025. Todos os direitos reservados.</div>
