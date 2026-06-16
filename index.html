@@ -990,6 +990,127 @@
   .rede-btn:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.07); transform: translateY(-1px); }
   .rede-btn svg { flex-shrink: 0; }
 
+  /* ─── IMPACTO EM NÚMEROS ─── */
+  #impacto { background: var(--laranja); }
+  .impacto-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 0; text-align: center;
+  }
+  .imp-item {
+    padding: 2.5rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .imp-item:last-child { border-right: none; }
+  .imp-num { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #fff; letter-spacing: -0.04em; line-height: 1; }
+  .imp-num sup { font-size: 0.55em; vertical-align: super; font-weight: 700; }
+  .imp-label { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.75); margin-top: 0.5rem; letter-spacing: 0.04em; line-height: 1.4; }
+
+  /* ─── JORNAL NOTÍCIA SOCIAL ─── */
+  #jornal { background: var(--preto); padding: 6rem 3.5rem; }
+  .jornal-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .jornal-esq .sec-label { color: rgba(255,255,255,0.4); }
+  .jornal-esq .sec-label::before { color: var(--laranja); }
+  .jornal-esq h2 { color: #fff; }
+  .jornal-esq p { font-size: 0.97rem; color: rgba(255,255,255,0.6); line-height: 1.85; margin-bottom: 1.2rem; }
+  .jornal-esq p strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+  .jornal-cats {
+    display: flex; flex-wrap: wrap; gap: 0.55rem; margin: 1.5rem 0 2rem;
+  }
+  .jcat {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.75); border-radius: var(--r-btn);
+    padding: 0.3rem 0.85rem; font-size: 0.76rem; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .jcat:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
+  .jornal-dir { display: flex; flex-direction: column; gap: 1rem; }
+  .j-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--r-card); padding: 1.4rem 1.6rem;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .j-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .j-card-cat {
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.5rem;
+  }
+  .j-card h4 { font-size: 0.92rem; font-weight: 700; color: #fff; line-height: 1.45; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+  .j-card small { font-size: 0.73rem; color: rgba(255,255,255,0.4); }
+
+  /* ─── RÁDIOWEB ─── */
+  #radioweb { background: var(--bg); }
+  .radio-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 3rem;
+  }
+  .radio-esq p { font-size: 0.97rem; color: var(--suave); line-height: 1.85; margin-bottom: 1.2rem; }
+  .radio-esq p strong { color: var(--texto); font-weight: 700; }
+  .radio-player {
+    background: linear-gradient(135deg, #003d1f 0%, #006135 50%, #004d2e 100%);
+    border-radius: 20px; padding: 2.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
+    text-align: center; box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .radio-player::before {
+    content: ''; position: absolute; top: -40%; left: -20%;
+    width: 140%; height: 140%;
+    background: radial-gradient(circle, rgba(0,168,84,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .radio-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.9rem; border-radius: var(--r-btn);
+  }
+  .radio-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#4ade80; animation: pulse 2s infinite; }
+  .radio-title { font-size: 1.8rem; font-weight: 900; color: #FFD700; letter-spacing: -0.03em; line-height: 1.1; }
+  .radio-title span { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .radio-sub { font-size: 0.78rem; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
+  .radio-bars {
+    display: flex; align-items: flex-end; gap: 3px; height: 36px;
+  }
+  .radio-bars span {
+    width: 4px; background: #00a854; border-radius: 2px;
+    animation: bar 1.2s ease-in-out infinite;
+  }
+  .radio-bars span:nth-child(2){animation-delay:.1s} .radio-bars span:nth-child(3){animation-delay:.2s}
+  .radio-bars span:nth-child(4){animation-delay:.3s} .radio-bars span:nth-child(5){animation-delay:.4s}
+  .radio-bars span:nth-child(6){animation-delay:.15s} .radio-bars span:nth-child(7){animation-delay:.25s}
+  @keyframes bar { 0%,100%{height:6px} 50%{height:28px} }
+
+  /* ─── DIRETORIA ─── */
+  #diretoria { background: var(--branco); }
+  .dir-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .dir-card {
+    background: var(--bg); border-radius: var(--r-card);
+    border: 1px solid var(--borda); padding: 2rem 1.8rem;
+    text-align: center; transition: box-shadow 0.2s, transform 0.2s;
+    box-shadow: var(--shadow);
+  }
+  .dir-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .dir-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--laranja), #ff8c5a);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 1.1rem; color: #fff;
+    margin: 0 auto 1rem; flex-shrink: 0;
+  }
+  .dir-cargo {
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.4rem;
+  }
+  .dir-nome { font-size: 1rem; font-weight: 800; color: var(--preto); letter-spacing: -0.02em; }
+
   /* ─── REVEAL ─── */
   .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity:1; transform:translateY(0); }
@@ -1002,8 +1123,13 @@
     #hero, .sec-wrap, .sec-wrap-sm { padding-left:1.5rem; padding-right:1.5rem; }
     #cta { padding:0 1.5rem 4rem; }
     .cta-card { padding:3rem 1.8rem; }
-    .sobre-grid, .oficinas-grid, .doe-grid, .como-grid, .local-grid { grid-template-columns:1fr; gap:2.5rem; }
+    .sobre-grid, .oficinas-grid, .doe-grid, .como-grid, .local-grid,
+    .jornal-grid, .radio-grid { grid-template-columns:1fr; gap:2.5rem; }
     .ctt-cards { grid-template-columns: 1fr 1fr; }
+    .impacto-grid { grid-template-columns: repeat(3, 1fr); }
+    .imp-item:nth-child(3) { border-right: none; }
+    .dir-grid { grid-template-columns: 1fr; }
+    #jornal { padding: 5rem 1.5rem; }
     .ling-grid { grid-template-columns: repeat(3, 1fr); }
     .gal-grid-4 { grid-template-columns: repeat(2, 1fr); }
     .form-central { padding: 2rem 1.5rem; }
@@ -1052,9 +1178,9 @@
   <a href="#" class="logo">OB<span>DC</span><small>Educando com Arte desde 1999</small></a>
   <ul>
     <li><a href="#sobre">Quem Somos</a></li>
-    <li><a href="#oficinas">Oficinas</a></li>
     <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#noticias">Notícias</a></li>
+    <li><a href="#jornal">Jornal</a></li>
+    <li><a href="#radioweb">Rádioweb</a></li>
     <li><a href="#apoie">Apoie</a></li>
     <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
   </ul>
@@ -1063,16 +1189,28 @@
 <!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
+    PRÊMIO MELHORES ONGs DO BRASIL 2026<span>◆</span>
     PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span>◆</span>
-    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
+    MAIS DE 27 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
     EDUCANDO COM ARTE DESDE 1999<span>◆</span>
+    MEDALHA DO MÉRITO DA CULTURA JÚLIO VILELA · 2025<span>◆</span>
     UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span>◆</span>
+    LEI ROUANET APROVADA · 2 PROJETOS · PRONAC 260334 E 529068<span>◆</span>
+    MCMV-ENTIDADES · 8 MUNICÍPIOS · 50 UNIDADES<span>◆</span>
     APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span>◆</span>
+    JORNAL NOTÍCIA SOCIAL · COMUNICAÇÃO E CIDADANIA<span>◆</span>
+    RÁDIOWEB OBDC · INFORMAÇÃO · CULTURA · CIDADANIA<span>◆</span>
+    PRÊMIO MELHORES ONGs DO BRASIL 2026<span>◆</span>
     PONTO DE CULTURA CERTIFICADO · MINISTÉRIO DA CULTURA · ID 13312<span>◆</span>
-    MAIS DE 25 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
+    MAIS DE 27 ANOS TRANSFORMANDO VIDAS PELA ARTE<span>◆</span>
     EDUCANDO COM ARTE DESDE 1999<span>◆</span>
+    MEDALHA DO MÉRITO DA CULTURA JÚLIO VILELA · 2025<span>◆</span>
     UTILIDADE PÚBLICA MUNICIPAL · LEI Nº 3.191 · 2014<span>◆</span>
+    LEI ROUANET APROVADA · 2 PROJETOS · PRONAC 260334 E 529068<span>◆</span>
+    MCMV-ENTIDADES · 8 MUNICÍPIOS · 50 UNIDADES<span>◆</span>
     APARECIDA DE GOIÂNIA · GOIÂNIA · TERESINA DE GOIÁS<span>◆</span>
+    JORNAL NOTÍCIA SOCIAL · COMUNICAÇÃO E CIDADANIA<span>◆</span>
+    RÁDIOWEB OBDC · INFORMAÇÃO · CULTURA · CIDADANIA<span>◆</span>
   </div>
 </div>
 
@@ -1080,10 +1218,36 @@
 <section id="hero">
   <div class="hero-badge">Ponto de Cultura · ID 13312 · MinC</div>
   <h1>Onde a arte <em>transforma</em> a comunidade.</h1>
-  <p class="hero-sub">Há 25 anos levamos cultura, educação e cidadania para comunidades em vulnerabilidade social. Com teatro, música, dança e muito afeto, construímos futuros melhores.</p>
+  <p class="hero-sub">Há 27 anos levamos cultura, educação e cidadania para comunidades em vulnerabilidade social. Arte, esporte, habitação, comunicação e muito afeto — construímos futuros melhores.</p>
   <div class="hero-btns">
     <a href="#doe" class="btn-p">❤ Doe agora via PIX</a>
     <a href="#apoie" class="btn-o">Seja um patrocinador →</a>
+  </div>
+</section>
+
+<!-- IMPACTO EM NÚMEROS -->
+<section id="impacto">
+  <div class="impacto-grid">
+    <div class="imp-item reveal">
+      <div class="imp-num">27</div>
+      <div class="imp-label">Anos de<br>história</div>
+    </div>
+    <div class="imp-item reveal d1">
+      <div class="imp-num">8</div>
+      <div class="imp-label">Municípios<br>atendidos</div>
+    </div>
+    <div class="imp-item reveal d2">
+      <div class="imp-num">60<sup>+</sup></div>
+      <div class="imp-label">Artistas por<br>espetáculo</div>
+    </div>
+    <div class="imp-item reveal d3">
+      <div class="imp-num">2K<sup>+</sup></div>
+      <div class="imp-label">Espectadores<br>por evento</div>
+    </div>
+    <div class="imp-item reveal d3">
+      <div class="imp-num">30</div>
+      <div class="imp-label">Atletas em<br>clubes</div>
+    </div>
   </div>
 </section>
 
@@ -1243,7 +1407,7 @@
       <div class="proj-body">
         <div class="proj-cat">Esporte e Cidadania</div>
         <h3>Esporte Cidadania</h3>
-        <p>Formação esportiva e de valores para crianças e adolescentes, promovendo disciplina, trabalho em equipe e desenvolvimento integral.</p>
+        <p>Leões do Futebol — formação esportiva e de valores para crianças e adolescentes, com 30 atletas em clubes no Brasil e na Europa.</p>
         <a href="#contato" class="link-arrow">Conhecer projeto</a>
       </div>
     </div>
@@ -1272,6 +1436,49 @@
         <h3>PROHAB + PROBEN</h3>
         <p>Programas de habitação popular e acesso a benefícios de saúde, garantindo direitos básicos para comunidades de baixa renda.</p>
         <a href="#contato" class="link-arrow">Conhecer projeto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JORNAL NOTÍCIA SOCIAL -->
+<section id="jornal">
+  <div class="jornal-grid">
+    <div class="jornal-esq reveal">
+      <div class="sec-label">Comunicação e Cidadania</div>
+      <h2>Jornal Notícia Social</h2>
+      <p>O <strong>Jornal Notícia Social</strong> é a publicação oficial da OBDC — um veículo de comunicação comunitária dedicado a informar, fortalecer a cidadania e dar visibilidade às ações culturais, sociais e institucionais desenvolvidas em Aparecida de Goiânia e região.</p>
+      <p>Com edições que cobrem projetos, conquistas, cultura, esporte e legislação cultural, o jornal é um instrumento de <strong>transparência e engajamento comunitário</strong> — documentando a história de quem faz a diferença.</p>
+      <div class="jornal-cats">
+        <span class="jcat">Notícias da OBDC</span>
+        <span class="jcat">Lei Rouanet</span>
+        <span class="jcat">Cultura e Arte</span>
+        <span class="jcat">Conquistas</span>
+        <span class="jcat">Programas e Projetos</span>
+        <span class="jcat">Esporte Cidadania</span>
+      </div>
+      <a href="https://ongobdc.com/jornal-noticia-social/" class="btn-p" target="_blank" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
+    </div>
+    <div class="jornal-dir reveal d1">
+      <div class="j-card">
+        <div class="j-card-cat">Esporte Cidadania</div>
+        <h4>Leões do Futebol: atletas da OBDC chegam a clubes no Brasil e na Europa</h4>
+        <small>Programa Esporte Cidadania · Destaque nacional</small>
+      </div>
+      <div class="j-card">
+        <div class="j-card-cat">Lei Rouanet</div>
+        <h4>OBDC tem dois projetos culturais aprovados pela Lei Rouanet com R$401.989,50</h4>
+        <small>PRONAC 260334 · Turma da Esperança · Irmãs</small>
+      </div>
+      <div class="j-card">
+        <div class="j-card-cat">Conquistas</div>
+        <h4>OBDC recebe Prêmio Melhores ONGs do Brasil 2026 e Medalha Júlio Vilela</h4>
+        <small>Reconhecimento nacional · maio/2025</small>
+      </div>
+      <div class="j-card">
+        <div class="j-card-cat">Programas e Projetos</div>
+        <h4>MCMV-Entidades: OBDC habilitada para construção de 50 unidades habitacionais em 8 municípios</h4>
+        <small>Habitação social · Programa PROHAB</small>
       </div>
     </div>
   </div>
@@ -1327,6 +1534,65 @@
   </div>
 </section>
 
+<!-- RÁDIOWEB OBDC -->
+<section id="radioweb" class="sec-wrap">
+  <div class="radio-grid">
+    <div class="radio-esq reveal">
+      <div class="sec-label">Comunicação Digital</div>
+      <h2>Rádioweb OBDC</h2>
+      <p>A <strong>Rádioweb OBDC</strong> é o canal de comunicação digital da organização — uma rádio online que leva informação, cultura, cidadania e transformação social para toda a comunidade.</p>
+      <p>Programas sobre projetos sociais, arte, cultura quilombola, esporte, habitação popular e muito mais. A voz da OBDC chegando onde a arte já chegou — no coração das pessoas.</p>
+      <a href="https://ongobdc.com/radioweb-obdc/" class="btn-p" style="width:fit-content; margin-top:0.5rem" target="_blank">📡 Acessar a Rádioweb →</a>
+    </div>
+    <div class="radio-player reveal d2">
+      <div class="radio-badge">📡 DIGITAL · No ar</div>
+      <div class="radio-title">
+        <span>Rádioweb</span>
+        OBDC
+      </div>
+      <div class="radio-bars">
+        <span style="height:10px"></span>
+        <span style="height:20px"></span>
+        <span style="height:28px"></span>
+        <span style="height:14px"></span>
+        <span style="height:22px"></span>
+        <span style="height:8px"></span>
+        <span style="height:18px"></span>
+      </div>
+      <div class="radio-sub">Informação · Cultura · Cidadania · Transformação Social</div>
+    </div>
+  </div>
+</section>
+
+<!-- DIRETORIA -->
+<section id="diretoria" class="sec-wrap">
+  <div class="reveal">
+    <div class="sec-label">Gestão</div>
+    <h2>Diretoria Executiva</h2>
+    <p class="sec-sub">A OBDC é conduzida por uma diretoria comprometida com a missão de transformar comunidades por meio da cultura, da educação e da cidadania.</p>
+  </div>
+  <div class="dir-grid">
+    <div class="dir-card reveal">
+      <div class="dir-avatar">WM</div>
+      <div class="dir-cargo">Presidente e Fundador</div>
+      <div class="dir-nome">Weyder Moreira Neres</div>
+      <p style="font-size:0.8rem; color:var(--suave); line-height:1.6; margin-top:0.6rem;">Pastor, psicanalista, ator, diretor teatral, produtor cultural e estrategista. Fundador da OBDC em 1999.</p>
+    </div>
+    <div class="dir-card reveal d1">
+      <div class="dir-avatar" style="background:linear-gradient(135deg,#FFD700,#f0a500);">MP</div>
+      <div class="dir-cargo">Tesoureira</div>
+      <div class="dir-nome">Mayara Pinheiro</div>
+      <p style="font-size:0.8rem; color:var(--suave); line-height:1.6; margin-top:0.6rem;">Responsável pela gestão financeira e transparência dos recursos da OBDC.</p>
+    </div>
+    <div class="dir-card reveal d2">
+      <div class="dir-avatar" style="background:linear-gradient(135deg,#4a7a50,#2a5030);">BM</div>
+      <div class="dir-cargo">Secretária Geral</div>
+      <div class="dir-nome">Brunna Malta</div>
+      <p style="font-size:0.8rem; color:var(--suave); line-height:1.6; margin-top:0.6rem;">Responsável pela organização administrativa e relações institucionais da OBDC.</p>
+    </div>
+  </div>
+</section>
+
 <!-- APOIE -->
 <section id="apoie" class="sec-wrap">
   <div class="reveal">
@@ -1350,7 +1616,7 @@
     <div class="apoie-card dest reveal d1">
       <div class="apoie-chip">Patrocínio Empresarial</div>
       <h3>Torne-se parceiro</h3>
-      <p>Associe sua marca a uma causa real e atuante há 25 anos. Visibilidade, impacto social e benefícios fiscais.</p>
+      <p>Associe sua marca a uma causa real e atuante há 27 anos. Visibilidade, impacto social e benefícios fiscais.</p>
       <ul class="apoie-lista">
         <li>Logo em materiais e eventos</li>
         <li>Menção em redes sociais</li>
@@ -1404,12 +1670,12 @@
       <div class="pix-grid">
         <div class="pix-f"><label>Instituição</label><span>Banco 290 — PagSeguro</span></div>
         <div class="pix-f"><label>Agência / Conta</label><span>0001 / 75003394-6</span></div>
-        <div class="pix-f"><label>Chave PIX (CNPJ)</label><span>03.605.483/0001-46</span></div>
+        <div class="pix-f"><label>Chave PIX</label><span>ongobdc@gmail.com</span></div>
         <div class="pix-f"><label>Favorecido</label><span>ONG OBDC</span></div>
       </div>
       <div class="pix-copy" onclick="copiarPix()" title="Clique para copiar">
-        <span class="pix-cnpj">03.605.483/0001-46</span>
-        <span class="pix-label" id="pix-copy-text">📋 Copiar CNPJ</span>
+        <span class="pix-cnpj">ongobdc@gmail.com</span>
+        <span class="pix-label" id="pix-copy-text">📋 Copiar chave</span>
       </div>
       <a href="mailto:ongobdc@gmail.com?subject=Comprovante%20de%20doa%C3%A7%C3%A3o" class="btn-p" style="justify-content:center; border-radius:10px;">📧 Enviar comprovante por e-mail</a>
     </div>
@@ -1462,11 +1728,15 @@
 <!-- RECONHECIMENTOS -->
 <section id="reconhecimentos" class="sec-wrap">
   <div class="reveal">
-    <div class="sec-label">🏆 Legitimidade</div>
-    <h2>Uma organização séria e certificada.</h2>
+    <div class="sec-label">Legitimidade</div>
+    <h2>Uma organização séria, premiada e certificada.</h2>
   </div>
   <div class="rec-grid">
-    <div class="rec-card reveal"><div class="rec-ico">🏆</div><h4>Ponto de Cultura Certificado</h4><small>Ministério da Cultura · ID 13312 · 2024</small></div>
+    <div class="rec-card reveal" style="border:1.5px solid rgba(224,92,43,0.3)"><div class="rec-ico">🥇</div><h4>Melhores ONGs do Brasil 2026</h4><small>Comprovante nº 17447-585721 · Premiação nacional</small></div>
+    <div class="rec-card reveal d1"><div class="rec-ico">🏆</div><h4>Ponto de Cultura Certificado</h4><small>Ministério da Cultura · ID 13312 · 2024</small></div>
+    <div class="rec-card reveal d2"><div class="rec-ico">🎖️</div><h4>Medalha do Mérito da Cultura</h4><small>Júlio Vilela · Excelência Cultural · maio/2025</small></div>
+    <div class="rec-card reveal d3"><div class="rec-ico">🎭</div><h4>Lei Rouanet Aprovada</h4><small>2 projetos · PRONAC 260334 (R$401.989,50) e PRONAC 529068</small></div>
+    <div class="rec-card reveal"><div class="rec-ico">🏗️</div><h4>MCMV-Entidades Habilitado</h4><small>50 unidades habitacionais · 8 municípios atendidos</small></div>
     <div class="rec-card reveal d1"><div class="rec-ico">⚖️</div><h4>Utilidade Pública Municipal</h4><small>Lei nº 3.191 · Aparecida de Goiânia · 2014</small></div>
     <div class="rec-card reveal d2"><div class="rec-ico">📋</div><h4>CNPJ Ativo</h4><small>03.605.483/0001-46 · Desde 1999</small></div>
     <div class="rec-card reveal d3"><div class="rec-ico">🌐</div><h4>Rede Nacional Cultura Viva</h4><small>Membro ativo · Rede Municipal e Estadual</small></div>
@@ -1531,8 +1801,24 @@
     <div class="noticia-card reveal d2">
       <div class="noticia-foto nf-6">🌿</div>
       <div class="noticia-body">
-        <div class="noticia-meta">Instituição <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">2024</span></div>
-        <h3>OBDC participa do Fórum Municipal de Culturas Populares em Aparecida de Goiânia</h3>
+        <div class="noticia-meta">Conquista <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">2026</span></div>
+        <h3>OBDC vence o Prêmio Melhores ONGs do Brasil 2026 — comprovante nº 17447-585721</h3>
+        <a href="#reconhecimentos" class="link-arrow">Ver certificações</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal">
+      <div class="noticia-foto" style="background:linear-gradient(135deg,#8b4820 0%,#5a2c10 100%);">✝️</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Evento <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">Páscoa 2026</span></div>
+        <h3>Auto de Páscoa "A Promessa" reúne 2.000 espectadores e 60 artistas em Aparecida de Goiânia</h3>
+        <a href="#contato" class="link-arrow">Saiba mais</a>
+      </div>
+    </div>
+    <div class="noticia-card reveal d1">
+      <div class="noticia-foto nf-3">🏃</div>
+      <div class="noticia-body">
+        <div class="noticia-meta">Evento <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">20 set. 2026</span></div>
+        <h3>13ª Corrida Aparecida — OBDC celebra a valorização da vida com corrida comunitária</h3>
         <a href="#contato" class="link-arrow">Saiba mais</a>
       </div>
     </div>
@@ -1606,7 +1892,7 @@
         <span class="faq-icon">▼</span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">A OBDC – Organização Brasileira de Desenvolvimento e Cidadania – é uma associação sem fins lucrativos fundada em 30 de setembro de 1999, em Goiânia-GO. Há mais de 25 anos trabalhamos com cultura, arte, educação e ações sociais para fortalecer comunidades em situação de vulnerabilidade.</div>
+        <div class="faq-a-inner">A OBDC – Organização Brasileira de Desenvolvimento e Cidadania – é uma associação sem fins lucrativos fundada em 30 de setembro de 1999, em Goiânia-GO. Há mais de 27 anos trabalhamos com cultura, arte, educação e ações sociais para fortalecer comunidades em situação de vulnerabilidade.</div>
       </div>
     </div>
     <div class="faq-item reveal d1">
@@ -1804,9 +2090,10 @@
         <div class="footer-col-title">Atuação</div>
         <a href="#oficinas">Oficinas</a>
         <a href="#projetos">Projetos</a>
+        <a href="#jornal">Jornal Notícia Social</a>
+        <a href="#radioweb">Rádioweb OBDC</a>
         <a href="#noticias">Notícias</a>
         <a href="#galeria">Galeria</a>
-        <a href="#depoimentos">Depoimentos</a>
       </div>
       <div class="footer-col">
         <div class="footer-col-title">Apoie</div>
@@ -1866,10 +2153,10 @@
   }
 
   function copiarPix() {
-    navigator.clipboard.writeText('03.605.483/0001-46').then(() => {
+    navigator.clipboard.writeText('ongobdc@gmail.com').then(() => {
       const el = document.getElementById('pix-copy-text');
       el.textContent = '✅ Copiado!';
-      setTimeout(() => el.textContent = '📋 Copiar CNPJ', 2500);
+      setTimeout(() => el.textContent = '📋 Copiar chave', 2500);
     });
   }
 
