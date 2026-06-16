@@ -261,6 +261,85 @@
   }
   .foto-placeholder span { display: block; font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
 
+  /* ─── COMO ATUAMOS (2 cols texto) ─── */
+  #como { background: var(--bg); }
+  .como-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .como-esq h2 { margin-bottom: 0; }
+  .como-dir p { font-size: 0.97rem; color: var(--suave); line-height: 1.9; margin-bottom: 1.2rem; }
+  .como-dir p strong { color: var(--texto); font-weight: 700; }
+
+  /* ─── TRAJETÓRIA / TIMELINE ─── */
+  #trajetoria { background: var(--branco); }
+  .traj-intro { max-width: 600px; margin: 0 auto 0; text-align: center; }
+  .traj-intro .sec-label { justify-content: center; }
+  .traj-intro .sec-label::before { display:none; }
+  .traj-intro p { font-size: 0.97rem; color: var(--suave); line-height: 1.8; }
+  .timeline {
+    position: relative;
+    margin-top: 4rem;
+    max-width: 900px;
+    margin-left: auto; margin-right: auto;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 8px; bottom: 8px;
+    left: 50%; transform: translateX(-50%);
+    width: 2px;
+    background: rgba(0,0,0,0.08);
+  }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 1fr 32px 1fr;
+    gap: 0;
+    margin-bottom: 3.5rem;
+    align-items: flex-start;
+  }
+  .tl-item:last-child { margin-bottom: 0; }
+  .tl-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--laranja);
+    margin: 0.4rem auto;
+    position: relative; z-index: 2;
+    box-shadow: 0 0 0 4px rgba(224,92,43,0.15);
+    justify-self: center;
+  }
+  /* Odd: content LEFT */
+  .tl-item:nth-child(odd) .tl-body { padding-right: 2.5rem; text-align: right; }
+  .tl-item:nth-child(odd) .tl-empty { order: 3; }
+  /* Even: content RIGHT */
+  .tl-item:nth-child(even) .tl-body { grid-column: 3; padding-left: 2.5rem; text-align: left; grid-row: 1; }
+  .tl-item:nth-child(even) .tl-dot { grid-column: 2; grid-row: 1; }
+  .tl-item:nth-child(even) .tl-empty { grid-column: 1; grid-row: 1; }
+  .tl-ano {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--laranja);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+  .tl-body h4 { font-size: 1rem; font-weight: 800; color: var(--preto); margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+  .tl-body p { font-size: 0.84rem; color: var(--suave); line-height: 1.7; }
+  .tl-chip {
+    display: inline-block;
+    background: var(--laranja-bg);
+    color: var(--laranja);
+    font-size: 0.6rem; font-weight: 700;
+    padding: 0.1rem 0.5rem;
+    border-radius: var(--r-btn);
+    letter-spacing: 0.07em; text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .tl-chip.dest { background: var(--laranja); color: #fff; }
+
   /* ─── TAGS ─── */
   .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0 2rem; }
   .tag {
@@ -402,24 +481,29 @@
   .btn-apoie.out { background:transparent; border:1.5px solid var(--borda); color:var(--texto); }
   .btn-apoie.out:hover { border-color:var(--laranja); color:var(--laranja); }
 
-  /* ─── CTA ESCURO ─── */
+  /* ─── CTA CARD FLUTUANTE ─── */
   #cta {
-    background: linear-gradient(135deg, var(--escuro) 0%, #3d2010 100%);
-    padding: 5rem 3.5rem;
+    background: var(--bg);
+    padding: 0 3.5rem 5rem;
+  }
+  .cta-card {
+    background: linear-gradient(135deg, #1c1008 0%, #3d2010 50%, #c04820 100%);
+    border-radius: 24px;
+    padding: 4rem 3rem;
     text-align: center;
   }
   #cta h2 { color:#fff; max-width:640px; margin:0 auto 1rem; }
-  #cta p { color:rgba(255,255,255,0.6); max-width:500px; margin:0 auto 2.5rem; font-size:0.97rem; line-height:1.75; }
+  #cta p { color:rgba(255,255,255,0.62); max-width:520px; margin:0 auto 2.5rem; font-size:0.97rem; line-height:1.75; }
   .cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; }
   .btn-cta-out {
     background:transparent; color:#fff;
-    border:1.5px solid rgba(255,255,255,0.3);
+    border:1.5px solid rgba(255,255,255,0.35);
     padding:0.85rem 1.8rem;
     border-radius:var(--r-btn);
     font-weight:600; font-size:0.88rem;
     transition:border-color 0.2s, background 0.2s;
   }
-  .btn-cta-out:hover { border-color:#fff; background:rgba(255,255,255,0.07); }
+  .btn-cta-out:hover { border-color:#fff; background:rgba(255,255,255,0.08); }
 
   /* ─── PIX ─── */
   #doe { background: var(--branco); }
@@ -604,19 +688,40 @@
 
   /* ─── FOOTER ─── */
   footer {
-    background:var(--preto); color:rgba(255,255,255,0.4);
-    padding:2.5rem 3.5rem;
-    display:flex; align-items:center; justify-content:space-between;
-    flex-wrap:wrap; gap:1.5rem;
-    border-top:3px solid var(--laranja);
+    background: var(--preto);
+    color: rgba(255,255,255,0.4);
   }
-  .f-logo { font-size:1.3rem; font-weight:900; color:#fff; letter-spacing:-0.03em; }
-  .f-logo span { color:var(--laranja); }
-  .f-logo small { display:block; font-size:0.6rem; font-weight:400; color:rgba(255,255,255,0.3); margin-top:0.1rem; letter-spacing:0.05em; }
-  .f-links { display:flex; gap:1.8rem; flex-wrap:wrap; }
-  .f-links a { font-size:0.82rem; color:rgba(255,255,255,0.4); transition:color 0.2s; }
-  .f-links a:hover { color:var(--laranja); }
-  .f-copy { font-size:0.72rem; }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 4rem;
+    padding: 3.5rem 3.5rem 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .f-logo { font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: -0.04em; margin-bottom: 0.8rem; }
+  .f-logo span { color: var(--laranja); }
+  .f-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .footer-col-title {
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; color: rgba(255,255,255,0.5);
+    margin-bottom: 1rem;
+  }
+  .footer-col { display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-col a { font-size: 0.82rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
+  .footer-col a:hover { color: var(--laranja); }
+  .footer-bottom {
+    padding: 1.8rem 3.5rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .footer-info {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .fi-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .fi-label { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .fi-item a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+  .fi-item a:hover { color: var(--laranja); }
+  .f-copy { font-size: 0.7rem; color: rgba(255,255,255,0.2); line-height: 1.5; }
 
   /* ─── REVEAL ─── */
   .reveal { opacity:0; transform:translateY(22px); transition:opacity 0.6s ease, transform 0.6s ease; }
@@ -628,21 +733,34 @@
     nav { padding:0 1.5rem; }
     nav ul { display:none; }
     #hero, .sec-wrap, .sec-wrap-sm { padding-left:1.5rem; padding-right:1.5rem; }
-    #cta { padding:4rem 1.5rem; }
-    footer { padding:2rem 1.5rem; flex-direction:column; align-items:flex-start; }
-    .sobre-grid, .oficinas-grid, .doe-grid, .contato-grid { grid-template-columns:1fr; gap:2.5rem; }
+    #cta { padding:0 1.5rem 4rem; }
+    .cta-card { padding:3rem 1.8rem; }
+    .sobre-grid, .oficinas-grid, .doe-grid, .contato-grid, .como-grid { grid-template-columns:1fr; gap:2.5rem; }
     .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr 1fr; }
     .rec-grid { grid-template-columns:1fr 1fr; }
     .logos-grid, .logos-grid-3 { grid-template-columns:1fr 1fr; }
     .sobre-foto { aspect-ratio:16/9; }
     .fotos-duo { display:none; }
-    .oficinas-esq .fotos-duo { display:grid; }
+    /* Timeline mobile: linear */
+    .timeline::before { left:20px; transform:none; }
+    .tl-item { grid-template-columns:32px 1fr; }
+    .tl-item .tl-empty { display:none; }
+    .tl-item:nth-child(odd) .tl-body,
+    .tl-item:nth-child(even) .tl-body { grid-column:2; grid-row:1; padding:0 0 0 1.5rem; text-align:left; }
+    .tl-item:nth-child(even) .tl-dot { grid-column:1; }
+    .tl-item:nth-child(odd) .tl-dot { grid-column:1; }
+    /* Footer */
+    .footer-top { grid-template-columns:1fr; gap:2rem; padding:2.5rem 1.5rem 2rem; }
+    .footer-cols { grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .footer-bottom { padding:1.5rem; }
+    .footer-info { gap:1.5rem; }
   }
   @media (max-width:640px) {
     #hero h1 { font-size:2.7rem; }
     .projetos-grid, .apoie-grid, .depo-grid { grid-template-columns:1fr; }
     .f-row { grid-template-columns:1fr; }
     .form-box { padding:1.6rem; }
+    .footer-cols { grid-template-columns:1fr 1fr; }
   }
 </style>
 </head>
@@ -653,9 +771,10 @@
   <a href="#" class="logo">OB<span>DC</span><small>Educando com Arte desde 1999</small></a>
   <ul>
     <li><a href="#sobre">Quem Somos</a></li>
-    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#oficinas">Oficinas</a></li>
+    <li><a href="#projetos">Projetos</a></li>
     <li><a href="#apoie">Apoie</a></li>
+    <li><a href="#doe">Doação PIX</a></li>
     <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
   </ul>
 </nav>
@@ -711,6 +830,82 @@
         <span>📸</span>
         Foto da OBDC<br>em ação
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO ATUAMOS -->
+<section id="como" class="sec-wrap">
+  <div class="como-grid">
+    <div class="como-esq reveal">
+      <div class="sec-label">Sobre a OBDC</div>
+      <h2>Como atuamos na comunidade</h2>
+    </div>
+    <div class="como-dir reveal d1">
+      <p>A OBDC desenvolve projetos e ações voltados à <strong>formação cultural, educacional, esportiva e social</strong> da comunidade em Aparecida de Goiânia e região.</p>
+      <p>Por meio de oficinas, atividades lúdicas, eventos, apresentações culturais, iniciativas de capacitação e mobilizações comunitárias, criamos espaços para que crianças, jovens e adultos tenham acesso a experiências que fortalecem a autoestima, a cidadania, a criatividade e o sentimento de pertencimento.</p>
+      <p>Nossa atuação parte de uma ideia simples e concreta: quando uma comunidade tem acesso à cultura, à educação, ao acolhimento e à oportunidade, ela ganha mais ferramentas para ampliar possibilidades e fortalecer vínculos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRAJETÓRIA -->
+<section id="trajetoria" class="sec-wrap">
+  <div class="traj-intro reveal">
+    <div class="sec-label">Trajetória</div>
+    <h2>Nossa história</h2>
+    <p>A história da OBDC começou em 1999, em Goiânia, com a missão de transformar realidades por meio da cultura, do esporte e da cidadania.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-body reveal">
+        <div class="tl-ano">1999</div>
+        <span class="tl-chip">Fundação</span>
+        <h4>Nasce a OBDC em Goiânia</h4>
+        <p>Fundada em 30 de setembro com a missão de transformar realidades por meio da cultura, esporte e cidadania.</p>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-empty"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-empty"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-body reveal d1">
+        <div class="tl-ano">2012</div>
+        <span class="tl-chip">Expansão</span>
+        <h4>Projeto Educando com Arte</h4>
+        <p>Início formal no Jardim dos Ipês, em parceria com a OVG, levando arte às escolas e comunidades de Aparecida de Goiânia.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-body reveal">
+        <div class="tl-ano">2013</div>
+        <span class="tl-chip">Sede Própria</span>
+        <h4>Casa de Cultura e Cidadania OBDC</h4>
+        <p>Abertura da sede no Setor Garavelo, Aparecida de Goiânia, com cursos de artes cênicas, capoeira e ballet.</p>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-empty"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-empty"></div>
+      <div class="tl-dot"></div>
+      <div class="tl-body reveal d1">
+        <div class="tl-ano">2014</div>
+        <span class="tl-chip">Reconhecimento</span>
+        <h4>Utilidade Pública Municipal</h4>
+        <p>Lei nº 3.191 — Prefeitura de Aparecida de Goiânia reconhece a OBDC como Utilidade Pública Municipal.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-body reveal">
+        <div class="tl-ano">2024</div>
+        <span class="tl-chip dest">🏆 Marco Histórico</span>
+        <h4>Ponto de Cultura pelo MinC</h4>
+        <p>Certificação oficial pelo Ministério da Cultura (ID: 13312), consolidando décadas de trabalho cultural comunitário.</p>
+      </div>
+      <div class="tl-dot"></div>
+      <div class="tl-empty"></div>
     </div>
   </div>
 </section>
@@ -855,14 +1050,16 @@
   </div>
 </section>
 
-<!-- CTA ESCURO -->
+<!-- CTA CARD FLUTUANTE -->
 <section id="cta">
-  <h2>A arte salva, educa e transforma vidas.</h2>
-  <p>A OBDC mantém suas ações graças ao apoio de pessoas e organizações que acreditam no poder da cultura. Junte-se a nós.</p>
-  <div class="cta-btns">
-    <a href="#doe" class="btn-p">❤ Doe agora via PIX</a>
-    <a href="#oficinas" class="btn-cta-out">Ver oficinas</a>
-    <a href="#contato" class="btn-cta-out">Entrar em contato</a>
+  <div class="cta-card reveal">
+    <h2>Faça parte dessa história</h2>
+    <p>Acompanhe os projetos, participe das oficinas, conheça nossas ações ou entre em contato para apoiar o trabalho da OBDC em Aparecida de Goiânia e região.</p>
+    <div class="cta-btns">
+      <a href="#projetos" class="btn-cta-out">Conhecer projetos</a>
+      <a href="#doe" class="btn-p">❤ Doe agora via PIX</a>
+      <a href="https://wa.me/5562985816625" class="btn-cta-out" target="_blank">💬 Falar pelo WhatsApp</a>
+    </div>
   </div>
 </section>
 
@@ -1032,16 +1229,57 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo">OB<span>DC</span><small>Organização Brasileira de Desenvolvimento e Cidadania</small></div>
-  <div class="f-links">
-    <a href="#sobre">Quem Somos</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#oficinas">Oficinas</a>
-    <a href="#apoie">Apoie</a>
-    <a href="#doe">PIX</a>
-    <a href="#contato">Contato</a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="f-logo">OB<span>DC</span></div>
+      <p class="f-tagline">Educando com Arte desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="footer-col-title">Institucional</div>
+        <a href="#sobre">Quem Somos</a>
+        <a href="#trajetoria">Nossa História</a>
+        <a href="#reconhecimentos">Certificações</a>
+        <a href="#parceiros">Parceiros</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Atuação</div>
+        <a href="#oficinas">Oficinas</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#depoimentos">Depoimentos</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Apoie</div>
+        <a href="#doe">Doação PIX</a>
+        <a href="#apoie">Patrocínio</a>
+        <a href="#apoie">Parceria Institucional</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contato</div>
+        <a href="#contato">Fale Conosco</a>
+        <a href="mailto:ongobdc@gmail.com">ongobdc@gmail.com</a>
+        <a href="https://wa.me/5562985816625">(62) 98581-6625</a>
+      </div>
+    </div>
   </div>
-  <div class="f-copy">CNPJ 03.605.483/0001-46 · Ponto de Cultura ID 13312 · © 2025 ONG OBDC</div>
+  <div class="footer-bottom">
+    <div class="footer-info">
+      <div class="fi-item">
+        <span class="fi-label">E-mail</span>
+        <a href="mailto:ongobdc@gmail.com">ongobdc@gmail.com</a>
+      </div>
+      <div class="fi-item">
+        <span class="fi-label">WhatsApp / Telefone</span>
+        <a href="https://wa.me/5562985816625">(62) 98581-6625 · Weyder Moreira</a>
+      </div>
+      <div class="fi-item">
+        <span class="fi-label">Redes Sociais</span>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+    <div class="f-copy">CNPJ 03.605.483/0001-46 · ONG OBDC — Organização Brasileira de Desenvolvimento e Cidadania · © 2025. Todos os direitos reservados.</div>
+  </div>
 </footer>
 
 <script>
