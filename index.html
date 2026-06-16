@@ -3,21 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ONG OBDC – Educando com Arte | Apoie essa causa</title>
+<title>ONG OBDC – Transformando Vidas | Educação, Arte e Cidadania</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --laranja: #e05c2b;
-    --laranja-hover: #c9501f;
-    --laranja-bg: rgba(224,92,43,0.08);
-    --bg: #f0f2f5;
+    --verde: #2db54e;
+    --verde-hover: #1f9e3d;
+    --verde-bg: rgba(45,181,78,0.08);
+    --azul: #1a5fb4;
+    --azul-hover: #1550a2;
+    --azul-bg: rgba(26,95,180,0.08);
+    --azul-esc: #071221;
+    --bg: #f0f4f8;
     --branco: #ffffff;
-    --preto: #0f0f0f;
-    --texto: #1a1a1a;
-    --suave: #6b7280;
+    --preto: #0a1628;
+    --texto: #1a2332;
+    --suave: #5a6d80;
     --borda: rgba(0,0,0,0.07);
-    --escuro: #1c1008;
+    --escuro: #071221;
     --font: 'Inter', sans-serif;
     --r-card: 16px;
     --r-btn: 100px;
@@ -51,28 +55,25 @@
     gap: 2rem;
   }
   .logo {
-    font-size: 1.6rem;
-    font-weight: 900;
-    color: var(--preto);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    flex-shrink: 0;
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none; flex-shrink: 0; line-height: 1;
   }
-  .logo span { color: var(--laranja); }
-  .logo small {
-    display: block;
-    font-size: 0.52rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--suave);
-    margin-top: 0.15rem;
+  .logo-svg { height: 42px; width: auto; display: block; flex-shrink: 0; }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-wordmark {
+    font-size: 1.45rem; font-weight: 900; color: var(--preto);
+    letter-spacing: -0.04em; line-height: 1;
+  }
+  .logo-wordmark span { color: var(--verde); }
+  .logo-slogan {
+    font-size: 0.5rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--suave); margin-top: 0.15rem;
   }
   nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
   nav ul a { color: var(--texto); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
-  nav ul a:hover { color: var(--laranja); }
+  nav ul a:hover { color: var(--verde); }
   .nav-cta {
-    background: var(--laranja);
+    background: var(--verde);
     color: #fff !important;
     padding: 0.55rem 1.4rem;
     border-radius: var(--r-btn);
@@ -81,7 +82,7 @@
     transition: background 0.2s, transform 0.15s !important;
     white-space: nowrap;
   }
-  .nav-cta:hover { background: var(--laranja-hover) !important; transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--verde-hover) !important; transform: translateY(-1px); }
 
   /* ─── TICKER ─── */
   .ticker-wrap {
@@ -101,14 +102,14 @@
     text-transform: uppercase;
   }
   @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-  .ticker span { margin: 0 2rem; color: var(--laranja); }
+  .ticker span { margin: 0 2rem; color: var(--verde); }
 
   /* ─── HERO ─── */
   #hero {
     min-height: 88vh;
     background:
-      linear-gradient(to bottom, rgba(15,9,4,0.65) 0%, rgba(15,9,4,0.45) 50%, rgba(15,9,4,0.78) 100%),
-      linear-gradient(135deg, #1c1008 0%, #4a2810 35%, #8b4820 65%, #b86030 100%);
+      linear-gradient(to bottom, rgba(4,12,28,0.72) 0%, rgba(4,12,28,0.48) 50%, rgba(4,12,28,0.85) 100%),
+      linear-gradient(135deg, #071221 0%, #0a2859 30%, #0d3d8a 65%, #1a6a2e 100%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -142,7 +143,7 @@
     margin-bottom: 1.2rem;
     max-width: 700px;
   }
-  #hero h1 em { font-style: normal; color: #ffb07a; }
+  #hero h1 em { font-style: normal; color: #86efac; }
   .hero-sub {
     font-size: 1rem;
     color: rgba(255,255,255,0.72);
@@ -152,7 +153,7 @@
   }
   .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-p {
-    background: var(--laranja);
+    background: var(--verde);
     color: #fff;
     padding: 0.85rem 1.8rem;
     border-radius: var(--r-btn);
@@ -162,7 +163,7 @@
     display: inline-flex; align-items: center; gap: 0.4rem;
     white-space: nowrap;
   }
-  .btn-p:hover { background: var(--laranja-hover); transform: translateY(-2px); }
+  .btn-p:hover { background: var(--verde-hover); transform: translateY(-2px); }
   .btn-o {
     background: transparent;
     color: #fff;
@@ -201,7 +202,7 @@
     color: var(--suave);
     margin-bottom: 0.9rem;
   }
-  .sec-label::before { content:'——'; color:var(--laranja); letter-spacing:-0.05em; }
+  .sec-label::before { content:'——'; color:var(--verde); letter-spacing:-0.05em; }
   h2 {
     font-size: clamp(2rem, 3.2vw, 2.6rem);
     font-weight: 900;
@@ -220,7 +221,7 @@
   .link-arrow {
     display: inline-flex; align-items: center; gap: 0.4rem;
     font-size: 0.88rem; font-weight: 600;
-    color: var(--laranja);
+    color: var(--verde);
     transition: gap 0.2s, color 0.2s;
   }
   .link-arrow:hover { gap: 0.7rem; }
@@ -305,7 +306,7 @@
   .tl-dot {
     width: 14px; height: 14px;
     border-radius: 50%;
-    background: var(--laranja);
+    background: var(--verde);
     margin: 0.4rem auto;
     position: relative; z-index: 2;
     box-shadow: 0 0 0 4px rgba(224,92,43,0.15);
@@ -321,7 +322,7 @@
   .tl-ano {
     font-size: 0.72rem;
     font-weight: 800;
-    color: var(--laranja);
+    color: var(--verde);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.35rem;
@@ -330,15 +331,15 @@
   .tl-body p { font-size: 0.84rem; color: var(--suave); line-height: 1.7; }
   .tl-chip {
     display: inline-block;
-    background: var(--laranja-bg);
-    color: var(--laranja);
+    background: var(--verde-bg);
+    color: var(--verde);
     font-size: 0.6rem; font-weight: 700;
     padding: 0.1rem 0.5rem;
     border-radius: var(--r-btn);
     letter-spacing: 0.07em; text-transform: uppercase;
     margin-bottom: 0.3rem;
   }
-  .tl-chip.dest { background: var(--laranja); color: #fff; }
+  .tl-chip.dest { background: var(--verde); color: #fff; }
 
   /* ─── PÚBLICO ─── */
   #publico { background: var(--branco); }
@@ -357,7 +358,7 @@
     box-shadow: var(--shadow); transition: box-shadow 0.2s, transform 0.15s, border-color 0.2s;
     cursor: default;
   }
-  .pub-pill:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--laranja); }
+  .pub-pill:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--verde); }
   .pub-pill-ico { font-size: 1rem; line-height: 1; }
 
   /* ─── LINGUAGENS ARTÍSTICAS ─── */
@@ -381,7 +382,7 @@
   .ling-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: rgba(224,92,43,0.25); }
   .ling-ico {
     width: 44px; height: 44px; border-radius: 12px;
-    background: var(--laranja-bg);
+    background: var(--verde-bg);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.3rem;
   }
@@ -435,7 +436,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--laranja);
+    color: var(--verde);
     margin-bottom: 0.5rem;
   }
   .proj-body h3 { font-size: 1rem; font-weight: 800; color: var(--preto); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
@@ -484,8 +485,8 @@
   }
   .apoie-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
   .apoie-card.dest {
-    background: var(--laranja);
-    border-color: var(--laranja);
+    background: var(--verde);
+    border-color: var(--verde);
   }
   .apoie-chip {
     display: inline-block;
@@ -493,8 +494,8 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--laranja);
-    background: var(--laranja-bg);
+    color: var(--verde);
+    background: var(--verde-bg);
     padding: 0.18rem 0.6rem;
     border-radius: var(--r-btn);
     margin-bottom: 0.7rem;
@@ -511,22 +512,22 @@
     border-bottom: 1px solid var(--borda);
     display: flex; align-items: center; gap: 0.45rem;
   }
-  .apoie-lista li::before { content:'→'; color:var(--laranja); font-weight:700; }
+  .apoie-lista li::before { content:'→'; color:var(--verde); font-weight:700; }
   .apoie-card.dest .apoie-lista li { color:rgba(255,255,255,0.82); border-color:rgba(255,255,255,0.15); }
   .apoie-card.dest .apoie-lista li::before { color:rgba(255,255,255,0.6); }
   .btn-apoie {
     display:block; text-align:center;
-    background:var(--laranja); color:#fff;
+    background:var(--verde); color:#fff;
     padding:0.78rem 1.4rem;
     border-radius:var(--r-btn);
     font-weight:700; font-size:0.84rem;
     transition:background 0.2s, transform 0.15s;
   }
-  .btn-apoie:hover { background:var(--laranja-hover); transform:translateY(-1px); }
+  .btn-apoie:hover { background:var(--verde-hover); transform:translateY(-1px); }
   .btn-apoie.inv { background:var(--preto); }
-  .btn-apoie.inv:hover { background:#2a2a2a; }
+  .btn-apoie.inv:hover { background:#0d2040; }
   .btn-apoie.out { background:transparent; border:1.5px solid var(--borda); color:var(--texto); }
-  .btn-apoie.out:hover { border-color:var(--laranja); color:var(--laranja); }
+  .btn-apoie.out:hover { border-color:var(--verde); color:var(--verde); }
 
   /* ─── CTA CARD FLUTUANTE ─── */
   #cta {
@@ -534,7 +535,7 @@
     padding: 0 3.5rem 5rem;
   }
   .cta-card {
-    background: linear-gradient(135deg, #1c1008 0%, #3d2010 50%, #c04820 100%);
+    background: linear-gradient(135deg, #071221 0%, #0a2859 50%, #1a5fb4 100%);
     border-radius: 24px;
     padding: 4rem 3rem;
     text-align: center;
@@ -562,7 +563,7 @@
     margin-top: 3rem;
   }
   .doe-esq p { font-size:0.97rem; color:var(--suave); line-height:1.85; margin-bottom:1.2rem; }
-  .doe-esq strong { color:var(--laranja); font-weight:600; }
+  .doe-esq strong { color:var(--verde); font-weight:600; }
   .pix-card {
     background: var(--bg);
     border-radius: 20px;
@@ -587,8 +588,8 @@
     cursor:pointer; margin-bottom:1rem;
     transition:border-color 0.2s, background 0.2s;
   }
-  .pix-copy:hover { border-color:var(--laranja); background:rgba(224,92,43,0.03); }
-  .pix-cnpj { font-family:monospace; font-size:0.9rem; font-weight:700; color:var(--laranja); }
+  .pix-copy:hover { border-color:var(--verde); background:rgba(224,92,43,0.03); }
+  .pix-cnpj { font-family:monospace; font-size:0.9rem; font-weight:700; color:var(--verde); }
   .pix-label { font-size:0.7rem; color:var(--suave); font-weight:600; white-space:nowrap; }
 
   /* ─── DEPOIMENTOS ─── */
@@ -608,12 +609,12 @@
     transition:box-shadow 0.2s;
   }
   .depo-card:hover { box-shadow:var(--shadow-lg); }
-  .depo-aspas { font-size:3rem; color:var(--laranja); opacity:0.2; line-height:1; margin-bottom:-0.6rem; font-family:Georgia, serif; }
+  .depo-aspas { font-size:3rem; color:var(--verde); opacity:0.2; line-height:1; margin-bottom:-0.6rem; font-family:Georgia, serif; }
   .depo-texto { font-size:0.87rem; color:var(--suave); line-height:1.8; margin-bottom:1.4rem; }
   .depo-aut { display:flex; align-items:center; gap:0.75rem; }
   .depo-av {
     width:40px; height:40px; border-radius:50%;
-    background:linear-gradient(135deg, var(--laranja), #ff8c5a);
+    background:linear-gradient(135deg, var(--verde), #5bc176);
     display:flex; align-items:center; justify-content:center;
     font-weight:700; font-size:0.78rem; color:#fff; flex-shrink:0;
   }
@@ -657,7 +658,7 @@
   .noticia-meta {
     display: flex; align-items: center; gap: 0.5rem;
     font-size: 0.63rem; font-weight: 800; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.6rem;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 0.6rem;
   }
   .noticia-meta-sep { color: var(--borda); font-size: 0.8rem; font-weight: 300; }
   .noticia-meta-date { font-weight: 500; letter-spacing: 0.02em; text-transform: none; font-size: 0.68rem; color: var(--suave); }
@@ -674,7 +675,7 @@
     font-size: 1.15rem; font-weight: 800; color: var(--preto);
     letter-spacing: -0.02em; margin-bottom: 1.2rem;
     display: inline-block;
-    border-bottom: 3px solid var(--laranja);
+    border-bottom: 3px solid var(--verde);
     padding-bottom: 0.3rem;
   }
   .gal-grid-4 {
@@ -720,7 +721,7 @@
   .rec-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-2px); background:var(--branco); }
   .rec-ico {
     width:48px; height:48px;
-    background:var(--laranja-bg);
+    background:var(--verde-bg);
     border-radius:12px;
     display:flex; align-items:center; justify-content:center;
     font-size:1.4rem;
@@ -801,7 +802,7 @@
     display: inline-flex; align-items: center; gap: 0.35rem;
     transition: color 0.2s; margin-top: 0.6rem;
   }
-  .ctt-link:hover { color: var(--laranja); }
+  .ctt-link:hover { color: var(--verde); }
   .ctt-link::after { content: '→'; }
   .form-central {
     max-width: 640px; margin: 0 auto;
@@ -814,7 +815,7 @@
   .form-central-hd { text-align: center; margin-bottom: 2rem; }
   .form-central-hd h3 { font-size: 1.5rem; font-weight: 900; color: var(--preto); letter-spacing: -0.03em; margin-bottom: 0.5rem; }
   .form-central-hd p { font-size: 0.88rem; color: var(--suave); line-height: 1.65; }
-  .form-central-hd p a { color: var(--laranja); font-weight: 600; }
+  .form-central-hd p a { color: var(--verde); font-weight: 600; }
   .form-central-body { display: flex; flex-direction: column; gap: 1rem; }
   .f-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
   .f-field { display:flex; flex-direction:column; gap:0.3rem; }
@@ -826,7 +827,7 @@
     outline:none; transition:border-color 0.2s, box-shadow 0.2s; resize:vertical;
   }
   .f-field input:focus, .f-field select:focus, .f-field textarea:focus {
-    border-color:var(--laranja); box-shadow:0 0 0 3px rgba(224,92,43,0.1);
+    border-color:var(--verde); box-shadow:0 0 0 3px rgba(224,92,43,0.1);
   }
   .f-field input::placeholder, .f-field textarea::placeholder { color:rgba(107,114,128,0.5); }
   .btn-send {
@@ -836,7 +837,7 @@
     cursor:pointer; transition:background 0.2s, transform 0.15s;
     display: flex; align-items: center; gap: 0.5rem; margin: 0 auto;
   }
-  .btn-send:hover { background:#2a2a2a; transform:translateY(-1px); }
+  .btn-send:hover { background:#0d2040; transform:translateY(-1px); }
 
   /* ─── FOOTER ─── */
   footer {
@@ -850,8 +851,10 @@
     padding: 3.5rem 3.5rem 3rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
-  .f-logo { font-size: 1.6rem; font-weight: 900; color: #fff; letter-spacing: -0.04em; margin-bottom: 0.8rem; }
-  .f-logo span { color: var(--laranja); }
+  .f-logo { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.8rem; }
+  .f-logo-svg { height:40px; width:auto; }
+  .f-logo-txt { font-size:1.5rem; font-weight:900; color:#fff; letter-spacing:-0.04em; line-height:1; }
+  .f-logo-txt span { color:var(--verde); }
   .f-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
   .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   .footer-col-title {
@@ -861,7 +864,7 @@
   }
   .footer-col { display: flex; flex-direction: column; gap: 0.55rem; }
   .footer-col a { font-size: 0.82rem; color: rgba(255,255,255,0.45); transition: color 0.2s; }
-  .footer-col a:hover { color: var(--laranja); }
+  .footer-col a:hover { color: var(--verde); }
   .footer-bottom {
     padding: 1.8rem 3.5rem;
     display: flex; justify-content: space-between; align-items: center;
@@ -873,7 +876,7 @@
   .fi-item { display: flex; flex-direction: column; gap: 0.2rem; }
   .fi-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.1rem; }
   .fi-item a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
-  .fi-item a:hover { color: var(--laranja); }
+  .fi-item a:hover { color: var(--verde); }
   .footer-social { display: flex; gap: 0.6rem; align-items: center; }
   .f-soc-btn {
     width: 34px; height: 34px; border-radius: 50%;
@@ -903,16 +906,16 @@
     cursor: pointer; text-align: left; gap: 1rem;
     font-family: var(--font); transition: background 0.2s;
   }
-  .faq-q:hover { background: var(--laranja-bg); }
+  .faq-q:hover { background: var(--verde-bg); }
   .faq-q-txt { font-size: 0.96rem; font-weight: 700; color: var(--preto); line-height: 1.4; }
   .faq-icon {
     width: 28px; height: 28px; border-radius: 50%;
     background: var(--bg);
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 0.72rem; color: var(--laranja);
+    flex-shrink: 0; font-size: 0.72rem; color: var(--verde);
     transition: transform 0.3s ease, background 0.2s;
   }
-  .faq-item.open .faq-icon { transform: rotate(180deg); background: var(--laranja-bg); }
+  .faq-item.open .faq-icon { transform: rotate(180deg); background: var(--verde-bg); }
   .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .faq-item.open .faq-a { max-height: 500px; }
   .faq-a-inner { padding: 0 1.8rem 1.4rem; font-size: 0.88rem; color: var(--suave); line-height: 1.85; border-top: 1px solid var(--borda); padding-top: 1rem; }
@@ -924,7 +927,7 @@
     text-align: center;
   }
   #como-participar .sec-label { justify-content: center; color: rgba(255,255,255,0.4); }
-  #como-participar .sec-label::before { color: var(--laranja); }
+  #como-participar .sec-label::before { color: var(--verde); }
   #como-participar h2 { color: #fff; max-width: 660px; margin: 0 auto 1.2rem; }
   #como-participar p { color: rgba(255,255,255,0.6); max-width: 540px; margin: 0 auto 2.5rem; font-size: 0.97rem; line-height: 1.75; }
   .btn-wpp {
@@ -951,7 +954,7 @@
   .local-unidade-header { padding: 2rem 2rem 1.5rem; }
   .local-tag {
     display: inline-block; font-size: 0.62rem; font-weight: 800;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--laranja);
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--verde);
     margin-bottom: 0.6rem;
   }
   .local-unidade h3 {
@@ -972,7 +975,7 @@
   /* ─── REDES SOCIAIS ─── */
   #redes { background: var(--bg); padding: 0 3.5rem 5rem; }
   .redes-card {
-    background: #111827;
+    background: var(--preto);
     border-radius: 24px;
     padding: 3.5rem 3rem;
     text-align: center;
@@ -995,7 +998,7 @@
   .rede-btn svg { flex-shrink: 0; }
 
   /* ─── IMPACTO EM NÚMEROS ─── */
-  #impacto { background: var(--laranja); }
+  #impacto { background: var(--azul); }
   .impacto-grid {
     display: grid; grid-template-columns: repeat(5, 1fr);
     gap: 0; text-align: center;
@@ -1016,7 +1019,7 @@
     gap: 5rem; align-items: center;
   }
   .jornal-esq .sec-label { color: rgba(255,255,255,0.4); }
-  .jornal-esq .sec-label::before { color: var(--laranja); }
+  .jornal-esq .sec-label::before { color: var(--verde); }
   .jornal-esq h2 { color: #fff; }
   .jornal-esq p { font-size: 0.97rem; color: rgba(255,255,255,0.6); line-height: 1.85; margin-bottom: 1.2rem; }
   .jornal-esq p strong { color: rgba(255,255,255,0.9); font-weight: 600; }
@@ -1040,7 +1043,7 @@
   .j-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
   .j-card-cat {
     font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.5rem;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 0.5rem;
   }
   .j-card h4 { font-size: 0.92rem; font-weight: 700; color: #fff; line-height: 1.45; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
   .j-card small { font-size: 0.73rem; color: rgba(255,255,255,0.4); }
@@ -1114,7 +1117,7 @@
     display: flex; align-items: center; justify-content: center;
     transition: background 0.2s, transform 0.2s;
   }
-  .video-card:hover .video-play { background: var(--laranja); transform: scale(1.1); border-color: var(--laranja); }
+  .video-card:hover .video-play { background: var(--verde); transform: scale(1.1); border-color: var(--verde); }
   .video-play svg { width: 22px; height: 22px; fill: #fff; margin-left: 3px; }
   .video-card-title {
     font-size: 0.8rem; font-weight: 700; color: #fff; text-align: center;
@@ -1124,7 +1127,7 @@
   }
   .video-em-breve {
     font-size: 0.58rem; font-weight: 800; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--laranja); margin-top: 0.25rem;
+    text-transform: uppercase; color: var(--verde); margin-top: 0.25rem;
   }
 
   /* ─── DIRETORIA ─── */
@@ -1142,14 +1145,14 @@
   .dir-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
   .dir-avatar {
     width: 64px; height: 64px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--laranja), #ff8c5a);
+    background: linear-gradient(135deg, var(--verde), #5bc176);
     display: flex; align-items: center; justify-content: center;
     font-weight: 900; font-size: 1.1rem; color: #fff;
     margin: 0 auto 1rem; flex-shrink: 0;
   }
   .dir-cargo {
     font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--laranja); margin-bottom: 0.4rem;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 0.4rem;
   }
   .dir-nome { font-size: 1rem; font-weight: 800; color: var(--preto); letter-spacing: -0.02em; }
 
@@ -1219,7 +1222,20 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">OB<span>DC</span><small>Educando com Arte desde 1999</small></a>
+  <a href="#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="42" height="42" rx="9" fill="#2db54e"/>
+      <circle cx="21" cy="11" r="5.5" fill="white"/>
+      <rect x="18.5" y="16.5" width="5" height="11" rx="2.5" fill="white"/>
+      <rect x="7" y="19.5" width="28" height="4" rx="2" fill="white"/>
+      <rect x="15.5" y="27" width="4.5" height="10" rx="2.25" fill="white" transform="rotate(-7, 17.75, 32)"/>
+      <rect x="22" y="27" width="4.5" height="10" rx="2.25" fill="white" transform="rotate(7, 24.25, 32)"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-wordmark">OB<span>DC</span></span>
+      <span class="logo-slogan">Transformando vidas</span>
+    </div>
+  </a>
   <ul>
     <li><a href="#sobre">Quem Somos</a></li>
     <li><a href="#projetos">Projetos</a></li>
@@ -1920,7 +1936,7 @@
       </div>
     </div>
     <div class="noticia-card reveal">
-      <div class="noticia-foto" style="background:linear-gradient(135deg,#8b4820 0%,#5a2c10 100%);">✝️</div>
+      <div class="noticia-foto" style="background:linear-gradient(135deg,#1a5fb4 0%,#0a2859 100%);">✝️</div>
       <div class="noticia-body">
         <div class="noticia-meta">Evento <span class="noticia-meta-sep">·</span> <span class="noticia-meta-date">Páscoa 2026</span></div>
         <h3>Auto de Páscoa "A Promessa" reúne 2.000 espectadores e 60 artistas em Aparecida de Goiânia</h3>
@@ -1964,7 +1980,7 @@
     </div>
   </div>
   <p style="text-align:center; margin-top:2rem; font-size:0.82rem; color:var(--suave);">
-    Tem fotos da OBDC? Envie para <a href="mailto:ongobdc@gmail.com" style="color:var(--laranja); font-weight:600;">ongobdc@gmail.com</a> e apareça aqui.
+    Tem fotos da OBDC? Envie para <a href="mailto:ongobdc@gmail.com" style="color:var(--verde); font-weight:600;">ongobdc@gmail.com</a> e apareça aqui.
   </p>
 </section>
 
@@ -2215,8 +2231,18 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <div class="f-logo">OB<span>DC</span></div>
-      <p class="f-tagline">Educando com Arte desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
+      <div class="f-logo">
+        <svg class="f-logo-svg" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="42" height="42" rx="9" fill="#2db54e"/>
+          <circle cx="21" cy="11" r="5.5" fill="white"/>
+          <rect x="18.5" y="16.5" width="5" height="11" rx="2.5" fill="white"/>
+          <rect x="7" y="19.5" width="28" height="4" rx="2" fill="white"/>
+          <rect x="15.5" y="27" width="4.5" height="10" rx="2.25" fill="white" transform="rotate(-7, 17.75, 32)"/>
+          <rect x="22" y="27" width="4.5" height="10" rx="2.25" fill="white" transform="rotate(7, 24.25, 32)"/>
+        </svg>
+        <span class="f-logo-txt">OB<span>DC</span></span>
+      </div>
+      <p class="f-tagline">Transformando vidas desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
     </div>
     <div class="footer-cols">
       <div class="footer-col">
