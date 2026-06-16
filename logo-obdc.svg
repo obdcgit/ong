@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" fill="none">
+  <!-- O — rounded square with child figure -->
+  <rect x="0" y="0" width="148" height="148" rx="28" fill="#2db54e"/>
+  <!-- head -->
+  <circle cx="74" cy="36" r="20" fill="white"/>
+  <!-- dress/body — trapezoid shape using polygon -->
+  <polygon points="60,56 88,56 98,120 50,120" fill="white"/>
+  <!-- arms — horizontal bar -->
+  <rect x="16" y="66" width="116" height="16" rx="8" fill="white"/>
+  <!-- left leg -->
+  <rect x="52" y="118" width="16" height="28" rx="8" fill="white" transform="rotate(-6, 60, 132)"/>
+  <!-- right leg -->
+  <rect x="80" y="118" width="16" height="28" rx="8" fill="white" transform="rotate(6, 88, 132)"/>
+
+  <!-- B -->
+  <text x="162" y="122" font-family="Arial Black, Impact, sans-serif" font-weight="900" font-size="130" fill="#2db54e" letter-spacing="-4">BDC</text>
+
+  <!-- subtitle line 1 -->
+  <text x="0" y="195" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#2db54e" letter-spacing="1">ORGANIZAÇÃO BRASILEIRA DE</text>
+  <!-- subtitle line 2 -->
+  <text x="0" y="230" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#2db54e" letter-spacing="1">DESENVOLVIMENTO E CIDADANIA</text>
+</svg>
