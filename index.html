@@ -431,6 +431,45 @@
   .proj-body h3 { font-size: 1rem; font-weight: 800; color: var(--preto); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
   .proj-body p { font-size: 0.84rem; color: var(--suave); line-height: 1.7; margin-bottom: 1.2rem; }
 
+  /* ─── MODAL PROJETO ─── */
+  .proj-modal-overlay {
+    position: fixed; inset: 0; z-index: 900;
+    background: rgba(7,18,33,0.7); backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem; opacity: 0; visibility: hidden;
+    transition: opacity 0.25s, visibility 0.25s;
+  }
+  .proj-modal-overlay.open { opacity: 1; visibility: visible; }
+  .proj-modal {
+    background: #fff; border-radius: 20px; max-width: 560px; width: 100%;
+    max-height: 88vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    transform: translateY(28px); transition: transform 0.25s;
+  }
+  .proj-modal-overlay.open .proj-modal { transform: translateY(0); }
+  .proj-modal-head {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 2rem 2rem 1.4rem; border-bottom: 1px solid var(--borda);
+    position: sticky; top: 0; background: #fff; z-index: 1;
+  }
+  .pm-icon { font-size: 2.4rem; line-height: 1; flex-shrink: 0; }
+  .pm-cat { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--verde); margin-bottom: 0.3rem; }
+  .pm-title { font-size: 1.4rem; font-weight: 800; color: var(--preto); letter-spacing: -0.03em; line-height: 1.15; }
+  .pm-close {
+    margin-left: auto; flex-shrink: 0; width: 34px; height: 34px;
+    border-radius: 50%; border: 1px solid var(--borda); background: var(--bg);
+    color: var(--suave); font-size: 1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .pm-close:hover { background: var(--preto); color: #fff; border-color: var(--preto); }
+  .pm-body { padding: 1.6rem 2rem 2rem; }
+  .pm-desc { font-size: 0.92rem; color: var(--suave); line-height: 1.75; margin-bottom: 1.4rem; }
+  .pm-items { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.6rem; }
+  .pm-items li { font-size: 0.88rem; color: var(--texto); line-height: 1.5; display: flex; gap: 0.6rem; }
+  .pm-items li::before { content: '✦'; color: var(--verde); font-size: 0.6rem; flex-shrink: 0; margin-top: 0.3rem; }
+  .pm-cta { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.5rem; }
+
   /* ─── OFICINAS (texto+foto dupla) ─── */
   #oficinas { background: var(--branco); }
   .oficinas-grid {
@@ -1510,7 +1549,7 @@
         <div class="proj-cat">Arte e Educação</div>
         <h3>Educando com Arte</h3>
         <p>Teatro social e contação de histórias para crianças, abordando saúde, meio ambiente, preconceito racial e cidadania. Realizado em escolas, praças e espaços alternativos.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
     <div class="proj-card reveal d1">
@@ -1519,7 +1558,7 @@
         <div class="proj-cat">Assistência Social</div>
         <h3>Pão com Amor</h3>
         <p>Distribuição de alimentos, vestuário e itens básicos para famílias em vulnerabilidade, combinando assistência social com atividades culturais.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
     <div class="proj-card reveal d2">
@@ -1528,7 +1567,7 @@
         <div class="proj-cat">Esporte e Cidadania</div>
         <h3>Esporte Cidadania</h3>
         <p>Leões do Futebol — formação esportiva e de valores para crianças e adolescentes, com 30 atletas em clubes no Brasil e na Europa.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
     <div class="proj-card reveal">
@@ -1537,7 +1576,7 @@
         <div class="proj-cat">Terceira Idade</div>
         <h3>Vida Melhor</h3>
         <p>Acolhimento e atividades socioculturais para a pessoa idosa — pintura, coral, artesanato e eventos que promovem alegria e dignidade.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
     <div class="proj-card reveal d1">
@@ -1546,7 +1585,7 @@
         <div class="proj-cat">Empoderamento Feminino</div>
         <h3>Mulher Mais</h3>
         <p>Rodas de conversa, oficinas e ações de empoderamento feminino para mulheres em situação de vulnerabilidade.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
     <div class="proj-card reveal d2">
@@ -1555,7 +1594,7 @@
         <div class="proj-cat">Habitação e Saúde</div>
         <h3>PROHAB + PROBEN</h3>
         <p>Programas de habitação popular e acesso a benefícios de saúde, garantindo direitos básicos para comunidades de baixa renda.</p>
-        <a href="#contato" class="link-arrow">Conhecer projeto</a>
+        <a href="#" class="link-arrow" onclick="openProj(this.closest('.proj-card'));return false;">Conhecer projeto</a>
       </div>
     </div>
   </div>
@@ -1577,7 +1616,7 @@
         <span class="jcat">Programas e Projetos</span>
         <span class="jcat">Esporte Cidadania</span>
       </div>
-      <a href="https://ongobdc.com/jornal-noticia-social/" class="btn-p" target="_blank" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
+      <a href="#jornal" class="btn-p" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
     </div>
     <div class="jornal-dir reveal d1" id="jornal-dynamic">
       <div class="j-card">
@@ -1662,7 +1701,7 @@
       <h2>Rádioweb OBDC</h2>
       <p>A <strong>Rádioweb OBDC</strong> é o canal de comunicação digital da organização — uma rádio online que leva informação, cultura, cidadania e transformação social para toda a comunidade.</p>
       <p>Programas sobre projetos sociais, arte, cultura quilombola, esporte, habitação popular e muito mais. A voz da OBDC chegando onde a arte já chegou — no coração das pessoas.</p>
-      <a href="https://ongobdc.com/radioweb-obdc/" class="btn-p" style="width:fit-content; margin-top:0.5rem" target="_blank">📡 Acessar a Rádioweb →</a>
+      <a href="#radioweb" class="btn-p" style="width:fit-content; margin-top:0.5rem">📡 Acessar a Rádioweb →</a>
     </div>
     <div class="radio-player reveal d2">
       <div class="radio-badge">📡 DIGITAL · No ar</div>
@@ -2344,7 +2383,113 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // ── MODAL PROJETOS ──────────────────────────────────────────────
+  const PROJ_EXTRA = {
+    'Educando com Arte': {
+      desc: 'Teatro social, contação de histórias e performances itinerantes que usam a arte como ferramenta pedagógica. As apresentações abordam saúde, diversidade, meio ambiente e direitos da criança de forma lúdica e acessível.',
+      items: [
+        'Apresentações em escolas públicas, praças e espaços comunitários',
+        'Público-alvo: crianças e adolescentes de 6 a 16 anos',
+        'Temas: saúde, meio ambiente, diversidade racial e cidadania',
+        'Mais de 2.000 crianças impactadas por ano',
+        'Parceria com secretarias de educação e cultura',
+      ]
+    },
+    'Pão com Amor': {
+      desc: 'Ação de assistência social que distribui alimentos, vestuário e itens básicos para famílias em situação de vulnerabilidade, aliada a atividades culturais que fortalecem os vínculos comunitários.',
+      items: [
+        'Distribuição mensal de cestas básicas e roupas',
+        'Atende famílias em Aparecida de Goiânia e entorno',
+        'Integrado a rodas de cultura e atividades recreativas',
+        'Apoiado por doações de parceiros e voluntários',
+        'Combina assistência imediata com desenvolvimento social',
+      ]
+    },
+    'Esporte Cidadania': {
+      desc: 'O projeto Leões do Futebol forma crianças e adolescentes não apenas como atletas, mas como cidadãos. Com disciplina, trabalho em equipe e valores humanos, já revelou talentos que hoje atuam em clubes no Brasil e na Europa.',
+      items: [
+        '30 atletas ativos em formação contínua',
+        'Atletas revelados em clubes brasileiros e europeus',
+        'Treinos regulares com foco em valores e disciplina',
+        'Parcerias com clubes e federações esportivas',
+        'Integração com programas de reforço escolar',
+      ]
+    },
+    'Vida Melhor': {
+      desc: 'Programa de acolhimento e inclusão social para pessoas idosas, que oferece atividades socioculturais para combater o isolamento e promover alegria, autonomia e dignidade na terceira idade.',
+      items: [
+        'Atividades de pintura, coral, artesanato e dança',
+        'Encontros regulares com suporte emocional e social',
+        'Eventos especiais em datas comemorativas',
+        'Integração intergeracional com jovens dos demais projetos',
+        'Atende idosos em situação de vulnerabilidade e solidão',
+      ]
+    },
+    'Mulher Mais': {
+      desc: 'Espaço de escuta, fortalecimento e protagonismo feminino. Rodas de conversa, oficinas práticas e ações coletivas voltadas a mulheres em situação de vulnerabilidade social, promovendo autoestima, renda e autonomia.',
+      items: [
+        'Rodas de conversa sobre saúde, direitos e autoestima',
+        'Oficinas de geração de renda e capacitação profissional',
+        'Apoio psicossocial e encaminhamento a serviços públicos',
+        'Ações em parceria com a rede de proteção à mulher',
+        'Celebrações culturais de resistência e identidade feminina',
+      ]
+    },
+    'PROHAB + PROBEN': {
+      desc: 'Dois programas complementares que garantem direitos básicos: o PROHAB atua na habitação popular e o PROBEN facilita o acesso a benefícios de saúde para comunidades de baixa renda.',
+      items: [
+        'MCMV-Entidades: 50 unidades em 8 municípios de Goiás',
+        'Habilitação federal para construção de moradias populares',
+        'PROBEN: acesso a medicamentos, próteses e benefícios sociais',
+        'Assessoria jurídica e social às famílias beneficiadas',
+        'Maior frente de atuação da OBDC em habitação social',
+      ]
+    },
+  };
+
+  function openProj(card) {
+    const title = card.querySelector('h3').textContent.trim();
+    const cat   = card.querySelector('.proj-cat').textContent.trim();
+    const icon  = card.querySelector('.proj-foto').textContent.trim();
+    const extra = PROJ_EXTRA[title] || {};
+    const desc  = extra.desc || card.querySelector('p').textContent.trim();
+    document.getElementById('pm-icon').textContent  = icon;
+    document.getElementById('pm-cat').textContent   = cat;
+    document.getElementById('pm-title').textContent = title;
+    document.getElementById('pm-body').innerHTML =
+      `<p class="pm-desc">${desc}</p>` +
+      (extra.items ? `<ul class="pm-items">${extra.items.map(i=>`<li>${i}</li>`).join('')}</ul>` : '') +
+      `<div class="pm-cta">
+        <a href="https://wa.me/5562985816625?text=${encodeURIComponent('Olá! Quero saber mais sobre o projeto '+title)}" class="btn-p" target="_blank">💬 Falar pelo WhatsApp</a>
+        <a href="#contato" class="btn-dark" onclick="closeProj()">✉ Enviar mensagem</a>
+      </div>`;
+    document.getElementById('proj-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProj() {
+    document.getElementById('proj-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProj(); });
 </script>
+
+<!-- MODAL PROJETO -->
+<div class="proj-modal-overlay" id="proj-modal" onclick="if(event.target===this)closeProj()">
+  <div class="proj-modal">
+    <div class="proj-modal-head">
+      <span class="pm-icon" id="pm-icon"></span>
+      <div>
+        <div class="pm-cat" id="pm-cat"></div>
+        <div class="pm-title" id="pm-title"></div>
+      </div>
+      <button class="pm-close" onclick="closeProj()">✕</button>
+    </div>
+    <div class="pm-body" id="pm-body"></div>
+  </div>
+</div>
 
 <!-- CMS CONTENT LOADER -->
 <script>
@@ -2389,7 +2534,7 @@
               allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:var(--r-card)"></iframe>
           </div>`;
         }
-        return `<div class="video-card reveal ${delays[i]||''}">
+        return `<div class="video-card ${delays[i]||''}">
           <div class="video-card-bg" style="background:${GRADIENTS[i%GRADIENTS.length]}"></div>
           <div class="video-card-overlay"><div class="video-play">${PLAY_SVG}</div></div>
           <div class="video-card-title">${safe(v.title)}<div class="video-em-breve">Em breve</div></div>
