@@ -12,6 +12,21 @@
   to = "/admin/index.html"
   status = 200
 
+[[redirects]]
+  from = "/jornal"
+  to = "/jornal.html"
+  status = 200
+
+[[redirects]]
+  from = "/radioweb"
+  to = "/radioweb.html"
+  status = 200
+
+[[redirects]]
+  from = "/artigo"
+  to = "/artigo.html"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]

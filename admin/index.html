@@ -451,6 +451,17 @@
         <input type="text" class="form-input" id="r-desc" placeholder="Assuntos abordados neste programa">
       </div>
       <div class="form-group">
+        <label class="form-label">Tema / Área</label>
+        <select class="form-select" id="r-theme">
+          <option>Notícias OBDC</option>
+          <option>Cultura e Arte</option>
+          <option>Esporte Cidadania</option>
+          <option>Cidadania</option>
+          <option>Habitação Social</option>
+          <option>Arte e Educação</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label class="form-label">Data</label>
         <input type="date" class="form-input" id="r-date">
       </div>
@@ -504,6 +515,10 @@
           <option>Conquistas</option>
           <option>Programas e Projetos</option>
         </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Autor</label>
+        <input type="text" class="form-input" id="j-author" placeholder="Ex: Redação OBDC">
       </div>
       <div class="form-group">
         <label class="form-label">Data</label>
@@ -760,7 +775,7 @@ function renderRadio() {
       <div class="item-thumb"><span class="no-thumb">🎵</span></div>
       <div class="item-info">
         <div class="item-title">${t.title || '(Sem título)'}</div>
-        <div class="item-meta">${t.date ? formatDate(t.date) : ''} ${t.description ? '· ' + t.description : ''}</div>
+        <div class="item-meta">${t.theme ? `<span class="cat-pill">${t.theme}</span> ` : ''}${t.date ? formatDate(t.date) : ''}</div>
         ${t.url ? `<audio src="${t.url}" controls style="height:28px;margin-top:4px;max-width:260px"></audio>` : ''}
       </div>
       <div class="item-actions">
@@ -773,6 +788,7 @@ function renderRadio() {
 function openRadioModal() {
   document.getElementById('r-title').value = '';
   document.getElementById('r-desc').value  = '';
+  document.getElementById('r-theme').value = 'Notícias OBDC';
   document.getElementById('r-date').value  = new Date().toISOString().split('T')[0];
   document.getElementById('r-url').value   = '';
   document.getElementById('r-edit-id').value = '';
@@ -787,6 +803,7 @@ function editRadio(i) {
   const t = data.radio.json.tracks[i];
   document.getElementById('r-title').value = t.title || '';
   document.getElementById('r-desc').value  = t.description || '';
+  document.getElementById('r-theme').value = t.theme || 'Notícias OBDC';
   document.getElementById('r-date').value  = t.date || '';
   document.getElementById('r-url').value   = t.url || '';
   document.getElementById('r-edit-id').value = i;
@@ -850,7 +867,7 @@ async function saveRadio() {
   }
 
   const tracks = data.radio.json.tracks;
-  const track = { title, description: document.getElementById('r-desc').value.trim(), date: document.getElementById('r-date').value, url: audioUrl };
+  const track = { title, theme: document.getElementById('r-theme').value, description: document.getElementById('r-desc').value.trim(), date: document.getElementById('r-date').value, url: audioUrl };
 
   if (idx !== '') tracks[parseInt(idx)] = { ...tracks[parseInt(idx)], ...track };
   else { track.id = Date.now(); tracks.unshift(track); }
@@ -881,7 +898,7 @@ function renderJornal() {
       </div>
       <div class="item-info">
         <div class="item-title">${a.title || '(Sem título)'}</div>
-        <div class="item-meta">${a.category ? `<span class="cat-pill">${a.category}</span> ` : ''}${a.date ? '· ' + formatDate(a.date) : ''}</div>
+        <div class="item-meta">${a.category ? `<span class="cat-pill">${a.category}</span> ` : ''}${a.author ? `· ${a.author} ` : ''}${a.date ? '· ' + formatDate(a.date) : ''}</div>
       </div>
       <span class="badge ${a.published ? 'badge-green' : 'badge-gray'}">${a.published ? 'Publicado' : 'Rascunho'}</span>
       <div class="item-actions" onclick="event.stopPropagation()">
@@ -895,6 +912,7 @@ function openJornalModal() {
   document.getElementById('j-category').value  = 'Notícias da OBDC';
   document.getElementById('j-date').value      = new Date().toISOString().split('T')[0];
   document.getElementById('j-excerpt').value   = '';
+  document.getElementById('j-author').value    = 'Redação OBDC';
   document.getElementById('j-content').value   = '';
   document.getElementById('j-img-url').value   = '';
   document.getElementById('j-published').checked = false;
@@ -909,6 +927,7 @@ function editJornal(i) {
   const a = data.jornal.json.articles[i];
   document.getElementById('j-title').value     = a.title || '';
   document.getElementById('j-category').value  = a.category || 'Notícias da OBDC';
+  document.getElementById('j-author').value    = a.author || 'Redação OBDC';
   document.getElementById('j-date').value      = a.date || '';
   document.getElementById('j-excerpt').value   = a.excerpt || '';
   document.getElementById('j-content').value   = a.content || '';
@@ -964,6 +983,7 @@ async function saveJornal() {
   const articles = data.jornal.json.articles;
   const article = {
     title, category: document.getElementById('j-category').value,
+    author: document.getElementById('j-author').value.trim() || 'Redação OBDC',
     excerpt: document.getElementById('j-excerpt').value.trim(),
     content: document.getElementById('j-content').value.trim(),
     imageUrl, date: document.getElementById('j-date').value,
