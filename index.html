@@ -55,19 +55,14 @@
     gap: 2rem;
   }
   .logo {
-    display: flex; align-items: center; gap: 0.6rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.28rem;
     text-decoration: none; flex-shrink: 0; line-height: 1;
   }
-  .logo-svg { height: 42px; width: auto; display: block; flex-shrink: 0; }
-  .logo-text { display: flex; flex-direction: column; }
-  .logo-wordmark {
-    font-size: 1.45rem; font-weight: 900; color: var(--preto);
-    letter-spacing: -0.04em; line-height: 1;
-  }
-  .logo-wordmark span { color: var(--verde); }
+  .logo-img { height: 46px; width: auto; display: block; }
   .logo-slogan {
-    font-size: 0.5rem; font-weight: 600; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--suave); margin-top: 0.15rem;
+    font-size: 0.52rem; font-weight: 400; font-style: italic;
+    letter-spacing: 0.12em; color: var(--suave);
+    text-align: center; white-space: nowrap;
   }
   nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
   nav ul a { color: var(--texto); font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
@@ -853,10 +848,12 @@
     padding: 3.5rem 3.5rem 3rem;
     border-bottom: 1px solid rgba(255,255,255,0.07);
   }
-  .f-logo { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.8rem; }
-  .f-logo-svg { height:40px; width:auto; }
-  .f-logo-txt { font-size:1.5rem; font-weight:900; color:#fff; letter-spacing:-0.04em; line-height:1; }
-  .f-logo-txt span { color:var(--verde); }
+  .f-logo { display:flex; flex-direction:column; align-items:flex-start; gap:0.35rem; margin-bottom:0.8rem; }
+  .f-logo-img { height:52px; width:auto; }
+  .f-logo-slogan {
+    font-size: 0.55rem; font-weight: 400; font-style: italic;
+    letter-spacing: 0.12em; color: rgba(255,255,255,0.45);
+  }
   .f-tagline { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
   .footer-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   .footer-col-title {
@@ -1225,11 +1222,8 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">
-    <img src="logo-obdc.png" alt="OBDC" class="logo-svg">
-    <div class="logo-text">
-      <span class="logo-wordmark">OB<span>DC</span></span>
-      <span class="logo-slogan">Transformando vidas</span>
-    </div>
+    <img src="logo-obdc.png" alt="OBDC" class="logo-img">
+    <span class="logo-slogan">Transformando vidas</span>
   </a>
   <ul>
     <li><a href="#sobre">Quem Somos</a></li>
@@ -2262,10 +2256,10 @@
   <div class="footer-top">
     <div class="footer-brand">
       <div class="f-logo">
-        <img src="logo-obdc.png" alt="OBDC" class="f-logo-svg">
-        <span class="f-logo-txt">OB<span>DC</span></span>
+        <img src="logo-obdc.png" alt="OBDC" class="f-logo-img">
+        <span class="f-logo-slogan">Transformando vidas</span>
       </div>
-      <p class="f-tagline">Transformando vidas desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
+      <p class="f-tagline">Desde 1999 · Ponto de Cultura · ID 13312 · MinC</p>
     </div>
     <div class="footer-cols">
       <div class="footer-col">
