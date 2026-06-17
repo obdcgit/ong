@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rádioweb OBDC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #2db54e; --verde-hover: #1f9e3d;
+  --azul: #1a5fb4; --azul-hover: #1550a2;
+  --azul-esc: #071221; --bg: #f0f4f8; --branco: #ffffff;
+  --preto: #0a1628; --texto: #1a2332; --suave: #5a6d80;
+  --borda: rgba(0,0,0,0.07);
+  --font: 'Inter', sans-serif; --r-card: 16px; --r-btn: 100px;
+  --shadow: 0 1px 12px rgba(0,0,0,0.06); --shadow-lg: 0 6px 28px rgba(0,0,0,0.1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--texto); margin: 0; padding-top: 80px; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 80px;
+  background: #071221; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+}
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 62px; }
+nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+nav ul li a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+nav ul li a:hover { color: var(--verde); }
+.nav-cta { background: var(--verde); color: #fff !important; border-radius: var(--r-btn); padding: 0.55rem 1.4rem; font-weight: 700; }
+.nav-cta:hover { background: var(--verde-hover) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
+
+.hero {
+  min-height: 360px; background: #071221;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; text-align: center;
+  position: relative; overflow: hidden; padding: 3rem 2rem;
+}
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(45,181,78,0.12) 0%, transparent 70%);
+}
+.equalizer {
+  display: flex; align-items: flex-end; gap: 5px;
+  height: 40px; margin-bottom: 1.5rem; position: relative; z-index: 1;
+}
+.eq-bar {
+  width: 6px; background: var(--verde); border-radius: 3px; height: 8px;
+}
+.eq-bar:nth-child(1) { animation: eq 0.8s ease-in-out infinite; }
+.eq-bar:nth-child(2) { animation: eq 0.8s ease-in-out 0.1s infinite; }
+.eq-bar:nth-child(3) { animation: eq 0.8s ease-in-out 0.2s infinite; }
+.eq-bar:nth-child(4) { animation: eq 0.8s ease-in-out 0.3s infinite; }
+.eq-bar:nth-child(5) { animation: eq 0.8s ease-in-out 0.4s infinite; }
+@keyframes eq {
+  0%, 100% { height: 8px; }
+  50% { height: 40px; }
+}
+.hero h1 { color: #fff; font-size: 3rem; font-weight: 800; position: relative; z-index: 1; }
+.hero p { color: #9ab0c8; font-size: 1.1rem; margin-top: 0.5rem; position: relative; z-index: 1; }
+
+.main-content { background: var(--bg); padding: 4rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+
+.theme-section { margin-bottom: 3rem; }
+.theme-header {
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem;
+}
+.theme-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.theme-title { font-size: 1.4rem; font-weight: 800; }
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.2rem;
+}
+
+.track-card {
+  background: #fff; border-radius: var(--r-card); padding: 1.5rem;
+  box-shadow: var(--shadow); transition: box-shadow 0.2s;
+}
+.track-card:hover { box-shadow: var(--shadow-lg); }
+
+.track-top { display: flex; align-items: flex-start; gap: 1rem; }
+.track-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; flex-shrink: 0;
+}
+.track-info { flex: 1; min-width: 0; }
+.track-title { font-weight: 700; color: var(--texto); font-size: 1rem; line-height: 1.3; }
+.track-desc { color: var(--suave); font-size: 0.9rem; margin-top: 0.25rem; line-height: 1.4; }
+.track-date { color: #9ab0c8; font-size: 0.8rem; margin-top: 0.5rem; }
+
+.track-player { margin-top: 1rem; }
+.track-player audio { width: 100%; border-radius: 8px; display: block; }
+.track-placeholder {
+  background: var(--bg); border-radius: 8px; padding: 0.75rem;
+  color: #9ab0c8; text-align: center; font-size: 0.9rem;
+}
+
+.empty-state {
+  padding: 4rem 2rem; text-align: center;
+}
+.empty-equalizer {
+  display: flex; align-items: flex-end; gap: 5px;
+  height: 40px; justify-content: center; margin-bottom: 1.5rem; opacity: 0.4;
+}
+.empty-equalizer .eq-bar:nth-child(1) { animation: eq 0.8s ease-in-out infinite; }
+.empty-equalizer .eq-bar:nth-child(2) { animation: eq 0.8s ease-in-out 0.1s infinite; }
+.empty-equalizer .eq-bar:nth-child(3) { animation: eq 0.8s ease-in-out 0.2s infinite; }
+.empty-equalizer .eq-bar:nth-child(4) { animation: eq 0.8s ease-in-out 0.3s infinite; }
+.empty-equalizer .eq-bar:nth-child(5) { animation: eq 0.8s ease-in-out 0.4s infinite; }
+.empty-state h3 { font-size: 1.4rem; font-weight: 700; color: var(--texto); margin-bottom: 0.5rem; }
+.empty-state p { color: var(--suave); font-size: 1rem; line-height: 1.6; }
+
+.yt-bar {
+  background: #0a1628; color: #fff; text-align: center;
+  padding: 1.2rem 2rem; display: flex; justify-content: center;
+  align-items: center; gap: 1rem; flex-wrap: wrap;
+}
+.yt-bar span { font-size: 0.95rem; }
+.yt-bar a { color: var(--verde); font-weight: 700; text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+.yt-bar a:hover { color: var(--verde-hover); }
+
+footer { background: #071221; color: #fff; padding: 3rem 2rem 2rem; }
+.f-inner {
+  max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap;
+  gap: 2rem; align-items: flex-start; justify-content: space-between;
+}
+.f-brand p { color: #9ab0c8; font-size: 0.85rem; margin-top: 0.75rem; line-height: 1.6; }
+.f-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.f-links a { color: #9ab0c8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.f-links a:hover { color: var(--verde); }
+.f-copy {
+  width: 100%; color: #5a6d80; font-size: 0.8rem; text-align: center;
+  margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hero h1 { font-size: 2.4rem; }
+  .tracks-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+@media (max-width: 700px) {
+  .hamburger { display: flex; }
+  nav ul {
+    display: none; flex-direction: column; position: absolute; top: 80px; left: 0; right: 0;
+    background: #071221; padding: 1rem 2rem 2rem; gap: 1rem; z-index: 99;
+  }
+  nav ul.open { display: flex; }
+  nav ul li a { font-size: 1rem; }
+  .hero h1 { font-size: 2rem; }
+}
+@media (max-width: 600px) {
+  .tracks-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.8rem; }
+  .hero p { font-size: 0.95rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="logo-obdc.png" alt="OBDC" class="logo-img">
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-ul">
+    <li><a href="index.html#sobre">Quem Somos</a></li>
+    <li><a href="index.html#projetos">Projetos</a></li>
+    <li><a href="jornal.html">Jornal</a></li>
+    <li><a href="radioweb.html">Rádioweb</a></li>
+    <li><a href="index.html#videos">Vídeos</a></li>
+    <li><a href="index.html#apoie">Apoie</a></li>
+    <li><a href="index.html#contato" class="nav-cta">Fale Conosco</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="equalizer">
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+    <div class="eq-bar"></div>
+  </div>
+  <h1>Rádioweb OBDC</h1>
+  <p>Informação · Cultura · Cidadania · Transformação Social</p>
+</section>
+
+<section class="main-content">
+  <div class="container" id="radio-container">
+  </div>
+</section>
+
+<div class="yt-bar">
+  <span>Ouça também pelo canal do YouTube</span>
+  <a href="https://youtube.com/@ongobdc" target="_blank" rel="noopener">youtube.com/@ongobdc →</a>
+</div>
+
+<footer>
+  <div class="f-inner">
+    <div class="f-brand">
+      <img src="logo-obdc.png" alt="OBDC" style="height:50px;">
+      <p>Transformando vidas desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
+    </div>
+    <div class="f-links">
+      <a href="index.html">Início</a>
+      <a href="jornal.html">Jornal</a>
+      <a href="radioweb.html">Rádioweb</a>
+      <a href="index.html#contato">Contato</a>
+    </div>
+    <p class="f-copy">CNPJ 03.605.483/0001-46 · ONG OBDC © 2025</p>
+  </div>
+</footer>
+
+<script>
+var themeColors = {
+  'Cultura e Arte': { color: '#1a5fb4', light: '#dbeafe', dot: '#1a5fb4' },
+  'Esporte Cidadania': { color: '#2db54e', light: '#dcfce7', dot: '#2db54e' },
+  'Cidadania': { color: '#8a40a0', light: '#f3e8ff', dot: '#8a40a0' },
+  'Notícias': { color: '#071221', light: '#e2e8f0', dot: '#071221' }
+};
+
+function getThemeColor(theme) {
+  return themeColors[theme] || { color: '#1a5fb4', light: '#dbeafe', dot: '#1a5fb4' };
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  return new Date(dateStr + 'T12:00:00').toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function createTrackCard(track, themeColors) {
+  var card = document.createElement('div');
+  card.className = 'track-card';
+
+  var top = document.createElement('div');
+  top.className = 'track-top';
+
+  var icon = document.createElement('div');
+  icon.className = 'track-icon';
+  icon.style.background = themeColors.light;
+  icon.textContent = '📻';
+
+  var info = document.createElement('div');
+  info.className = 'track-info';
+
+  var title = document.createElement('div');
+  title.className = 'track-title';
+  title.textContent = track.title || 'Sem título';
+
+  info.appendChild(title);
+
+  if (track.description) {
+    var desc = document.createElement('div');
+    desc.className = 'track-desc';
+    desc.textContent = track.description;
+    info.appendChild(desc);
+  }
+
+  if (track.date) {
+    var date = document.createElement('div');
+    date.className = 'track-date';
+    date.textContent = formatDate(track.date);
+    info.appendChild(date);
+  }
+
+  top.appendChild(icon);
+  top.appendChild(info);
+
+  var player = document.createElement('div');
+  player.className = 'track-player';
+
+  if (track.url && track.url.trim()) {
+    var audio = document.createElement('audio');
+    audio.controls = true;
+    audio.style.width = '100%';
+    audio.style.borderRadius = '8px';
+    var source = document.createElement('source');
+    source.src = track.url;
+    source.type = 'audio/mpeg';
+    audio.appendChild(source);
+    audio.appendChild(document.createTextNode('Seu navegador não suporta áudio.'));
+    player.appendChild(audio);
+  } else {
+    var placeholder = document.createElement('div');
+    placeholder.className = 'track-placeholder';
+    placeholder.textContent = '🎙️ Em breve';
+    player.appendChild(placeholder);
+  }
+
+  card.appendChild(top);
+  card.appendChild(player);
+  return card;
+}
+
+function createThemeSection(theme, tracks) {
+  var colors = getThemeColor(theme);
+
+  var section = document.createElement('div');
+  section.className = 'theme-section';
+
+  var header = document.createElement('div');
+  header.className = 'theme-header';
+
+  var dot = document.createElement('div');
+  dot.className = 'theme-dot';
+  dot.style.background = colors.dot;
+
+  var title = document.createElement('h2');
+  title.className = 'theme-title';
+  title.style.color = colors.color;
+  title.textContent = theme;
+
+  header.appendChild(dot);
+  header.appendChild(title);
+
+  var grid = document.createElement('div');
+  grid.className = 'tracks-grid';
+
+  tracks.forEach(function(track) {
+    grid.appendChild(createTrackCard(track, colors));
+  });
+
+  section.appendChild(header);
+  section.appendChild(grid);
+  return section;
+}
+
+function showEmpty(container) {
+  var empty = document.createElement('div');
+  empty.className = 'empty-state';
+
+  var eq = document.createElement('div');
+  eq.className = 'empty-equalizer';
+  for (var i = 0; i < 5; i++) {
+    var bar = document.createElement('div');
+    bar.className = 'eq-bar';
+    bar.style.background = '#2db54e';
+    eq.appendChild(bar);
+  }
+
+  var h3 = document.createElement('h3');
+  h3.textContent = 'Nossos programas chegam em breve';
+
+  var p = document.createElement('p');
+  p.textContent = 'Estamos preparando conteúdo especial para você. Fique ligado!';
+
+  empty.appendChild(eq);
+  empty.appendChild(h3);
+  empty.appendChild(p);
+  container.appendChild(empty);
+}
+
+async function loadRadio() {
+  var container = document.getElementById('radio-container');
+
+  try {
+    var res = await fetch('/data/radio.json');
+    var data = await res.json();
+    var tracks = data.tracks || [];
+
+    if (tracks.length === 0) {
+      showEmpty(container);
+      return;
+    }
+
+    var grouped = {};
+    var themeOrder = [];
+    tracks.forEach(function(track) {
+      var t = track.theme || 'Geral';
+      if (!grouped[t]) {
+        grouped[t] = [];
+        themeOrder.push(t);
+      }
+      grouped[t].push(track);
+    });
+
+    themeOrder.forEach(function(theme) {
+      container.appendChild(createThemeSection(theme, grouped[theme]));
+    });
+
+  } catch(e) {
+    showEmpty(container);
+  }
+}
+
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('nav-ul').classList.toggle('open');
+});
+
+loadRadio();
+</script>
+</body>
+</html>

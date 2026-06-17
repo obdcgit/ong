@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artigo · OBDC</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #2db54e; --verde-hover: #1f9e3d;
+  --azul: #1a5fb4; --azul-hover: #1550a2;
+  --azul-esc: #071221; --bg: #f0f4f8; --branco: #ffffff;
+  --preto: #0a1628; --texto: #1a2332; --suave: #5a6d80;
+  --borda: rgba(0,0,0,0.07);
+  --font: 'Inter', sans-serif; --r-card: 16px; --r-btn: 100px;
+  --shadow: 0 1px 12px rgba(0,0,0,0.06); --shadow-lg: 0 6px 28px rgba(0,0,0,0.1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--texto); margin: 0; padding-top: 80px; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 80px;
+  background: #071221; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+}
+.logo { display: flex; align-items: center; text-decoration: none; }
+.logo-img { height: 62px; }
+nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+nav ul li a { color: #fff; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+nav ul li a:hover { color: var(--verde); }
+.nav-cta { background: var(--verde); color: #fff !important; border-radius: var(--r-btn); padding: 0.55rem 1.4rem; font-weight: 700; }
+.nav-cta:hover { background: var(--verde-hover) !important; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: 0.3s; }
+
+.back-bar {
+  background: #fff; padding: 1rem 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); position: relative; z-index: 10;
+}
+.btn-back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #fff; color: var(--azul); border-radius: var(--r-btn);
+  padding: 0.6rem 1.4rem; font-weight: 600; text-decoration: none;
+  box-shadow: var(--shadow); font-size: 0.9rem; transition: background 0.2s, color 0.2s;
+  border: 1.5px solid var(--borda);
+}
+.btn-back:hover { background: var(--azul); color: #fff; }
+
+.article-hero {
+  min-height: 400px; position: relative;
+  background-size: cover; background-position: center;
+  display: flex; align-items: flex-end;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(7,18,33,0.92) 0%, rgba(7,18,33,0.5) 60%, rgba(7,18,33,0.2) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1; padding: 2.5rem;
+  max-width: 860px; width: 100%;
+}
+.article-chip {
+  display: inline-block; background: var(--verde); color: #fff;
+  border-radius: var(--r-btn); font-size: 0.72rem; font-weight: 700;
+  padding: 0.25rem 0.8rem; margin-bottom: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.hero-content h1 {
+  color: #fff; font-size: 2.2rem; font-weight: 800;
+  line-height: 1.3; max-width: 760px;
+}
+.hero-meta { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.75rem; }
+
+.article-body {
+  max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem;
+}
+
+.author-block {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.5rem; background: #fff; border-radius: var(--r-card);
+  box-shadow: var(--shadow); margin-bottom: 2rem;
+}
+.author-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.3rem; font-weight: 800;
+  flex-shrink: 0;
+}
+.author-info { flex: 1; }
+.author-name { font-weight: 700; color: var(--texto); font-size: 1rem; }
+.author-date { color: var(--suave); font-size: 0.85rem; margin-top: 0.2rem; }
+.author-chip {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  padding: 0.2rem 0.7rem; border-radius: var(--r-btn);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin-top: 0.4rem;
+}
+
+.article-content {
+  font-size: 1.05rem; line-height: 1.85; color: #1a2332;
+}
+.article-content p { margin-bottom: 1.25rem; }
+.article-content p:last-child { margin-bottom: 0; }
+
+.share-section { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--borda); }
+.share-label { font-size: 0.85rem; color: var(--suave); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+.share-buttons { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.btn-whatsapp {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #25D366; color: #fff; border-radius: var(--r-btn);
+  padding: 0.6rem 1.4rem; font-weight: 700; text-decoration: none;
+  font-size: 0.9rem; transition: background 0.2s;
+}
+.btn-whatsapp:hover { background: #1da851; }
+.btn-copy {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--bg); color: var(--texto); border-radius: var(--r-btn);
+  padding: 0.6rem 1.4rem; font-weight: 600; border: none;
+  font-size: 0.9rem; cursor: pointer; transition: background 0.2s;
+  font-family: var(--font);
+}
+.btn-copy:hover { background: #e0e8f0; }
+
+.not-found {
+  max-width: 600px; margin: 4rem auto; padding: 2rem;
+  text-align: center;
+}
+.not-found-icon { font-size: 3rem; margin-bottom: 1rem; }
+.not-found h2 { font-size: 1.6rem; font-weight: 800; color: var(--texto); margin-bottom: 0.5rem; }
+.not-found p { color: var(--suave); font-size: 1rem; margin-bottom: 1.5rem; }
+.not-found a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--azul); color: #fff; border-radius: var(--r-btn);
+  padding: 0.7rem 1.6rem; font-weight: 700; text-decoration: none;
+  font-size: 0.95rem; transition: background 0.2s;
+}
+.not-found a:hover { background: var(--azul-hover); }
+
+#page-content { display: none; }
+#not-found-section { display: none; }
+
+footer { background: #071221; color: #fff; padding: 3rem 2rem 2rem; }
+.f-inner {
+  max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap;
+  gap: 2rem; align-items: flex-start; justify-content: space-between;
+}
+.f-brand p { color: #9ab0c8; font-size: 0.85rem; margin-top: 0.75rem; line-height: 1.6; }
+.f-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.f-links a { color: #9ab0c8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.f-links a:hover { color: var(--verde); }
+.f-copy {
+  width: 100%; color: #5a6d80; font-size: 0.8rem; text-align: center;
+  margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hero-content h1 { font-size: 1.8rem; }
+}
+@media (max-width: 700px) {
+  .hamburger { display: flex; }
+  nav ul {
+    display: none; flex-direction: column; position: absolute; top: 80px; left: 0; right: 0;
+    background: #071221; padding: 1rem 2rem 2rem; gap: 1rem; z-index: 99;
+  }
+  nav ul.open { display: flex; }
+  nav ul li a { font-size: 1rem; }
+  .hero-content { padding: 1.5rem; }
+  .hero-content h1 { font-size: 1.5rem; }
+  .article-body { padding: 2rem 1rem; }
+}
+@media (max-width: 600px) {
+  .article-hero { min-height: 300px; }
+  .author-block { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="logo-obdc.png" alt="OBDC" class="logo-img">
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-ul">
+    <li><a href="index.html#sobre">Quem Somos</a></li>
+    <li><a href="index.html#projetos">Projetos</a></li>
+    <li><a href="jornal.html">Jornal</a></li>
+    <li><a href="radioweb.html">Rádioweb</a></li>
+    <li><a href="index.html#videos">Vídeos</a></li>
+    <li><a href="index.html#apoie">Apoie</a></li>
+    <li><a href="index.html#contato" class="nav-cta">Fale Conosco</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div id="not-found-section">
+    <div class="back-bar">
+      <a href="jornal.html" class="btn-back">← Voltar ao Jornal</a>
+    </div>
+    <div class="not-found">
+      <div class="not-found-icon">🔍</div>
+      <h2>Artigo não encontrado</h2>
+      <p>O artigo que você está procurando não existe ou foi removido.</p>
+      <a href="jornal.html">← Voltar ao Jornal</a>
+    </div>
+  </div>
+
+  <div id="page-content">
+    <div class="back-bar">
+      <a href="jornal.html" class="btn-back">← Voltar ao Jornal</a>
+    </div>
+
+    <div class="article-hero" id="article-hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="article-chip" id="hero-chip"></span>
+        <h1 id="hero-title"></h1>
+        <p class="hero-meta" id="hero-meta"></p>
+      </div>
+    </div>
+
+    <div class="article-body">
+      <div class="author-block">
+        <div class="author-avatar" id="author-avatar"></div>
+        <div class="author-info">
+          <div class="author-name" id="author-name"></div>
+          <div class="author-date" id="author-date"></div>
+          <span class="author-chip" id="author-chip"></span>
+        </div>
+      </div>
+
+      <div class="article-content" id="article-content"></div>
+
+      <div class="share-section">
+        <div class="share-label">Compartilhar</div>
+        <div class="share-buttons">
+          <a id="btn-whatsapp" class="btn-whatsapp" target="_blank" rel="noopener">
+            📱 WhatsApp
+          </a>
+          <button class="btn-copy" id="btn-copy">🔗 Copiar link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="f-inner">
+    <div class="f-brand">
+      <img src="logo-obdc.png" alt="OBDC" style="height:50px;">
+      <p>Transformando vidas desde 1999.<br>Ponto de Cultura · ID 13312 · MinC</p>
+    </div>
+    <div class="f-links">
+      <a href="index.html">Início</a>
+      <a href="jornal.html">Jornal</a>
+      <a href="radioweb.html">Rádioweb</a>
+      <a href="index.html#contato">Contato</a>
+    </div>
+    <p class="f-copy">CNPJ 03.605.483/0001-46 · ONG OBDC © 2025</p>
+  </div>
+</footer>
+
+<script>
+var categoryGradients = {
+  'Cultura e Arte': 'linear-gradient(135deg, #1a3a6b, #2d5fb4)',
+  'Esporte Cidadania': 'linear-gradient(135deg, #1a5a2b, #2db54e)',
+  'Conquistas': 'linear-gradient(135deg, #4a2060, #8a40a0)',
+  'Lei Rouanet': 'linear-gradient(135deg, #1a4a6b, #2a7ab4)'
+};
+
+var categoryColors = {
+  'Cultura e Arte': { bg: '#1a5fb4', light: '#e8f0fc', chip: '#1a5fb4' },
+  'Esporte Cidadania': { bg: '#2db54e', light: '#e6f7eb', chip: '#2db54e' },
+  'Conquistas': { bg: '#8a40a0', light: '#f4ebf8', chip: '#8a40a0' },
+  'Lei Rouanet': { bg: '#2a7ab4', light: '#e8f2fc', chip: '#2a7ab4' }
+};
+
+function getCategoryGradient(cat) {
+  return categoryGradients[cat] || 'linear-gradient(135deg, #071221, #1a5fb4)';
+}
+
+function getCategoryColor(cat) {
+  return categoryColors[cat] || { bg: '#1a5fb4', light: '#e8f0fc', chip: '#1a5fb4' };
+}
+
+function formatDate(dateStr) {
+  return new Date(dateStr + 'T12:00:00').toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+async function loadArticle() {
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+
+  if (!id) {
+    showNotFound();
+    return;
+  }
+
+  try {
+    var res = await fetch('/data/jornal.json');
+    var data = await res.json();
+    var article = data.articles.find(function(a) {
+      return String(a.id) === String(id);
+    });
+
+    if (!article) {
+      showNotFound();
+      return;
+    }
+
+    populateArticle(article);
+  } catch(e) {
+    showNotFound();
+  }
+}
+
+function showNotFound() {
+  document.getElementById('not-found-section').style.display = 'block';
+}
+
+function populateArticle(article) {
+  document.title = (article.title || 'Artigo') + ' · OBDC';
+
+  var hero = document.getElementById('article-hero');
+  if (article.imageUrl) {
+    hero.style.backgroundImage = 'url(' + article.imageUrl + ')';
+  } else {
+    hero.style.background = getCategoryGradient(article.category);
+  }
+
+  var chip = document.getElementById('hero-chip');
+  chip.textContent = article.category || 'Geral';
+
+  var colors = getCategoryColor(article.category);
+  chip.style.background = colors.bg;
+
+  document.getElementById('hero-title').textContent = article.title || '';
+
+  var metaParts = [];
+  if (article.author) metaParts.push('Por ' + article.author);
+  if (article.date) metaParts.push(formatDate(article.date));
+  document.getElementById('hero-meta').textContent = metaParts.join(' · ');
+
+  var avatar = document.getElementById('author-avatar');
+  var authorInitial = article.author ? article.author.charAt(0).toUpperCase() : '?';
+  avatar.textContent = authorInitial;
+  avatar.style.background = getCategoryGradient(article.category);
+
+  document.getElementById('author-name').textContent = article.author || 'Redação OBDC';
+  document.getElementById('author-date').textContent = article.date ? formatDate(article.date) : '';
+
+  var authorChipEl = document.getElementById('author-chip');
+  authorChipEl.textContent = article.category || 'Geral';
+  authorChipEl.style.background = colors.light;
+  authorChipEl.style.color = colors.chip;
+
+  var contentEl = document.getElementById('article-content');
+  var rawContent = article.content || '';
+  if (!rawContent.trim()) {
+    contentEl.innerHTML = '<p>Conteúdo completo em breve.</p>';
+  } else {
+    var paragraphs = rawContent.split('\n\n').filter(function(p) { return p.trim(); });
+    contentEl.innerHTML = paragraphs.map(function(p) {
+      return '<p>' + p.trim().replace(/\n/g, '<br>') + '</p>';
+    }).join('');
+  }
+
+  var waBtn = document.getElementById('btn-whatsapp');
+  waBtn.href = 'https://wa.me/?text=' + encodeURIComponent((article.title || '') + ' ' + window.location.href);
+
+  document.getElementById('btn-copy').addEventListener('click', function() {
+    var btn = this;
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      btn.textContent = '✓ Copiado!';
+      setTimeout(function() { btn.textContent = '🔗 Copiar link'; }, 2000);
+    }).catch(function() {
+      var input = document.createElement('input');
+      input.value = window.location.href;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+      btn.textContent = '✓ Copiado!';
+      setTimeout(function() { btn.textContent = '🔗 Copiar link'; }, 2000);
+    });
+  });
+
+  document.getElementById('page-content').style.display = 'block';
+}
+
+document.getElementById('hamburger').addEventListener('click', function() {
+  document.getElementById('nav-ul').classList.toggle('open');
+});
+
+loadArticle();
+</script>
+</body>
+</html>
