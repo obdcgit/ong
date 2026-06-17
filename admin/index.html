@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>OBDC Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2db54e; --verde-d: #1f9e3d;
+    --azul:  #1a5fb4; --azul-d:  #1550a2;
+    --preto: #0a1628; --fundo:   #f0f4f8;
+    --borda: #e2e8f0; --suave:   #64748b;
+    --white: #ffffff; --danger:  #dc2626;
+    --r: 12px; --font: 'Inter', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font); background: var(--fundo); color: var(--preto); -webkit-font-smoothing: antialiased; }
+  a { text-decoration: none; color: inherit; }
+  input, textarea, select { font-family: var(--font); }
+
+  /* ── LOGIN ── */
+  #login-screen {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--preto) 0%, #0d3b7a 60%, #1a6a2e 100%);
+  }
+  .login-card {
+    background: var(--white); border-radius: 20px; padding: 3rem 2.5rem;
+    width: 100%; max-width: 400px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    text-align: center;
+  }
+  .login-logo { height: 64px; margin: 0 auto 1.5rem; }
+  .login-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .login-sub { font-size: 0.85rem; color: var(--suave); margin-bottom: 2rem; }
+  .login-input {
+    width: 100%; padding: 0.85rem 1.2rem; border: 1.5px solid var(--borda);
+    border-radius: var(--r); font-size: 1rem; margin-bottom: 1rem;
+    transition: border-color 0.2s; outline: none;
+  }
+  .login-input:focus { border-color: var(--verde); }
+  .login-btn {
+    width: 100%; padding: 0.9rem; background: var(--verde); color: #fff;
+    border: none; border-radius: var(--r); font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .login-btn:hover { background: var(--verde-d); }
+  .login-btn:disabled { opacity: 0.6; cursor: wait; }
+  .login-error { color: var(--danger); font-size: 0.83rem; margin-top: 0.8rem; }
+
+  /* ── APP SHELL ── */
+  #app { display: none; min-height: 100vh; }
+  .app-layout { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--preto); color: #fff;
+    display: flex; flex-direction: column; padding: 0;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  .sidebar-brand {
+    padding: 1.5rem 1.4rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .sidebar-brand svg { height: 36px; flex-shrink: 0; }
+  .sidebar-brand-txt { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
+  .sidebar-brand-txt small { display: block; font-size: 0.58rem; font-weight: 400; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+  .sidebar-nav { flex: 1; padding: 1rem 0.8rem; }
+  .nav-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.3); padding: 0.8rem 0.6rem 0.4rem; }
+  .nav-item {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.7rem 0.9rem; border-radius: 10px; cursor: pointer;
+    font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.65);
+    transition: background 0.15s, color 0.15s; margin-bottom: 2px;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.07); color: #fff; }
+  .nav-item.active { background: var(--verde); color: #fff; font-weight: 600; }
+  .nav-item .icon { font-size: 1.05rem; width: 20px; text-align: center; }
+  .sidebar-footer { padding: 1rem 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .logout-btn {
+    width: 100%; padding: 0.65rem; background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: var(--r);
+    color: rgba(255,255,255,0.6); font-size: 0.82rem; cursor: pointer;
+    transition: background 0.2s; font-family: var(--font);
+  }
+  .logout-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  /* ── MAIN CONTENT ── */
+  .main-content { overflow: auto; }
+  .page-header {
+    background: var(--white); border-bottom: 1px solid var(--borda);
+    padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .page-title { font-size: 1.2rem; font-weight: 800; }
+  .page-body { padding: 2rem; }
+  .section-panel { display: none; }
+  .section-panel.active { display: block; }
+
+  /* ── CARDS / TABLE ── */
+  .card {
+    background: var(--white); border: 1px solid var(--borda);
+    border-radius: var(--r); padding: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .card-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+  .item-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .item-row {
+    display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
+    background: var(--fundo); border-radius: 10px; border: 1px solid var(--borda);
+  }
+  .item-thumb {
+    width: 72px; height: 44px; border-radius: 6px; overflow: hidden;
+    background: var(--preto); flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .item-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .item-thumb .no-thumb { font-size: 1.2rem; }
+  .item-info { flex: 1; min-width: 0; }
+  .item-title { font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-meta { font-size: 0.75rem; color: var(--suave); margin-top: 0.15rem; }
+  .item-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+  .badge { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; border-radius: 100px; }
+  .badge-green { background: #dcfce7; color: #15803d; }
+  .badge-gray  { background: #f1f5f9; color: var(--suave); }
+  .badge-blue  { background: #dbeafe; color: var(--azul); }
+
+  /* ── BUTTONS ── */
+  .btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.1rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; transition: background 0.15s, transform 0.1s; font-family: var(--font); }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--verde); color: #fff; }
+  .btn-primary:hover { background: var(--verde-d); }
+  .btn-secondary { background: var(--fundo); color: var(--preto); border: 1px solid var(--borda); }
+  .btn-secondary:hover { background: #e2e8f0; }
+  .btn-danger { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
+  .btn-danger:hover { background: #fee2e2; }
+  .btn-blue { background: var(--azul); color: #fff; }
+  .btn-blue:hover { background: var(--azul-d); }
+  .btn-sm { padding: 0.38rem 0.75rem; font-size: 0.75rem; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── FORM ── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 0.78rem; font-weight: 600; color: var(--suave); }
+  .form-input {
+    padding: 0.65rem 0.9rem; border: 1.5px solid var(--borda); border-radius: 8px;
+    font-size: 0.88rem; outline: none; transition: border-color 0.2s; font-family: var(--font);
+  }
+  .form-input:focus { border-color: var(--verde); }
+  .form-input.error { border-color: var(--danger); }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+  .form-select { padding: 0.65rem 0.9rem; border: 1.5px solid var(--borda); border-radius: 8px; font-size: 0.88rem; outline: none; font-family: var(--font); background: var(--white); }
+  .form-select:focus { border-color: var(--verde); }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 100; align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 16px; padding: 1.8rem;
+    width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+  .modal-title { font-size: 1.1rem; font-weight: 800; }
+  .modal-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--suave); line-height: 1; padding: 0.2rem; }
+  .modal-footer { display: flex; gap: 0.7rem; justify-content: flex-end; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid var(--borda); }
+
+  /* ── UPLOAD ZONE ── */
+  .upload-zone {
+    border: 2px dashed var(--borda); border-radius: 10px; padding: 1.5rem;
+    text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+  }
+  .upload-zone:hover, .upload-zone.drag { border-color: var(--verde); background: #f0fdf4; }
+  .upload-zone input { display: none; }
+  .upload-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+  .upload-text { font-size: 0.82rem; color: var(--suave); }
+  .upload-text strong { color: var(--verde); }
+  .upload-progress { margin-top: 0.8rem; background: var(--borda); border-radius: 100px; height: 6px; overflow: hidden; display: none; }
+  .upload-progress-bar { height: 100%; background: var(--verde); transition: width 0.3s; }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+    background: var(--preto); color: #fff; padding: 0.8rem 1.2rem;
+    border-radius: 10px; font-size: 0.85rem; font-weight: 500;
+    transform: translateY(20px); opacity: 0; transition: all 0.3s;
+    max-width: 320px;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+  #toast.success { background: var(--verde); }
+  #toast.error   { background: var(--danger); }
+
+  /* ── TOGGLE ── */
+  .toggle { position: relative; width: 38px; height: 22px; flex-shrink: 0; }
+  .toggle input { display: none; }
+  .toggle-track {
+    position: absolute; inset: 0; background: #cbd5e1; border-radius: 100px;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .toggle input:checked + .toggle-track { background: var(--verde); }
+  .toggle-thumb {
+    position: absolute; top: 3px; left: 3px;
+    width: 16px; height: 16px; background: #fff; border-radius: 50%;
+    transition: left 0.2s; box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .toggle input:checked ~ .toggle-thumb { left: 19px; }
+
+  /* ── RADIO SECTION SPECIFICS ── */
+  .audio-preview { display: flex; align-items: center; gap: 0.8rem; padding: 0.7rem 1rem; background: var(--fundo); border-radius: 8px; margin-top: 0.5rem; }
+  .audio-preview audio { flex: 1; height: 36px; }
+
+  /* ── JORNAL ── */
+  .article-row { cursor: pointer; }
+  .article-row:hover { border-color: var(--verde); }
+  .cat-pill { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.55rem; border-radius: 100px; background: var(--azul-bg, #dbeafe); color: var(--azul); display: inline-block; }
+
+  /* ── SETTINGS ── */
+  .settings-section { margin-bottom: 2rem; }
+  .settings-title { font-size: 0.88rem; font-weight: 700; color: var(--suave); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state { text-align: center; padding: 3rem 1rem; color: var(--suave); }
+  .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
+  .empty-state p { font-size: 0.9rem; }
+
+  /* ── YOUTUBE PREVIEW ── */
+  .yt-preview { border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; background: var(--preto); margin-top: 0.6rem; }
+  .yt-preview iframe { width: 100%; height: 100%; border: 0; }
+  .yt-id-display { font-size: 0.72rem; color: var(--suave); margin-top: 0.3rem; }
+
+  @media (max-width: 768px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; left: -240px; z-index: 200; transition: left 0.3s; height: 100vh; }
+    .sidebar.open { left: 0; }
+    .page-header { padding: 1rem 1.2rem; }
+    .page-body { padding: 1rem; }
+    .form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <svg class="login-logo" viewBox="0 0 148 148" fill="none">
+      <rect width="148" height="148" rx="28" fill="#2db54e"/>
+      <circle cx="74" cy="36" r="20" fill="white"/>
+      <polygon points="60,56 88,56 98,122 50,122" fill="white"/>
+      <rect x="16" y="66" width="116" height="15" rx="7.5" fill="white"/>
+      <rect x="52" y="120" width="15" height="26" rx="7.5" fill="white" transform="rotate(-5,59.5,133)"/>
+      <rect x="81" y="120" width="15" height="26" rx="7.5" fill="white" transform="rotate(5,88.5,133)"/>
+    </svg>
+    <div class="login-title">OBDC Admin</div>
+    <div class="login-sub">Área de gerenciamento do site ongobdc.org</div>
+    <form id="login-form">
+      <input id="login-pass" type="password" class="login-input" placeholder="Senha de acesso" autocomplete="current-password">
+      <button type="submit" class="login-btn" id="login-btn">Entrar →</button>
+      <div class="login-error" id="login-error"></div>
+    </form>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <svg viewBox="0 0 148 148" fill="none">
+          <rect width="148" height="148" rx="28" fill="#2db54e"/>
+          <circle cx="74" cy="36" r="20" fill="white"/>
+          <polygon points="60,56 88,56 98,122 50,122" fill="white"/>
+          <rect x="16" y="66" width="116" height="15" rx="7.5" fill="white"/>
+          <rect x="52" y="120" width="15" height="26" rx="7.5" fill="white" transform="rotate(-5,59.5,133)"/>
+          <rect x="81" y="120" width="15" height="26" rx="7.5" fill="white" transform="rotate(5,88.5,133)"/>
+        </svg>
+        <div class="sidebar-brand-txt">OBDC<small>Gerenciamento</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-label">Conteúdo</div>
+        <div class="nav-item active" data-section="videos" onclick="goTo('videos')">
+          <span class="icon">🎬</span> Vídeos
+        </div>
+        <div class="nav-item" data-section="radio" onclick="goTo('radio')">
+          <span class="icon">📡</span> Rádioweb
+        </div>
+        <div class="nav-item" data-section="jornal" onclick="goTo('jornal')">
+          <span class="icon">📰</span> Jornal Notícia Social
+        </div>
+        <div class="nav-label">Site</div>
+        <div class="nav-item" data-section="settings" onclick="goTo('settings')">
+          <span class="icon">⚙️</span> Configurações
+        </div>
+        <div class="nav-item" onclick="window.open('../','_blank')">
+          <span class="icon">🌐</span> Ver site
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">Sair da sessão</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-content">
+
+      <!-- HEADER -->
+      <div class="page-header">
+        <div class="page-title" id="page-title">🎬 Vídeos</div>
+        <div id="page-action"></div>
+      </div>
+
+      <div class="page-body">
+
+        <!-- ══ VÍDEOS ══ -->
+        <div class="section-panel active" id="panel-videos">
+          <div class="card">
+            <div class="card-title">📺 Canal OBDC no YouTube
+              <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openVideoModal()">+ Adicionar vídeo</button>
+            </div>
+            <div class="item-list" id="videos-list"></div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--suave)">Os vídeos publicados aparecem na seção "OBDC em Vídeo" do site.</p>
+        </div>
+
+        <!-- ══ RÁDIOWEB ══ -->
+        <div class="section-panel" id="panel-radio">
+          <div class="card">
+            <div class="card-title">📡 Programas da Rádioweb
+              <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openRadioModal()">+ Novo programa</button>
+            </div>
+            <div class="item-list" id="radio-list"></div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--suave)">Suba arquivos MP3 ou cole um link externo. O programa mais recente fica em destaque no site.</p>
+        </div>
+
+        <!-- ══ JORNAL ══ -->
+        <div class="section-panel" id="panel-jornal">
+          <div class="card">
+            <div class="card-title">📰 Artigos publicados
+              <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openJornalModal()">+ Novo artigo</button>
+            </div>
+            <div class="item-list" id="jornal-list"></div>
+          </div>
+        </div>
+
+        <!-- ══ SETTINGS ══ -->
+        <div class="section-panel" id="panel-settings">
+          <div class="card">
+            <div class="settings-section">
+              <div class="settings-title">🖥️ Hero — Texto principal</div>
+              <div class="form-group" style="margin-bottom:1rem">
+                <label class="form-label">Título (use &lt;em&gt; para destaque)</label>
+                <input type="text" class="form-input" id="s-hero-title">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Subtítulo</label>
+                <textarea class="form-input" id="s-hero-subtitle" rows="3"></textarea>
+              </div>
+            </div>
+            <hr style="border:0;border-top:1px solid var(--borda);margin:1.5rem 0">
+            <div class="settings-section">
+              <div class="settings-title">📞 Contato</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">WhatsApp (com DDI/DDD)</label>
+                  <input type="text" class="form-input" id="s-whatsapp" placeholder="5562985816625">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">E-mail</label>
+                  <input type="email" class="form-input" id="s-email">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Chave PIX</label>
+                  <input type="text" class="form-input" id="s-pix">
+                </div>
+              </div>
+            </div>
+            <hr style="border:0;border-top:1px solid var(--borda);margin:1.5rem 0">
+            <div class="settings-section">
+              <div class="settings-title">📱 Redes Sociais</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label">Instagram (URL)</label>
+                  <input type="url" class="form-input" id="s-instagram">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Facebook (URL)</label>
+                  <input type="url" class="form-input" id="s-facebook">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">YouTube (URL)</label>
+                  <input type="url" class="form-input" id="s-youtube">
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:1.5rem">
+              <button class="btn btn-primary" onclick="saveSettings()">💾 Salvar configurações</button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end page-body -->
+    </div><!-- end main-content -->
+  </div>
+</div>
+
+<!-- ══ MODAL: VÍDEO ══ -->
+<div class="modal-overlay" id="modal-video">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="video-modal-title">Adicionar vídeo</div>
+      <button class="modal-close" onclick="closeModal('modal-video')">✕</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Link ou ID do YouTube</label>
+        <input type="text" class="form-input" id="v-url" placeholder="https://youtube.com/watch?v=... ou ID direto" oninput="previewYoutube()">
+        <div class="yt-id-display" id="v-id-display"></div>
+        <div class="yt-preview" id="v-preview" style="display:none"></div>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Título do vídeo</label>
+        <input type="text" class="form-input" id="v-title" placeholder="Ex: Auto de Páscoa 2026">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Descrição curta</label>
+        <input type="text" class="form-input" id="v-desc" placeholder="Ex: 17ª edição — 2.000 espectadores">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Publicado no site</label>
+        <label class="toggle" style="margin-top:0.4rem">
+          <input type="checkbox" id="v-active">
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+    <input type="hidden" id="v-edit-id">
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-video')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveVideo()">💾 Salvar vídeo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: RÁDIO ══ -->
+<div class="modal-overlay" id="modal-radio">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="radio-modal-title">Novo programa</div>
+      <button class="modal-close" onclick="closeModal('modal-radio')">✕</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Título do programa</label>
+        <input type="text" class="form-input" id="r-title" placeholder="Ex: Informativo OBDC — Junho 2026">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Descrição</label>
+        <input type="text" class="form-input" id="r-desc" placeholder="Assuntos abordados neste programa">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Data</label>
+        <input type="date" class="form-input" id="r-date">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Áudio — Fazer upload de MP3</label>
+        <div class="upload-zone" id="r-upload-zone" onclick="document.getElementById('r-file').click()" ondragover="dragover(event)" ondrop="dropFile(event,'r-file')">
+          <input type="file" id="r-file" accept="audio/mp3,audio/mpeg" onchange="audioFileSelected()">
+          <div class="upload-icon">🎵</div>
+          <div class="upload-text">Clique ou arraste um arquivo <strong>MP3</strong><br>Tamanho máximo: 50 MB</div>
+          <div class="upload-progress" id="r-upload-progress">
+            <div class="upload-progress-bar" id="r-progress-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <div id="r-file-info" style="display:none" class="audio-preview">
+          <span id="r-file-name" style="font-size:0.82rem;font-weight:600;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+          <button class="btn btn-danger btn-sm" onclick="clearRadioFile()">✕</button>
+        </div>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Ou cole um link de áudio externo (URL .mp3)</label>
+        <input type="url" class="form-input" id="r-url" placeholder="https://...arquivo.mp3">
+      </div>
+    </div>
+    <input type="hidden" id="r-edit-id">
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-radio')">Cancelar</button>
+      <button class="btn btn-primary" id="r-save-btn" onclick="saveRadio()">💾 Publicar programa</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: JORNAL ══ -->
+<div class="modal-overlay" id="modal-jornal">
+  <div class="modal" style="max-width:700px">
+    <div class="modal-header">
+      <div class="modal-title" id="jornal-modal-title">Novo artigo</div>
+      <button class="modal-close" onclick="closeModal('modal-jornal')">✕</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Título do artigo</label>
+        <input type="text" class="form-input" id="j-title" placeholder="Título completo do artigo">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoria</label>
+        <select class="form-select" id="j-category">
+          <option>Notícias da OBDC</option>
+          <option>Cultura e Arte</option>
+          <option>Esporte Cidadania</option>
+          <option>Lei Rouanet</option>
+          <option>Conquistas</option>
+          <option>Programas e Projetos</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Data</label>
+        <input type="date" class="form-input" id="j-date">
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Resumo (aparece na listagem)</label>
+        <textarea class="form-input" id="j-excerpt" rows="2" placeholder="Uma ou duas frases resumindo o artigo"></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Conteúdo completo</label>
+        <textarea class="form-input" id="j-content" rows="8" placeholder="Texto completo do artigo..."></textarea>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Imagem — Fazer upload ou colar URL</label>
+        <div class="upload-zone" id="j-upload-zone" onclick="document.getElementById('j-img-file').click()" ondragover="dragover(event)" ondrop="dropFile(event,'j-img-file')">
+          <input type="file" id="j-img-file" accept="image/*" onchange="imageFileSelected()">
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-text">Clique ou arraste uma <strong>imagem</strong> (JPG, PNG, WebP)</div>
+        </div>
+        <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:0.75rem;color:var(--suave)">ou URL:</span>
+          <input type="url" class="form-input" id="j-img-url" placeholder="https://..." style="flex:1" oninput="previewJornalImage()">
+        </div>
+        <div id="j-img-preview" style="margin-top:0.5rem;display:none">
+          <img id="j-img-preview-img" style="max-height:160px;border-radius:8px;border:1px solid var(--borda)">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Publicado no site</label>
+        <label class="toggle" style="margin-top:0.4rem">
+          <input type="checkbox" id="j-published">
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </label>
+      </div>
+    </div>
+    <input type="hidden" id="j-edit-id">
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-jornal')">Cancelar</button>
+      <button class="btn btn-primary" id="j-save-btn" onclick="saveJornal()">💾 Salvar artigo</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+const API = '/api/cms';
+let token = localStorage.getItem('obdc_token') || '';
+let data = { videos: null, radio: null, jornal: null, settings: null };
+let pendingFile = null; // { type: 'audio'|'image', file, name }
+
+// ── UTILS ────────────────────────────────────────────────────────
+function showToast(msg, type = 'success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'show ' + type;
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.className = '', 3000);
+}
+
+function extractYoutubeId(input) {
+  input = input.trim();
+  const patterns = [
+    /[?&]v=([a-zA-Z0-9_-]{11})/,
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /embed\/([a-zA-Z0-9_-]{11})/,
+    /^([a-zA-Z0-9_-]{11})$/
+  ];
+  for (const p of patterns) { const m = input.match(p); if (m) return m[1]; }
+  return null;
+}
+
+function formatDate(d) {
+  if (!d) return '';
+  return new Date(d + 'T12:00:00').toLocaleDateString('pt-BR', { day:'2-digit', month:'long', year:'numeric' });
+}
+
+async function api(payload) {
+  const r = await fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...payload, token })
+  });
+  return r.json();
+}
+
+async function loadFile(file) {
+  const r = await api({ action: 'getContent', file });
+  if (r.json) return r;
+  return null;
+}
+
+async function saveFile(file, content, sha) {
+  return api({ action: 'saveContent', file, content, sha });
+}
+
+// ── AUTH ─────────────────────────────────────────────────────────
+document.getElementById('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-error');
+  btn.disabled = true; btn.textContent = 'Verificando...';
+  err.textContent = '';
+  const r = await fetch(API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'login', password: document.getElementById('login-pass').value })
+  }).then(x => x.json()).catch(() => ({ error: 'Erro de conexão' }));
+
+  if (r.token) {
+    token = r.token;
+    localStorage.setItem('obdc_token', token);
+    showApp();
+  } else {
+    err.textContent = r.error || 'Senha incorreta';
+    btn.disabled = false; btn.textContent = 'Entrar →';
+  }
+});
+
+function logout() {
+  localStorage.removeItem('obdc_token');
+  token = '';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+async function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  goTo('videos');
+}
+
+// ── NAVIGATION ──────────────────────────────────────────────────
+const titles = { videos: '🎬 Vídeos', radio: '📡 Rádioweb OBDC', jornal: '📰 Jornal Notícia Social', settings: '⚙️ Configurações do Site' };
+
+async function goTo(section) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('panel-' + section).classList.add('active');
+  document.querySelector(`[data-section="${section}"]`)?.classList.add('active');
+  document.getElementById('page-title').textContent = titles[section];
+  if (!data[section]) await loadSection(section);
+  else renderSection(section);
+}
+
+async function loadSection(section) {
+  const r = await loadFile(section === 'settings' ? 'settings' : section);
+  if (r) { data[section] = r; renderSection(section); }
+  else showToast('Erro ao carregar dados', 'error');
+}
+
+function renderSection(section) {
+  if (section === 'videos')   renderVideos();
+  if (section === 'radio')    renderRadio();
+  if (section === 'jornal')   renderJornal();
+  if (section === 'settings') renderSettings();
+}
+
+// ── VÍDEOS ───────────────────────────────────────────────────────
+function renderVideos() {
+  const list = document.getElementById('videos-list');
+  const videos = data.videos?.json?.videos || [];
+  if (!videos.length) { list.innerHTML = '<div class="empty-state"><div class="empty-icon">🎬</div><p>Nenhum vídeo cadastrado ainda.<br>Clique em "+ Adicionar vídeo" para começar.</p></div>'; return; }
+  list.innerHTML = videos.map((v, i) => `
+    <div class="item-row">
+      <div class="item-thumb">
+        ${v.youtubeId ? `<img src="https://img.youtube.com/vi/${v.youtubeId}/mqdefault.jpg" alt="">` : `<span class="no-thumb">🎬</span>`}
+      </div>
+      <div class="item-info">
+        <div class="item-title">${v.title || '(Sem título)'}</div>
+        <div class="item-meta">${v.youtubeId ? 'ID: ' + v.youtubeId : 'Sem link ainda'} ${v.description ? '· ' + v.description : ''}</div>
+      </div>
+      <span class="badge ${v.active ? 'badge-green' : 'badge-gray'}">${v.active ? 'Publicado' : 'Oculto'}</span>
+      <div class="item-actions">
+        <button class="btn btn-secondary btn-sm" onclick="editVideo(${i})">✏️ Editar</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteVideo(${i})">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function openVideoModal(editIdx) {
+  document.getElementById('v-url').value = '';
+  document.getElementById('v-title').value = '';
+  document.getElementById('v-desc').value = '';
+  document.getElementById('v-active').checked = true;
+  document.getElementById('v-edit-id').value = editIdx !== undefined ? editIdx : '';
+  document.getElementById('v-preview').style.display = 'none';
+  document.getElementById('v-id-display').textContent = '';
+  document.getElementById('video-modal-title').textContent = editIdx !== undefined ? 'Editar vídeo' : 'Adicionar vídeo';
+  document.getElementById('modal-video').classList.add('open');
+}
+
+function editVideo(i) {
+  const v = data.videos.json.videos[i];
+  document.getElementById('v-url').value = v.youtubeId || '';
+  document.getElementById('v-title').value = v.title || '';
+  document.getElementById('v-desc').value = v.description || '';
+  document.getElementById('v-active').checked = v.active;
+  document.getElementById('v-edit-id').value = i;
+  document.getElementById('video-modal-title').textContent = 'Editar vídeo';
+  previewYoutube();
+  document.getElementById('modal-video').classList.add('open');
+}
+
+function previewYoutube() {
+  const id = extractYoutubeId(document.getElementById('v-url').value);
+  const preview = document.getElementById('v-preview');
+  const display = document.getElementById('v-id-display');
+  if (id) {
+    preview.style.display = 'block';
+    preview.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+    display.textContent = 'ID detectado: ' + id;
+  } else {
+    preview.style.display = 'none';
+    display.textContent = document.getElementById('v-url').value ? 'URL não reconhecida' : '';
+  }
+}
+
+async function saveVideo() {
+  const idx   = document.getElementById('v-edit-id').value;
+  const ytId  = extractYoutubeId(document.getElementById('v-url').value);
+  const title = document.getElementById('v-title').value.trim();
+  if (!title) { showToast('Informe o título do vídeo', 'error'); return; }
+
+  const videos = data.videos.json.videos;
+  const newV = { youtubeId: ytId || '', title, description: document.getElementById('v-desc').value.trim(), active: document.getElementById('v-active').checked };
+
+  if (idx !== '') { videos[parseInt(idx)] = { ...videos[parseInt(idx)], ...newV }; }
+  else { newV.id = String(Date.now()); videos.push(newV); }
+
+  const r = await saveFile('videos', data.videos.json, data.videos.sha);
+  if (r.success) { data.videos.sha = r.sha; renderVideos(); closeModal('modal-video'); showToast('Vídeo salvo!'); }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+async function deleteVideo(i) {
+  if (!confirm('Remover este vídeo?')) return;
+  data.videos.json.videos.splice(i, 1);
+  const r = await saveFile('videos', data.videos.json, data.videos.sha);
+  if (r.success) { data.videos.sha = r.sha; renderVideos(); showToast('Vídeo removido'); }
+  else showToast(r.error || 'Erro', 'error');
+}
+
+// ── RÁDIOWEB ─────────────────────────────────────────────────────
+function renderRadio() {
+  const list   = document.getElementById('radio-list');
+  const tracks = data.radio?.json?.tracks || [];
+  if (!tracks.length) { list.innerHTML = '<div class="empty-state"><div class="empty-icon">📡</div><p>Nenhum programa cadastrado ainda.<br>Clique em "+ Novo programa" para começar.</p></div>'; return; }
+  list.innerHTML = tracks.map((t, i) => `
+    <div class="item-row">
+      <div class="item-thumb"><span class="no-thumb">🎵</span></div>
+      <div class="item-info">
+        <div class="item-title">${t.title || '(Sem título)'}</div>
+        <div class="item-meta">${t.date ? formatDate(t.date) : ''} ${t.description ? '· ' + t.description : ''}</div>
+        ${t.url ? `<audio src="${t.url}" controls style="height:28px;margin-top:4px;max-width:260px"></audio>` : ''}
+      </div>
+      <div class="item-actions">
+        <button class="btn btn-secondary btn-sm" onclick="editRadio(${i})">✏️</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteRadio(${i})">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function openRadioModal() {
+  document.getElementById('r-title').value = '';
+  document.getElementById('r-desc').value  = '';
+  document.getElementById('r-date').value  = new Date().toISOString().split('T')[0];
+  document.getElementById('r-url').value   = '';
+  document.getElementById('r-edit-id').value = '';
+  document.getElementById('r-file-info').style.display = 'none';
+  document.getElementById('r-upload-progress').style.display = 'none';
+  document.getElementById('radio-modal-title').textContent = 'Novo programa';
+  pendingFile = null;
+  document.getElementById('modal-radio').classList.add('open');
+}
+
+function editRadio(i) {
+  const t = data.radio.json.tracks[i];
+  document.getElementById('r-title').value = t.title || '';
+  document.getElementById('r-desc').value  = t.description || '';
+  document.getElementById('r-date').value  = t.date || '';
+  document.getElementById('r-url').value   = t.url || '';
+  document.getElementById('r-edit-id').value = i;
+  document.getElementById('r-file-info').style.display = 'none';
+  document.getElementById('radio-modal-title').textContent = 'Editar programa';
+  pendingFile = null;
+  document.getElementById('modal-radio').classList.add('open');
+}
+
+function audioFileSelected() {
+  const file = document.getElementById('r-file').files[0];
+  if (!file) return;
+  if (file.size > 52_428_800) { showToast('Arquivo muito grande (máx 50 MB)', 'error'); return; }
+  pendingFile = { type: 'audio', file, name: file.name };
+  document.getElementById('r-file-name').textContent = file.name;
+  document.getElementById('r-file-info').style.display = 'flex';
+  document.getElementById('r-url').value = '';
+}
+
+function clearRadioFile() { pendingFile = null; document.getElementById('r-file-info').style.display = 'none'; document.getElementById('r-file').value = ''; }
+
+function dragover(e) { e.preventDefault(); e.currentTarget.classList.add('drag'); }
+function dropFile(e, inputId) {
+  e.preventDefault(); e.currentTarget.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  const input = document.getElementById(inputId);
+  const dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
+  input.dispatchEvent(new Event('change'));
+}
+
+function toBase64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader(); r.onload = () => res(r.result.split(',')[1]); r.onerror = rej; r.readAsDataURL(file);
+  });
+}
+
+async function saveRadio() {
+  const btn   = document.getElementById('r-save-btn');
+  const title = document.getElementById('r-title').value.trim();
+  const idx   = document.getElementById('r-edit-id').value;
+  if (!title) { showToast('Informe o título do programa', 'error'); return; }
+
+  btn.disabled = true; btn.textContent = 'Salvando...';
+
+  let audioUrl = document.getElementById('r-url').value.trim();
+
+  if (pendingFile && pendingFile.type === 'audio') {
+    const progress = document.getElementById('r-upload-progress');
+    const bar = document.getElementById('r-progress-bar');
+    progress.style.display = 'block'; bar.style.width = '30%';
+    try {
+      const b64 = await toBase64(pendingFile.file);
+      bar.style.width = '60%';
+      const safeName = pendingFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const r = await api({ action: 'uploadFile', filePath: 'audio/' + safeName, content: b64 });
+      bar.style.width = '100%';
+      if (!r.success) { showToast(r.error || 'Erro no upload', 'error'); btn.disabled = false; btn.textContent = '💾 Publicar programa'; return; }
+      audioUrl = r.url;
+    } catch { showToast('Erro ao fazer upload', 'error'); btn.disabled = false; btn.textContent = '💾 Publicar programa'; return; }
+  }
+
+  const tracks = data.radio.json.tracks;
+  const track = { title, description: document.getElementById('r-desc').value.trim(), date: document.getElementById('r-date').value, url: audioUrl };
+
+  if (idx !== '') tracks[parseInt(idx)] = { ...tracks[parseInt(idx)], ...track };
+  else { track.id = Date.now(); tracks.unshift(track); }
+
+  const r = await saveFile('radio', data.radio.json, data.radio.sha);
+  btn.disabled = false; btn.textContent = '💾 Publicar programa';
+  if (r.success) { data.radio.sha = r.sha; renderRadio(); closeModal('modal-radio'); showToast('Programa publicado!'); pendingFile = null; }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+async function deleteRadio(i) {
+  if (!confirm('Remover este programa?')) return;
+  data.radio.json.tracks.splice(i, 1);
+  const r = await saveFile('radio', data.radio.json, data.radio.sha);
+  if (r.success) { data.radio.sha = r.sha; renderRadio(); showToast('Programa removido'); }
+  else showToast(r.error || 'Erro', 'error');
+}
+
+// ── JORNAL ───────────────────────────────────────────────────────
+function renderJornal() {
+  const list     = document.getElementById('jornal-list');
+  const articles = data.jornal?.json?.articles || [];
+  if (!articles.length) { list.innerHTML = '<div class="empty-state"><div class="empty-icon">📰</div><p>Nenhum artigo ainda.<br>Clique em "+ Novo artigo" para começar.</p></div>'; return; }
+  list.innerHTML = articles.map((a, i) => `
+    <div class="item-row article-row" onclick="editJornal(${i})">
+      <div class="item-thumb">
+        ${a.imageUrl ? `<img src="${a.imageUrl}" alt="">` : `<span class="no-thumb">📰</span>`}
+      </div>
+      <div class="item-info">
+        <div class="item-title">${a.title || '(Sem título)'}</div>
+        <div class="item-meta">${a.category ? `<span class="cat-pill">${a.category}</span> ` : ''}${a.date ? '· ' + formatDate(a.date) : ''}</div>
+      </div>
+      <span class="badge ${a.published ? 'badge-green' : 'badge-gray'}">${a.published ? 'Publicado' : 'Rascunho'}</span>
+      <div class="item-actions" onclick="event.stopPropagation()">
+        <button class="btn btn-danger btn-sm" onclick="deleteJornal(${i})">🗑️</button>
+      </div>
+    </div>`).join('');
+}
+
+function openJornalModal() {
+  document.getElementById('j-title').value     = '';
+  document.getElementById('j-category').value  = 'Notícias da OBDC';
+  document.getElementById('j-date').value      = new Date().toISOString().split('T')[0];
+  document.getElementById('j-excerpt').value   = '';
+  document.getElementById('j-content').value   = '';
+  document.getElementById('j-img-url').value   = '';
+  document.getElementById('j-published').checked = false;
+  document.getElementById('j-edit-id').value   = '';
+  document.getElementById('j-img-preview').style.display = 'none';
+  document.getElementById('jornal-modal-title').textContent = 'Novo artigo';
+  pendingFile = null;
+  document.getElementById('modal-jornal').classList.add('open');
+}
+
+function editJornal(i) {
+  const a = data.jornal.json.articles[i];
+  document.getElementById('j-title').value     = a.title || '';
+  document.getElementById('j-category').value  = a.category || 'Notícias da OBDC';
+  document.getElementById('j-date').value      = a.date || '';
+  document.getElementById('j-excerpt').value   = a.excerpt || '';
+  document.getElementById('j-content').value   = a.content || '';
+  document.getElementById('j-img-url').value   = a.imageUrl || '';
+  document.getElementById('j-published').checked = !!a.published;
+  document.getElementById('j-edit-id').value   = i;
+  document.getElementById('jornal-modal-title').textContent = 'Editar artigo';
+  pendingFile = null;
+  previewJornalImage();
+  document.getElementById('modal-jornal').classList.add('open');
+}
+
+function imageFileSelected() {
+  const file = document.getElementById('j-img-file').files[0];
+  if (!file) return;
+  if (file.size > 10_485_760) { showToast('Imagem muito grande (máx 10 MB)', 'error'); return; }
+  pendingFile = { type: 'image', file, name: file.name };
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('j-img-url').value = '';
+    const img = document.getElementById('j-img-preview-img');
+    img.src = e.target.result;
+    document.getElementById('j-img-preview').style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewJornalImage() {
+  const url = document.getElementById('j-img-url').value;
+  if (url) { document.getElementById('j-img-preview-img').src = url; document.getElementById('j-img-preview').style.display = 'block'; }
+  else document.getElementById('j-img-preview').style.display = 'none';
+}
+
+async function saveJornal() {
+  const btn   = document.getElementById('j-save-btn');
+  const title = document.getElementById('j-title').value.trim();
+  const idx   = document.getElementById('j-edit-id').value;
+  if (!title) { showToast('Informe o título do artigo', 'error'); return; }
+  btn.disabled = true; btn.textContent = 'Salvando...';
+
+  let imageUrl = document.getElementById('j-img-url').value.trim();
+
+  if (pendingFile && pendingFile.type === 'image') {
+    try {
+      const b64 = await toBase64(pendingFile.file);
+      const safeName = pendingFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const r = await api({ action: 'uploadFile', filePath: 'images/jornal/' + safeName, content: b64 });
+      if (!r.success) { showToast(r.error || 'Erro no upload da imagem', 'error'); btn.disabled = false; btn.textContent = '💾 Salvar artigo'; return; }
+      imageUrl = r.url;
+    } catch { showToast('Erro ao fazer upload da imagem', 'error'); btn.disabled = false; btn.textContent = '💾 Salvar artigo'; return; }
+  }
+
+  const articles = data.jornal.json.articles;
+  const article = {
+    title, category: document.getElementById('j-category').value,
+    excerpt: document.getElementById('j-excerpt').value.trim(),
+    content: document.getElementById('j-content').value.trim(),
+    imageUrl, date: document.getElementById('j-date').value,
+    published: document.getElementById('j-published').checked
+  };
+
+  if (idx !== '') articles[parseInt(idx)] = { ...articles[parseInt(idx)], ...article };
+  else { article.id = Date.now(); articles.unshift(article); }
+
+  const r = await saveFile('jornal', data.jornal.json, data.jornal.sha);
+  btn.disabled = false; btn.textContent = '💾 Salvar artigo';
+  if (r.success) { data.jornal.sha = r.sha; renderJornal(); closeModal('modal-jornal'); showToast('Artigo salvo!'); pendingFile = null; }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+async function deleteJornal(i) {
+  if (!confirm('Remover este artigo?')) return;
+  data.jornal.json.articles.splice(i, 1);
+  const r = await saveFile('jornal', data.jornal.json, data.jornal.sha);
+  if (r.success) { data.jornal.sha = r.sha; renderJornal(); showToast('Artigo removido'); }
+  else showToast(r.error || 'Erro', 'error');
+}
+
+// ── SETTINGS ────────────────────────────────────────────────────
+function renderSettings() {
+  const s = data.settings?.json;
+  if (!s) return;
+  document.getElementById('s-hero-title').value    = s.hero?.title    || '';
+  document.getElementById('s-hero-subtitle').value = s.hero?.subtitle || '';
+  document.getElementById('s-whatsapp').value      = s.contato?.whatsapp || '';
+  document.getElementById('s-email').value         = s.contato?.email    || '';
+  document.getElementById('s-pix').value           = s.contato?.pix      || '';
+  document.getElementById('s-instagram').value     = s.social?.instagram || '';
+  document.getElementById('s-facebook').value      = s.social?.facebook  || '';
+  document.getElementById('s-youtube').value       = s.social?.youtube   || '';
+}
+
+async function saveSettings() {
+  const s = {
+    hero:    { title: document.getElementById('s-hero-title').value, subtitle: document.getElementById('s-hero-subtitle').value },
+    contato: { whatsapp: document.getElementById('s-whatsapp').value, email: document.getElementById('s-email').value, pix: document.getElementById('s-pix').value },
+    social:  { instagram: document.getElementById('s-instagram').value, facebook: document.getElementById('s-facebook').value, youtube: document.getElementById('s-youtube').value }
+  };
+  const r = await saveFile('settings', s, data.settings?.sha);
+  if (r.success) { if (data.settings) data.settings.sha = r.sha; showToast('Configurações salvas!'); }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+// ── MODAL ────────────────────────────────────────────────────────
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); }));
+
+// ── INIT ─────────────────────────────────────────────────────────
+if (token) showApp();
+</script>
+</body>
+</html>

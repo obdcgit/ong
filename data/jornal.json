@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Auto de Páscoa \"A Promessa\" reúne 2.000 espectadores e 60 artistas em Aparecida de Goiânia",
+      "category": "Cultura e Arte",
+      "excerpt": "A 17ª edição do espetáculo teatral de Páscoa da OBDC lotou o espaço com uma apresentação emocionante que reuniu artistas de toda a região.",
+      "content": "",
+      "imageUrl": "",
+      "date": "2026-04-20",
+      "published": true
+    },
+    {
+      "id": 2,
+      "title": "13ª Corrida Aparecida — OBDC celebra a valorização da vida com corrida comunitária",
+      "category": "Esporte Cidadania",
+      "excerpt": "A corrida comunitária anual reúne atletas e famílias num evento que celebra cidadania, saúde e a força da comunidade.",
+      "content": "",
+      "imageUrl": "",
+      "date": "2026-09-20",
+      "published": false
+    }
+  ]
+}

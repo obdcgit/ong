@@ -1,0 +1,10 @@
+{
+  "videos": [
+    { "id": "1", "youtubeId": "", "title": "Auto de Páscoa \"A Promessa\"", "description": "17ª edição — 2.000 espectadores, 60 artistas", "active": false },
+    { "id": "2", "youtubeId": "", "title": "Esporte Cidadania — Leões do Futebol", "description": "Formação esportiva e de valores para jovens", "active": false },
+    { "id": "3", "youtubeId": "", "title": "Ação Cultural — Comunidade Quilombola", "description": "Arte e cultura para comunidades tradicionais", "active": false },
+    { "id": "4", "youtubeId": "", "title": "Jornal Notícia Social — Canal Comunitário", "description": "Comunicação e cidadania para Aparecida de Goiânia", "active": false },
+    { "id": "5", "youtubeId": "", "title": "Oficinas de Arte e Cultura OBDC", "description": "Registros das oficinas semanais", "active": false },
+    { "id": "6", "youtubeId": "", "title": "OBDC 27 Anos — Celebração e Memória", "description": "Retrospectiva dos 27 anos de história", "active": false }
+  ]
+}

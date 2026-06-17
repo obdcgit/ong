@@ -1613,7 +1613,7 @@
       </div>
       <a href="https://ongobdc.com/jornal-noticia-social/" class="btn-p" target="_blank" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
     </div>
-    <div class="jornal-dir reveal d1">
+    <div class="jornal-dir reveal d1" id="jornal-dynamic">
       <div class="j-card">
         <div class="j-card-cat">Esporte Cidadania</div>
         <h4>Leões do Futebol: atletas da OBDC chegam a clubes no Brasil e na Europa</h4>
@@ -1716,6 +1716,10 @@
       <div class="radio-sub">Informação · Cultura · Cidadania · Transformação Social</div>
     </div>
   </div>
+  <div id="radio-playlist" style="margin-top:2.5rem; display:none;">
+    <h3 style="font-size:1rem;font-weight:700;color:var(--preto);margin-bottom:1rem;">🎵 Programas recentes</h3>
+    <div id="radio-tracks" style="display:flex;flex-direction:column;gap:0.7rem;"></div>
+  </div>
 </section>
 
 <!-- VÍDEOS OBDC -->
@@ -1725,64 +1729,9 @@
     <h2>OBDC em Vídeo</h2>
     <p class="sec-sub">Registros dos projetos, apresentações teatrais, ações culturais e depoimentos da comunidade atendida pela OBDC ao longo de 27 anos.</p>
   </div>
-  <div class="videos-grid">
-    <div class="video-card reveal">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#1a0a00,#3d1a00)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">Auto de Páscoa "A Promessa" — 2.000 espectadores
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-    <div class="video-card reveal d1">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#001a0a,#003d1f)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">Esporte Cidadania — Leões do Futebol
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-    <div class="video-card reveal d2">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#1a0a1a,#3d1a3d)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">Ação Cultural — Comunidade Quilombola
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-    <div class="video-card reveal d1">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#001a1a,#003d3d)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">Jornal Notícia Social — Canal Comunitário
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-    <div class="video-card reveal d2">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#1a1000,#3d2a00)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">Oficinas de Arte e Cultura OBDC
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-    <div class="video-card reveal d3">
-      <div class="video-card-bg" style="background:linear-gradient(135deg,#100020,#2a0045)"></div>
-      <div class="video-card-overlay">
-        <div class="video-play"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
-      </div>
-      <div class="video-card-title">OBDC 27 Anos — Celebração e Memória
-        <div class="video-em-breve">Em breve</div>
-      </div>
-    </div>
-  </div>
+  <div class="videos-grid" id="videos-dynamic"></div>
   <div style="text-align:center; margin-top:2.5rem;" class="reveal">
-    <a href="https://youtube.com/@ongobdc" class="btn-dark" target="_blank">▶ Ver canal no YouTube</a>
+    <a href="https://youtube.com/@ongobdc" class="btn-dark" target="_blank" id="yt-channel-btn">▶ Ver canal no YouTube</a>
   </div>
 </section>
 
@@ -2437,6 +2386,101 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+</script>
+
+<!-- CMS CONTENT LOADER -->
+<script>
+(async function() {
+  const GRADIENTS = [
+    'linear-gradient(135deg,#1a0a00,#3d1a00)',
+    'linear-gradient(135deg,#001a0a,#003d1f)',
+    'linear-gradient(135deg,#0a1628,#1a5fb4)',
+    'linear-gradient(135deg,#001a1a,#003d3d)',
+    'linear-gradient(135deg,#1a1000,#3d2a00)',
+    'linear-gradient(135deg,#100020,#2a0045)'
+  ];
+
+  const PLAY_SVG = `<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>`;
+
+  function safe(s) { return String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function fmtDate(d) { if(!d) return ''; return new Date(d+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'}); }
+
+  async function load(file) {
+    try { const r = await fetch('/data/'+file+'.json?_='+Date.now()); if(!r.ok) return null; return r.json(); }
+    catch { return null; }
+  }
+
+  // ── VÍDEOS ─────────────────────────────────────────────────────
+  const vdata = await load('videos');
+  const vgrid = document.getElementById('videos-dynamic');
+  if (vgrid && vdata?.videos) {
+    const videos = vdata.videos;
+    const active = videos.filter(v => v.active && v.youtubeId);
+    const pending = videos.filter(v => !v.active || !v.youtubeId);
+    const toShow = active.length ? active : (videos.length ? videos.slice(0,6) : []);
+
+    if (!toShow.length) {
+      vgrid.innerHTML = '<p style="text-align:center;color:var(--suave);font-size:0.9rem">Vídeos em breve.</p>';
+    } else {
+      vgrid.innerHTML = toShow.map((v, i) => {
+        const delays = ['','d1','d2','d1','d2','d3'];
+        if (v.youtubeId) {
+          return `<div class="video-card ${delays[i]||''}" style="aspect-ratio:16/9">
+            <iframe src="https://www.youtube.com/embed/${safe(v.youtubeId)}" title="${safe(v.title)}"
+              allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+              allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:var(--r-card)"></iframe>
+          </div>`;
+        }
+        return `<div class="video-card reveal ${delays[i]||''}">
+          <div class="video-card-bg" style="background:${GRADIENTS[i%GRADIENTS.length]}"></div>
+          <div class="video-card-overlay"><div class="video-play">${PLAY_SVG}</div></div>
+          <div class="video-card-title">${safe(v.title)}<div class="video-em-breve">Em breve</div></div>
+        </div>`;
+      }).join('');
+    }
+    // update YT channel link
+    const chBtn = document.getElementById('yt-channel-btn');
+    if (chBtn) {
+      try { const s = await load('settings'); if(s?.social?.youtube) chBtn.href = s.social.youtube; } catch {}
+    }
+  }
+
+  // ── RÁDIOWEB ───────────────────────────────────────────────────
+  const rdata = await load('radio');
+  if (rdata?.tracks?.length) {
+    const playlist = document.getElementById('radio-playlist');
+    const trackList = document.getElementById('radio-tracks');
+    if (playlist && trackList) {
+      playlist.style.display = 'block';
+      trackList.innerHTML = rdata.tracks.slice(0,5).map(t => `
+        <div style="background:var(--white);border:1px solid var(--borda);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <div style="flex:1;min-width:160px;">
+            <div style="font-size:0.9rem;font-weight:700;color:var(--preto)">${safe(t.title)}</div>
+            ${t.description ? `<div style="font-size:0.75rem;color:var(--suave);margin-top:0.2rem">${safe(t.description)}</div>` : ''}
+            ${t.date ? `<div style="font-size:0.72rem;color:var(--suave);margin-top:0.15rem">${fmtDate(t.date)}</div>` : ''}
+          </div>
+          ${t.url ? `<audio src="${safe(t.url)}" controls style="height:34px;flex-shrink:0;max-width:220px"></audio>` : ''}
+        </div>`).join('');
+    }
+  }
+
+  // ── JORNAL ─────────────────────────────────────────────────────
+  const jdata = await load('jornal');
+  const jdynamic = document.getElementById('jornal-dynamic');
+  if (jdynamic && jdata?.articles) {
+    const published = jdata.articles.filter(a => a.published);
+    if (published.length) {
+      jdynamic.innerHTML = published.slice(0,4).map(a => `
+        <div class="j-card">
+          ${a.imageUrl ? `<img src="${safe(a.imageUrl)}" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:0.7rem">` : ''}
+          <div class="j-card-cat">${safe(a.category||'')}</div>
+          <h4>${safe(a.title)}</h4>
+          ${a.excerpt ? `<p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;margin-top:0.4rem">${safe(a.excerpt)}</p>` : ''}
+          ${a.date ? `<small>${fmtDate(a.date)}</small>` : ''}
+        </div>`).join('');
+    }
+  }
+})();
 </script>
 </body>
 </html>
