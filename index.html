@@ -1059,64 +1059,84 @@
     transition: background 0.2s, border-color 0.2s;
   }
   .jcat:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.35); }
-  .jornal-dir { display: flex; flex-direction: column; gap: 1rem; }
+  .jornal-dir { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 1rem; }
   .j-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--r-card); padding: 1.4rem 1.6rem;
-    transition: background 0.2s, border-color 0.2s;
-    cursor: default;
+    border-radius: var(--r-card); overflow: hidden; position: relative;
+    aspect-ratio: 4/3; display: block; text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .j-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+  .j-card:first-child { grid-column: 1 / -1; aspect-ratio: 16/7; }
+  .j-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
+  .j-card-bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    transition: transform 0.5s ease;
+  }
+  .j-card:hover .j-card-bg { transform: scale(1.04); }
+  .j-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(4,12,28,0.97) 0%, rgba(4,12,28,0.55) 55%, rgba(4,12,28,0.1) 100%);
+    transition: background 0.3s;
+  }
+  .j-card:hover .j-card-overlay { background: linear-gradient(to top, rgba(4,12,28,1) 0%, rgba(4,12,28,0.65) 60%, rgba(4,12,28,0.2) 100%); }
   .j-card-cat {
-    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--verde); margin-bottom: 0.5rem;
+    position: absolute; top: 1rem; left: 1.1rem;
+    font-size: 0.58rem; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--verde);
+    background: rgba(45,181,78,0.18); border: 1px solid rgba(45,181,78,0.4);
+    padding: 0.22rem 0.65rem; border-radius: 100px;
   }
-  .j-card h4 { font-size: 0.92rem; font-weight: 700; color: #fff; line-height: 1.45; margin-bottom: 0.3rem; letter-spacing: -0.01em; }
-  .j-card small { font-size: 0.73rem; color: rgba(255,255,255,0.4); }
+  .j-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.2rem 1.2rem 1rem; }
+  .j-card h4 { font-size: 0.94rem; font-weight: 800; color: #fff; line-height: 1.4; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+  .j-card:first-child h4 { font-size: 1.1rem; }
+  .j-card-excerpt { font-size: 0.76rem; color: rgba(255,255,255,0.55); line-height: 1.5; margin-bottom: 0.4rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .j-card-meta { font-size: 0.68rem; color: rgba(255,255,255,0.35); display:flex; gap:0.4rem; align-items:center; }
+  .j-card-arrow {
+    position: absolute; top: 1rem; right: 1.1rem;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 0.8rem;
+    opacity: 0; transform: scale(0.8); transition: opacity 0.2s, transform 0.2s;
+  }
+  .j-card:hover .j-card-arrow { opacity: 1; transform: scale(1); }
 
   /* ─── RÁDIOWEB ─── */
   #radioweb { background: var(--bg); }
   .radio-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 5rem; align-items: center; margin-top: 3rem;
+    gap: 4rem; align-items: start; margin-top: 3rem;
   }
   .radio-esq p { font-size: 0.97rem; color: var(--suave); line-height: 1.85; margin-bottom: 1.2rem; }
   .radio-esq p strong { color: var(--texto); font-weight: 700; }
-  .radio-player {
-    background: linear-gradient(135deg, #003d1f 0%, #006135 50%, #004d2e 100%);
-    border-radius: 20px; padding: 2.5rem;
-    display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
-    text-align: center; box-shadow: var(--shadow-lg);
-    position: relative; overflow: hidden;
+  .radio-tracks-preview { display: flex; flex-direction: column; gap: 0.75rem; }
+  .r-track {
+    background: var(--branco); border: 1px solid var(--borda); border-radius: 14px;
+    padding: 1rem 1.2rem; display: flex; flex-direction: column; gap: 0.5rem;
+    box-shadow: var(--shadow);
   }
-  .radio-player::before {
-    content: ''; position: absolute; top: -40%; left: -20%;
-    width: 140%; height: 140%;
-    background: radial-gradient(circle, rgba(0,168,84,0.15) 0%, transparent 70%);
-    pointer-events: none;
+  .r-track-top { display: flex; align-items: center; gap: 0.75rem; }
+  .r-track-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--azul), var(--verde));
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
   }
-  .radio-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-    color: #fff; font-size: 0.65rem; font-weight: 800;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.3rem 0.9rem; border-radius: var(--r-btn);
+  .r-track-info { flex: 1; min-width: 0; }
+  .r-track-title { font-size: 0.88rem; font-weight: 700; color: var(--preto); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .r-track-meta { font-size: 0.72rem; color: var(--suave); margin-top: 0.1rem; }
+  .r-track audio { width: 100%; height: 34px; accent-color: var(--verde); }
+  .radio-empty {
+    background: linear-gradient(135deg, #071221, #0a2859);
+    border-radius: 20px; padding: 2.5rem; text-align: center;
+    color: rgba(255,255,255,0.6);
   }
-  .radio-badge::before { content:''; width:7px; height:7px; border-radius:50%; background:#4ade80; animation: pulse 2s infinite; }
-  .radio-title { font-size: 1.8rem; font-weight: 900; color: #FFD700; letter-spacing: -0.03em; line-height: 1.1; }
-  .radio-title span { display: block; font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem; }
-  .radio-sub { font-size: 0.78rem; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
-  .radio-bars {
-    display: flex; align-items: flex-end; gap: 3px; height: 36px;
-  }
-  .radio-bars span {
-    width: 4px; background: #00a854; border-radius: 2px;
-    animation: bar 1.2s ease-in-out infinite;
-  }
-  .radio-bars span:nth-child(2){animation-delay:.1s} .radio-bars span:nth-child(3){animation-delay:.2s}
-  .radio-bars span:nth-child(4){animation-delay:.3s} .radio-bars span:nth-child(5){animation-delay:.4s}
-  .radio-bars span:nth-child(6){animation-delay:.15s} .radio-bars span:nth-child(7){animation-delay:.25s}
-  @keyframes bar { 0%,100%{height:6px} 50%{height:28px} }
+  .radio-empty-bars { display:flex; align-items:flex-end; gap:4px; height:40px; justify-content:center; margin-bottom:1.2rem; }
+  .radio-empty-bars span { width:5px; background:rgba(45,181,78,0.5); border-radius:3px; animation:bar 1.4s ease-in-out infinite; }
+  .radio-empty-bars span:nth-child(2){animation-delay:.1s;height:24px} .radio-empty-bars span:nth-child(3){animation-delay:.2s;height:32px}
+  .radio-empty-bars span:nth-child(4){animation-delay:.3s;height:18px} .radio-empty-bars span:nth-child(5){animation-delay:.4s;height:28px}
+  .radio-empty-bars span:nth-child(6){animation-delay:.15s;height:12px} .radio-empty-bars span:nth-child(7){animation-delay:.25s;height:22px}
+  .radio-empty h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem; }
+  .radio-empty p { font-size: 0.82rem; margin: 0; }
+  @keyframes bar { 0%,100%{transform:scaleY(0.4)} 50%{transform:scaleY(1)} }
 
   /* ─── VÍDEOS ─── */
   #videos { background: var(--bg); }
@@ -1616,29 +1636,42 @@
         <span class="jcat">Programas e Projetos</span>
         <span class="jcat">Esporte Cidadania</span>
       </div>
-      <a href="#jornal" class="btn-p" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
+      <a href="jornal.html" class="btn-p" style="width:fit-content;">📰 Ler o Jornal Notícia Social →</a>
     </div>
     <div class="jornal-dir reveal d1" id="jornal-dynamic">
-      <div class="j-card">
+      <a href="artigo.html?id=1" class="j-card">
+        <div class="j-card-bg" style="background:linear-gradient(135deg,#1a2d6b 0%,#0a3d8a 50%,#1a5fb4 100%)"></div>
+        <div class="j-card-overlay"></div>
+        <div class="j-card-cat">Cultura e Arte</div>
+        <div class="j-card-arrow">→</div>
+        <div class="j-card-content">
+          <h4>Auto de Páscoa "A Promessa" reúne 2.000 espectadores e 60 artistas em Aparecida de Goiânia</h4>
+          <p class="j-card-excerpt">A 17ª edição do espetáculo teatral de Páscoa da OBDC lotou o espaço com uma apresentação emocionante.</p>
+          <div class="j-card-meta"><span>Redação OBDC</span><span>·</span><span>20 de abril de 2026</span></div>
+        </div>
+      </a>
+      <a href="artigo.html?id=3" class="j-card">
+        <div class="j-card-bg" style="background:linear-gradient(135deg,#0a3020 0%,#1a6b40 100%)"></div>
+        <div class="j-card-overlay"></div>
         <div class="j-card-cat">Esporte Cidadania</div>
-        <h4>Leões do Futebol: atletas da OBDC chegam a clubes no Brasil e na Europa</h4>
-        <small>Programa Esporte Cidadania · Destaque nacional</small>
-      </div>
-      <div class="j-card">
-        <div class="j-card-cat">Lei Rouanet</div>
-        <h4>OBDC tem dois projetos culturais aprovados pela Lei Rouanet com R$401.989,50</h4>
-        <small>PRONAC 260334 · Turma da Esperança · Irmãs</small>
-      </div>
-      <div class="j-card">
+        <div class="j-card-arrow">→</div>
+        <div class="j-card-content">
+          <h4>Leões do Futebol: atletas da OBDC chegam a clubes no Brasil e na Europa</h4>
+          <p class="j-card-excerpt">O projeto revela talentos que hoje atuam em clubes profissionais, provando que o esporte transforma vidas.</p>
+          <div class="j-card-meta"><span>Redação OBDC</span><span>·</span><span>15 de março de 2026</span></div>
+        </div>
+      </a>
+      <a href="jornal.html" class="j-card">
+        <div class="j-card-bg" style="background:linear-gradient(135deg,#3a1060 0%,#7a30a0 100%)"></div>
+        <div class="j-card-overlay"></div>
         <div class="j-card-cat">Conquistas</div>
-        <h4>OBDC recebe Prêmio Melhores ONGs do Brasil 2026 e Medalha Júlio Vilela</h4>
-        <small>Reconhecimento nacional · maio/2025</small>
-      </div>
-      <div class="j-card">
-        <div class="j-card-cat">Programas e Projetos</div>
-        <h4>MCMV-Entidades: OBDC habilitada para construção de 50 unidades habitacionais em 8 municípios</h4>
-        <small>Habitação social · Programa PROHAB</small>
-      </div>
+        <div class="j-card-arrow">→</div>
+        <div class="j-card-content">
+          <h4>OBDC recebe Prêmio Melhores ONGs do Brasil 2026 e Medalha Júlio Vilela</h4>
+          <p class="j-card-excerpt">Reconhecimento nacional consolida a OBDC como referência em cultura, educação e cidadania.</p>
+          <div class="j-card-meta"><span>Redação OBDC</span><span>·</span><span>maio de 2025</span></div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1699,31 +1732,10 @@
     <div class="radio-esq reveal">
       <div class="sec-label">Comunicação Digital</div>
       <h2>Rádioweb OBDC</h2>
-      <p>A <strong>Rádioweb OBDC</strong> é o canal de comunicação digital da organização — uma rádio online que leva informação, cultura, cidadania e transformação social para toda a comunidade.</p>
-      <p>Programas sobre projetos sociais, arte, cultura quilombola, esporte, habitação popular e muito mais. A voz da OBDC chegando onde a arte já chegou — no coração das pessoas.</p>
-      <a href="#radioweb" class="btn-p" style="width:fit-content; margin-top:0.5rem">📡 Acessar a Rádioweb →</a>
+      <p>A <strong>Rádioweb OBDC</strong> leva informação, cultura, cidadania e transformação social para toda a comunidade — programas sobre projetos sociais, arte, esporte e muito mais.</p>
+      <a href="radioweb.html" class="btn-p" style="width:fit-content; margin-top:0.5rem">📡 Acessar a Rádioweb →</a>
     </div>
-    <div class="radio-player reveal d2">
-      <div class="radio-badge">📡 DIGITAL · No ar</div>
-      <div class="radio-title">
-        <span>Rádioweb</span>
-        OBDC
-      </div>
-      <div class="radio-bars">
-        <span style="height:10px"></span>
-        <span style="height:20px"></span>
-        <span style="height:28px"></span>
-        <span style="height:14px"></span>
-        <span style="height:22px"></span>
-        <span style="height:8px"></span>
-        <span style="height:18px"></span>
-      </div>
-      <div class="radio-sub">Informação · Cultura · Cidadania · Transformação Social</div>
-    </div>
-  </div>
-  <div id="radio-playlist" style="margin-top:2.5rem; display:none;">
-    <h3 style="font-size:1rem;font-weight:700;color:var(--preto);margin-bottom:1rem;">🎵 Programas recentes</h3>
-    <div id="radio-tracks" style="display:flex;flex-direction:column;gap:0.7rem;"></div>
+    <div id="radio-preview" class="reveal d2"></div>
   </div>
 </section>
 
@@ -1735,9 +1747,6 @@
     <p class="sec-sub">Registros dos projetos, apresentações teatrais, ações culturais e depoimentos da comunidade atendida pela OBDC ao longo de 27 anos.</p>
   </div>
   <div class="videos-grid" id="videos-dynamic"></div>
-  <div style="text-align:center; margin-top:2.5rem;" class="reveal">
-    <a href="https://youtube.com/@ongobdc" class="btn-dark" target="_blank" id="yt-channel-btn">▶ Ver canal no YouTube</a>
-  </div>
 </section>
 
 <!-- DIRETORIA -->
@@ -2541,46 +2550,65 @@
         </div>`;
       }).join('');
     }
-    // update YT channel link
-    const chBtn = document.getElementById('yt-channel-btn');
-    if (chBtn) {
-      try { const s = await load('settings'); if(s?.social?.youtube) chBtn.href = s.social.youtube; } catch {}
-    }
   }
 
-  // ── RÁDIOWEB ───────────────────────────────────────────────────
+  // ── RÁDIOWEB preview ───────────────────────────────────────────
   const rdata = await load('radio');
-  if (rdata?.tracks?.length) {
-    const playlist = document.getElementById('radio-playlist');
-    const trackList = document.getElementById('radio-tracks');
-    if (playlist && trackList) {
-      playlist.style.display = 'block';
-      trackList.innerHTML = rdata.tracks.slice(0,5).map(t => `
-        <div style="background:var(--white);border:1px solid var(--borda);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-          <div style="flex:1;min-width:160px;">
-            <div style="font-size:0.9rem;font-weight:700;color:var(--preto)">${safe(t.title)}</div>
-            ${t.description ? `<div style="font-size:0.75rem;color:var(--suave);margin-top:0.2rem">${safe(t.description)}</div>` : ''}
-            ${t.date ? `<div style="font-size:0.72rem;color:var(--suave);margin-top:0.15rem">${fmtDate(t.date)}</div>` : ''}
+  const rpreview = document.getElementById('radio-preview');
+  if (rpreview) {
+    if (rdata?.tracks?.length) {
+      rpreview.innerHTML = '<div class="radio-tracks-preview">' +
+        rdata.tracks.slice(0,4).map(t => `
+          <div class="r-track">
+            <div class="r-track-top">
+              <div class="r-track-icon">📻</div>
+              <div class="r-track-info">
+                <div class="r-track-title">${safe(t.title)}</div>
+                <div class="r-track-meta">${safe(t.theme||'')}${t.date?' · '+fmtDate(t.date):''}</div>
+              </div>
+            </div>
+            ${t.url ? `<audio src="${safe(t.url)}" controls class="r-track-audio" style="width:100%;height:34px;accent-color:#2db54e"></audio>` : ''}
+          </div>`).join('') + '</div>';
+    } else {
+      rpreview.innerHTML = `
+        <div class="radio-empty">
+          <div class="radio-empty-bars">
+            <span style="height:16px"></span><span></span><span></span>
+            <span></span><span></span><span></span><span style="height:14px"></span>
           </div>
-          ${t.url ? `<audio src="${safe(t.url)}" controls style="height:34px;flex-shrink:0;max-width:220px"></audio>` : ''}
-        </div>`).join('');
+          <h3>Programas em breve</h3>
+          <p>Nossos conteúdos de áudio chegam em breve. Acesse a página da Rádioweb para mais informações.</p>
+        </div>`;
     }
   }
 
   // ── JORNAL ─────────────────────────────────────────────────────
+  const JCAT_GRAD = {
+    'Cultura e Arte': 'linear-gradient(135deg,#1a2d6b,#1a5fb4)',
+    'Esporte Cidadania': 'linear-gradient(135deg,#0a3020,#1a6b40)',
+    'Conquistas': 'linear-gradient(135deg,#3a1060,#7a30a0)',
+    'Lei Rouanet': 'linear-gradient(135deg,#1a4a6b,#2a7ab4)',
+  };
   const jdata = await load('jornal');
   const jdynamic = document.getElementById('jornal-dynamic');
   if (jdynamic && jdata?.articles) {
     const published = jdata.articles.filter(a => a.published);
     if (published.length) {
-      jdynamic.innerHTML = published.slice(0,4).map(a => `
-        <div class="j-card">
-          ${a.imageUrl ? `<img src="${safe(a.imageUrl)}" alt="" style="width:100%;height:110px;object-fit:cover;border-radius:8px;margin-bottom:0.7rem">` : ''}
+      jdynamic.innerHTML = published.slice(0,3).map(a => {
+        const grad = JCAT_GRAD[a.category] || 'linear-gradient(135deg,#071221,#1a5fb4)';
+        const bg = a.imageUrl ? `background:url('${safe(a.imageUrl)}') center/cover` : `background:${grad}`;
+        return `<a href="artigo.html?id=${a.id}" class="j-card">
+          <div class="j-card-bg" style="${bg}"></div>
+          <div class="j-card-overlay"></div>
           <div class="j-card-cat">${safe(a.category||'')}</div>
-          <h4>${safe(a.title)}</h4>
-          ${a.excerpt ? `<p style="font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;margin-top:0.4rem">${safe(a.excerpt)}</p>` : ''}
-          ${a.date ? `<small>${fmtDate(a.date)}</small>` : ''}
-        </div>`).join('');
+          <div class="j-card-arrow">→</div>
+          <div class="j-card-content">
+            <h4>${safe(a.title)}</h4>
+            ${a.excerpt ? `<p class="j-card-excerpt">${safe(a.excerpt)}</p>` : ''}
+            <div class="j-card-meta"><span>${safe(a.author||'Redação OBDC')}</span><span>·</span><span>${fmtDate(a.date)}</span></div>
+          </div>
+        </a>`;
+      }).join('');
     }
   }
 })();

@@ -4,8 +4,9 @@
       "id": 1,
       "title": "Auto de Páscoa \"A Promessa\" reúne 2.000 espectadores e 60 artistas em Aparecida de Goiânia",
       "category": "Cultura e Arte",
+      "author": "Redação OBDC",
       "excerpt": "A 17ª edição do espetáculo teatral de Páscoa da OBDC lotou o espaço com uma apresentação emocionante que reuniu artistas de toda a região.",
-      "content": "",
+      "content": "A 17ª edição do Auto de Páscoa \"A Promessa\" foi um marco na história da OBDC. O espetáculo reuniu mais de 2.000 espectadores e 60 artistas locais numa apresentação emocionante que celebrou a tradição, a fé e a arte comunitária em Aparecida de Goiânia.\n\nO Auto de Páscoa é uma das ações mais antigas e queridas da OBDC, reunindo a comunidade em torno da arte cênica há mais de 17 anos. A peça contou com cenografia elaborada, figurinos confeccionados pelos próprios participantes e uma trilha sonora original interpretada ao vivo.\n\nO evento aconteceu no dia 20 de abril de 2026 e contou com o apoio de parceiros institucionais e da Prefeitura de Aparecida de Goiânia. A plateia foi tomada pela emoção em diversos momentos, confirmando a força transformadora da arte na vida da comunidade.\n\nA OBDC agradece a todos os voluntários, parceiros e à comunidade que tornaram mais uma edição possível. O Auto de Páscoa segue como símbolo da missão da organização: transformar vidas por meio da cultura e da arte.",
       "imageUrl": "",
       "date": "2026-04-20",
       "published": true
@@ -14,11 +15,23 @@
       "id": 2,
       "title": "13ª Corrida Aparecida — OBDC celebra a valorização da vida com corrida comunitária",
       "category": "Esporte Cidadania",
+      "author": "Redação OBDC",
       "excerpt": "A corrida comunitária anual reúne atletas e famílias num evento que celebra cidadania, saúde e a força da comunidade.",
-      "content": "",
+      "content": "A 13ª edição da Corrida Aparecida acontece no dia 20 de setembro de 2026 e promete reunir centenas de participantes de toda a região metropolitana de Goiânia.\n\nO evento é uma realização da OBDC em parceria com a Prefeitura de Aparecida de Goiânia e faz parte do calendário de ações do projeto Esporte Cidadania.\n\nA corrida é aberta a atletas profissionais e amadores, com percursos de diferentes distâncias para garantir a participação de todas as idades e níveis de condicionamento físico.\n\nAs inscrições estarão abertas em breve. Fique atento às redes sociais da OBDC para mais informações.",
       "imageUrl": "",
       "date": "2026-09-20",
       "published": false
+    },
+    {
+      "id": 3,
+      "title": "Leões do Futebol: atletas da OBDC chegam a clubes no Brasil e na Europa",
+      "category": "Esporte Cidadania",
+      "author": "Redação OBDC",
+      "excerpt": "O projeto Esporte Cidadania revela talentos que hoje atuam em clubes profissionais, provando que o esporte transforma vidas.",
+      "content": "O projeto Esporte Cidadania da OBDC, conhecido como Leões do Futebol, celebra mais uma conquista: jovens atletas formados pelo programa estão chegando a clubes profissionais no Brasil e na Europa.\n\nCom treinamento técnico de qualidade aliado a uma formação humana sólida, o projeto já revelou talentos que hoje representam não apenas a OBDC, mas toda a comunidade de Aparecida de Goiânia.\n\nAtualmente, 30 atletas participam ativamente do programa, que combina treinos regulares com reforço escolar, acompanhamento psicossocial e desenvolvimento de valores como disciplina, trabalho em equipe e respeito.\n\nO sucesso do projeto é reflexo do compromisso da OBDC com a formação integral dos jovens: cidadãos e atletas, dentro e fora dos gramados.",
+      "imageUrl": "",
+      "date": "2026-03-15",
+      "published": true
     }
   ]
 }
