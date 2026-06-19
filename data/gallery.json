@@ -1,0 +1,14 @@
+{
+  "albums": [
+    {
+      "id": 1,
+      "title": "Oficinas e atividades culturais",
+      "photos": []
+    },
+    {
+      "id": 2,
+      "title": "Projetos comunitários",
+      "photos": []
+    }
+  ]
+}

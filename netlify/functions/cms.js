@@ -135,7 +135,7 @@ exports.handler = async (event) => {
   if (action === 'uploadFile') {
     const { filePath, content: b64, sha } = body;
     if (!filePath || !b64) return json(400, { error: 'Dados inválidos' });
-    const allowed = ['audio/', 'images/jornal/'];
+    const allowed = ['audio/', 'images/jornal/', 'images/galeria/', 'images/sobre/'];
     if (!allowed.some(p => filePath.startsWith(p))) return json(403, { error: 'Caminho não permitido' });
     const r = await ghUploadBinary(filePath, b64, sha);
     if (r.status !== 200 && r.status !== 201) return json(500, { error: 'Erro ao fazer upload', detail: r.body?.message });

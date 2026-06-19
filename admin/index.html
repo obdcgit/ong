@@ -278,6 +278,9 @@
         <div class="nav-item" data-section="jornal" onclick="goTo('jornal')">
           <span class="icon">📰</span> Jornal Notícia Social
         </div>
+        <div class="nav-item" data-section="galeria" onclick="goTo('galeria')">
+          <span class="icon">🖼️</span> Galeria de Fotos
+        </div>
         <div class="nav-label">Site</div>
         <div class="nav-item" data-section="settings" onclick="goTo('settings')">
           <span class="icon">⚙️</span> Configurações
@@ -332,6 +335,17 @@
             </div>
             <div class="item-list" id="jornal-list"></div>
           </div>
+        </div>
+
+        <!-- ══ GALERIA ══ -->
+        <div class="section-panel" id="panel-galeria">
+          <div class="card">
+            <div class="card-title">🖼️ Álbuns da Galeria
+              <button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="openAlbumModal()">+ Novo álbum</button>
+            </div>
+            <div id="galeria-list"></div>
+          </div>
+          <p style="font-size:0.8rem;color:var(--suave)">As fotos aparecem na seção Galeria da página principal. Formatos: JPG, PNG, WebP. Tamanho máximo: 10 MB por foto.</p>
         </div>
 
         <!-- ══ SETTINGS ══ -->
@@ -564,6 +578,63 @@
   </div>
 </div>
 
+<!-- ══ MODAL: ÁLBUM ══ -->
+<div class="modal-overlay" id="modal-album">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="album-modal-title">Novo álbum</div>
+      <button class="modal-close" onclick="closeModal('modal-album')">✕</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Nome do álbum</label>
+        <input type="text" class="form-input" id="alb-title" placeholder="Ex: Auto de Páscoa 2026">
+      </div>
+    </div>
+    <input type="hidden" id="alb-edit-id">
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-album')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveAlbum()">💾 Salvar álbum</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: FOTO ══ -->
+<div class="modal-overlay" id="modal-foto">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Adicionar foto</div>
+      <button class="modal-close" onclick="closeModal('modal-foto')">✕</button>
+    </div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label class="form-label">Foto — Fazer upload ou colar URL</label>
+        <div class="upload-zone" id="foto-upload-zone" onclick="document.getElementById('foto-file').click()" ondragover="dragover(event)" ondrop="dropFile(event,'foto-file')">
+          <input type="file" id="foto-file" accept="image/*" onchange="fotoFileSelected()">
+          <div class="upload-icon">🖼️</div>
+          <div class="upload-text">Clique ou arraste <strong>JPG, PNG ou WebP</strong><br>Tamanho máximo: 10 MB</div>
+        </div>
+        <div style="margin-top:0.5rem;display:flex;align-items:center;gap:0.5rem">
+          <span style="font-size:0.75rem;color:var(--suave)">ou URL:</span>
+          <input type="url" class="form-input" id="foto-url" placeholder="https://..." style="flex:1" oninput="previewFoto()">
+        </div>
+        <div id="foto-preview" style="margin-top:0.6rem;display:none">
+          <img id="foto-preview-img" style="max-height:180px;border-radius:10px;border:1px solid var(--borda);object-fit:cover">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label class="form-label">Legenda (opcional)</label>
+        <input type="text" class="form-input" id="foto-caption" placeholder="Descreva a foto brevemente">
+      </div>
+    </div>
+    <input type="hidden" id="foto-album-id">
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-foto')">Cancelar</button>
+      <button class="btn btn-primary" id="foto-save-btn" onclick="saveFoto()">💾 Adicionar foto</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div id="toast"></div>
 
@@ -655,7 +726,7 @@ async function showApp() {
 }
 
 // ── NAVIGATION ──────────────────────────────────────────────────
-const titles = { videos: '🎬 Vídeos', radio: '📡 Rádioweb OBDC', jornal: '📰 Jornal Notícia Social', settings: '⚙️ Configurações do Site' };
+const titles = { videos: '🎬 Vídeos', radio: '📡 Rádioweb OBDC', jornal: '📰 Jornal Notícia Social', galeria: '🖼️ Galeria de Fotos', settings: '⚙️ Configurações do Site' };
 
 async function goTo(section) {
   document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
@@ -668,7 +739,8 @@ async function goTo(section) {
 }
 
 async function loadSection(section) {
-  const r = await loadFile(section === 'settings' ? 'settings' : section);
+  const fileMap = { settings: 'settings', galeria: 'gallery' };
+  const r = await loadFile(fileMap[section] || section);
   if (r) { data[section] = r; renderSection(section); }
   else showToast('Erro ao carregar dados', 'error');
 }
@@ -677,6 +749,7 @@ function renderSection(section) {
   if (section === 'videos')   renderVideos();
   if (section === 'radio')    renderRadio();
   if (section === 'jornal')   renderJornal();
+  if (section === 'galeria')  renderGaleria();
   if (section === 'settings') renderSettings();
 }
 
@@ -1004,6 +1077,141 @@ async function deleteJornal(i) {
   data.jornal.json.articles.splice(i, 1);
   const r = await saveFile('jornal', data.jornal.json, data.jornal.sha);
   if (r.success) { data.jornal.sha = r.sha; renderJornal(); showToast('Artigo removido'); }
+  else showToast(r.error || 'Erro', 'error');
+}
+
+// ── GALERIA ──────────────────────────────────────────────────────
+function renderGaleria() {
+  const list   = document.getElementById('galeria-list');
+  const albums = data.galeria?.json?.albums || [];
+  if (!albums.length) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🖼️</div><p>Nenhum álbum ainda.<br>Clique em "+ Novo álbum" para começar.</p></div>';
+    return;
+  }
+  list.innerHTML = albums.map((alb, ai) => `
+    <div style="margin-bottom:1.5rem;border:1px solid var(--borda);border-radius:14px;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:0.75rem;padding:0.9rem 1.2rem;background:var(--bg);border-bottom:1px solid var(--borda)">
+        <span style="font-size:1rem;font-weight:700;flex:1">${alb.title || 'Álbum sem nome'}</span>
+        <span style="font-size:0.75rem;color:var(--suave)">${alb.photos?.length||0} foto(s)</span>
+        <button class="btn btn-primary btn-sm" onclick="openFotoModal(${ai})">+ Foto</button>
+        <button class="btn btn-secondary btn-sm" onclick="editAlbum(${ai})">✏️</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteAlbum(${ai})">🗑️</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:0.6rem;padding:1rem 1.2rem">
+        ${(alb.photos||[]).map((p, pi) => `
+          <div style="position:relative;border-radius:10px;overflow:hidden;aspect-ratio:4/3;background:var(--bg)">
+            <img src="${p.url}" alt="${p.caption||''}" style="width:100%;height:100%;object-fit:cover;display:block">
+            ${p.caption ? `<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.65);color:#fff;font-size:0.62rem;padding:0.2rem 0.4rem;line-height:1.3">${p.caption}</div>` : ''}
+            <button onclick="deleteFoto(${ai},${pi})" style="position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;background:rgba(220,50,50,0.9);border:none;color:#fff;font-size:0.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+          </div>`).join('')}
+        ${!(alb.photos?.length) ? '<p style="color:var(--suave);font-size:0.8rem;grid-column:1/-1">Nenhuma foto ainda. Clique em "+ Foto" para adicionar.</p>' : ''}
+      </div>
+    </div>`).join('');
+}
+
+function openAlbumModal() {
+  document.getElementById('alb-title').value = '';
+  document.getElementById('alb-edit-id').value = '';
+  document.getElementById('album-modal-title').textContent = 'Novo álbum';
+  document.getElementById('modal-album').classList.add('open');
+}
+
+function editAlbum(i) {
+  const alb = data.galeria.json.albums[i];
+  document.getElementById('alb-title').value = alb.title || '';
+  document.getElementById('alb-edit-id').value = i;
+  document.getElementById('album-modal-title').textContent = 'Editar álbum';
+  document.getElementById('modal-album').classList.add('open');
+}
+
+async function saveAlbum() {
+  const title = document.getElementById('alb-title').value.trim();
+  const idx   = document.getElementById('alb-edit-id').value;
+  if (!title) { showToast('Informe o nome do álbum', 'error'); return; }
+  const albums = data.galeria.json.albums;
+  if (idx !== '') {
+    albums[parseInt(idx)].title = title;
+  } else {
+    albums.push({ id: Date.now(), title, photos: [] });
+  }
+  const r = await saveFile('gallery', data.galeria.json, data.galeria.sha);
+  if (r.success) { data.galeria.sha = r.sha; renderGaleria(); closeModal('modal-album'); showToast('Álbum salvo!'); }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+async function deleteAlbum(i) {
+  if (!confirm('Remover este álbum e todas as fotos?')) return;
+  data.galeria.json.albums.splice(i, 1);
+  const r = await saveFile('gallery', data.galeria.json, data.galeria.sha);
+  if (r.success) { data.galeria.sha = r.sha; renderGaleria(); showToast('Álbum removido'); }
+  else showToast(r.error || 'Erro', 'error');
+}
+
+let pendingFotoAlbumIdx = null;
+
+function openFotoModal(albumIdx) {
+  pendingFotoAlbumIdx = albumIdx;
+  pendingFile = null;
+  document.getElementById('foto-file').value = '';
+  document.getElementById('foto-url').value = '';
+  document.getElementById('foto-caption').value = '';
+  document.getElementById('foto-preview').style.display = 'none';
+  document.getElementById('foto-album-id').value = albumIdx;
+  document.getElementById('modal-foto').classList.add('open');
+}
+
+function fotoFileSelected() {
+  const file = document.getElementById('foto-file').files[0];
+  if (!file) return;
+  if (file.size > 10_485_760) { showToast('Imagem muito grande (máx 10 MB)', 'error'); return; }
+  pendingFile = { type: 'galeria', file, name: file.name };
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('foto-preview-img').src = e.target.result;
+    document.getElementById('foto-preview').style.display = 'block';
+    document.getElementById('foto-url').value = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewFoto() {
+  const url = document.getElementById('foto-url').value;
+  if (url) { document.getElementById('foto-preview-img').src = url; document.getElementById('foto-preview').style.display = 'block'; }
+  else document.getElementById('foto-preview').style.display = 'none';
+}
+
+async function saveFoto() {
+  const btn     = document.getElementById('foto-save-btn');
+  const caption = document.getElementById('foto-caption').value.trim();
+  const albumIdx = parseInt(document.getElementById('foto-album-id').value);
+  let url = document.getElementById('foto-url').value.trim();
+
+  if (!pendingFile && !url) { showToast('Selecione uma foto ou informe uma URL', 'error'); return; }
+  btn.disabled = true; btn.textContent = 'Enviando...';
+
+  if (pendingFile && pendingFile.type === 'galeria') {
+    try {
+      const b64 = await toBase64(pendingFile.file);
+      const safeName = pendingFile.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const r = await api({ action: 'uploadFile', filePath: 'images/galeria/' + safeName, content: b64 });
+      if (!r.success) { showToast(r.error || 'Erro no upload', 'error'); btn.disabled = false; btn.textContent = '💾 Adicionar foto'; return; }
+      url = r.url;
+    } catch { showToast('Erro ao fazer upload', 'error'); btn.disabled = false; btn.textContent = '💾 Adicionar foto'; return; }
+  }
+
+  const photo = { id: Date.now(), url, caption, alt: caption };
+  data.galeria.json.albums[albumIdx].photos.push(photo);
+  const r = await saveFile('gallery', data.galeria.json, data.galeria.sha);
+  btn.disabled = false; btn.textContent = '💾 Adicionar foto';
+  if (r.success) { data.galeria.sha = r.sha; renderGaleria(); closeModal('modal-foto'); showToast('Foto adicionada!'); pendingFile = null; }
+  else showToast(r.error || 'Erro ao salvar', 'error');
+}
+
+async function deleteFoto(albumIdx, photoIdx) {
+  if (!confirm('Remover esta foto?')) return;
+  data.galeria.json.albums[albumIdx].photos.splice(photoIdx, 1);
+  const r = await saveFile('gallery', data.galeria.json, data.galeria.sha);
+  if (r.success) { data.galeria.sha = r.sha; renderGaleria(); showToast('Foto removida'); }
   else showToast(r.error || 'Erro', 'error');
 }
 

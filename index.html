@@ -729,6 +729,30 @@
   .gt-6 { background: linear-gradient(135deg, #b06040 0%, #803020 100%); }
   .gt-7 { background: linear-gradient(135deg, #c49060 0%, #906028 100%); }
   .gt-8 { background: linear-gradient(135deg, #a0b060 0%, #607020 100%); }
+  .gal-photo {
+    border-radius: 14px; overflow: hidden; aspect-ratio: 4/3;
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    position: relative; background: var(--bg);
+  }
+  .gal-photo:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
+  .gal-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gal-photo-cap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(7,18,33,0.85), transparent);
+    color: #fff; font-size: 0.72rem; padding: 1.2rem 0.7rem 0.5rem;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .gal-photo:hover .gal-photo-cap { opacity: 1; }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 950;
+    background: rgba(4,12,28,0.94); display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s; padding: 1.5rem;
+  }
+  .lightbox.open { opacity: 1; visibility: visible; }
+  .lightbox img { max-width: 100%; max-height: 88vh; border-radius: 12px; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+  .lightbox-cap { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.84rem; text-align: center; }
+  .lightbox-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: #fff; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,0.22); }
 
   /* ─── RECONHECIMENTOS ─── */
   #reconhecimentos { background: var(--branco); }
@@ -2482,8 +2506,27 @@
     document.body.style.overflow = '';
   }
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProj(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeProj(); closeLightbox(); } });
+
+  // ── LIGHTBOX ────────────────────────────────────────────────────
+  function openLightbox(src, caption) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox-cap').textContent = caption || '';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 </script>
+
+<!-- LIGHTBOX GALERIA -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this||event.target.closest('.lightbox-close'))closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-cap" id="lightbox-cap"></div>
+</div>
 
 <!-- MODAL PROJETO -->
 <div class="proj-modal-overlay" id="proj-modal" onclick="if(event.target===this)closeProj()">
@@ -2609,6 +2652,32 @@
           </div>
         </a>`;
       }).join('');
+    }
+  }
+  // ── GALERIA ────────────────────────────────────────────────────
+  const gdata = await load('gallery');
+  if (gdata?.albums) {
+    const FALLBACK_EMOJIS = ['🎭','🎵','💃','🥋','🍞','⚽','🤝','🌿'];
+    const FALLBACK_GRADS  = ['gt-1','gt-2','gt-3','gt-4','gt-5','gt-6','gt-7','gt-8'];
+    const section = document.getElementById('galeria');
+    if (!section) return;
+    const albums = gdata.albums.filter(a => a.photos && a.photos.length > 0);
+    if (albums.length) {
+      const albumEls = section.querySelectorAll('.galeria-album');
+      albums.forEach((album, ai) => {
+        const wrap = albumEls[ai] || albumEls[albumEls.length - 1];
+        if (!wrap) return;
+        const grid = wrap.querySelector('.gal-grid-4');
+        if (!grid) return;
+        const titleEl = wrap.querySelector('.galeria-album-title');
+        if (titleEl) titleEl.textContent = album.title;
+        grid.innerHTML = album.photos.map(p =>
+          `<div class="gal-photo" onclick="openLightbox('${safe(p.url)}','${safe(p.caption||'')}')">
+            <img src="${safe(p.url)}" alt="${safe(p.caption||p.alt||'')}">
+            ${p.caption ? `<div class="gal-photo-cap">${safe(p.caption)}</div>` : ''}
+          </div>`
+        ).join('');
+      });
     }
   }
 })();
