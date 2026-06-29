@@ -1,0 +1,1722 @@
+{
+  "ultimaAtualizacao": "29/06/2026 às 12:00",
+  "encerramento": "11/07/2026",
+  "total": 59,
+  "meninos": 27,
+  "meninas": 32,
+  "atipicas": 9,
+  "acompanhados": 46,
+  "inscritos": [
+    {
+      "nro": 1,
+      "nome": "Ailton Lacerda Alves",
+      "nascimento": "15/06/2016",
+      "idade": 10,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Cristian Lacerda",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9380-9695",
+        "email": "cristianlacerda27@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Karollayne",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9316-3536"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 2,
+      "nome": "Pedro Lacerda Alves",
+      "nascimento": "09/06/2023",
+      "idade": 3,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Sim",
+      "descAlergia": "Alérgico a ovo",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Cristian Lacerda",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9380-9695",
+        "email": "cristianlacerda27@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Karollayne",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9316-3536"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 3,
+      "nome": "Elisa Cardoso Santos Brito",
+      "nascimento": "15/05/2023",
+      "idade": 3,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Ana Beatriz Santos Brito",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9243-6063",
+        "email": "suporteanabrito@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Ana Beatriz",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8488-8596"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 4,
+      "nome": "Eduardo Garcia Rocha Buebo",
+      "nascimento": "27/03/2019",
+      "idade": 7,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Thaynara Garcia Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832",
+        "email": "thaynara.bueno@icloud.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Thaynara Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 5,
+      "nome": "Laura Garcia Bueno",
+      "nascimento": "23/11/2020",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Thaynara Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832",
+        "email": ""
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Thaynara Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 6,
+      "nome": "Marina Garcia Rocha Bueno",
+      "nascimento": "02/04/2022",
+      "idade": 4,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Thaynara Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832",
+        "email": ""
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Thaynara Bueno",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9966-3832"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 7,
+      "nome": "Maria Eduarda Honório de Jesus",
+      "nascimento": "11/08/2021",
+      "idade": 4,
+      "sexo": "F",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Risperidona melatonina",
+      "responsavel": {
+        "nome": "Eleni Xavier Lima de Jesus",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9150-1562",
+        "email": "elenimariadejesus843@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Eleni Xavier Lima de Jesus",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9150-1562"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 8,
+      "nome": "Luan Vitor Silva Amorim",
+      "nascimento": "18/01/2014",
+      "idade": 12,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Topiramato 25mg de 12/12h",
+      "responsavel": {
+        "nome": "Thaynara Aline da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9269-4416",
+        "email": "thaynaraaline112@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Thaynara Aline da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9269-4416"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "Sus",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 9,
+      "nome": "Ryan Richard Silva Amorim",
+      "nascimento": "28/12/2011",
+      "idade": 14,
+      "sexo": "M",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Levetiracetam 750mg",
+      "responsavel": {
+        "nome": "Thaynara Aline da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9269-4416",
+        "email": "thaynaraaline112@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Thaynara Aline da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9269-4416"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "Sus",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 10,
+      "nome": "Eduardo Souza da Silva Santos",
+      "nascimento": "20/02/2017",
+      "idade": 9,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Risperidona atenta somatropina",
+      "responsavel": {
+        "nome": "Camila Souza Da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9174-3692",
+        "email": "camilarenatohenrique@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Camila Souza da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9174-3692"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 11,
+      "nome": "Renato Henrique Souza da Silva Lima",
+      "nascimento": "20/06/2017",
+      "idade": 9,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Camila Souza Da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9174-3692",
+        "email": "camilarenatohenrique@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Camila Souza da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9174-3692"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 12,
+      "nome": "Sophie Valentina Aleixo",
+      "nascimento": "22/06/2016",
+      "idade": 10,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Larissa Xavier",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 9231-1304",
+        "email": "larissaxmcamilo@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Gustavo Xavier",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9560-4933"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Não possui",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 13,
+      "nome": "Heloísa Oliveira de Almeida",
+      "nascimento": "05/03/2018",
+      "idade": 8,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Marivalda Oliveira Lima",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 9360-5939",
+        "email": "djacy.o.l.a@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Djacy Oliveira",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9360-5939"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 14,
+      "nome": "João Miguel Araújo Ribeiro",
+      "nascimento": "30/10/2020",
+      "idade": 5,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Ritalina",
+      "responsavel": {
+        "nome": "Rosiana Pereira Ribeiro",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8154-8957",
+        "email": "Rosianaribeiro810@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Rosiana Pereira",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8154-8957"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "Não",
+      "dataInscricao": "23/06/2026"
+    },
+    {
+      "nro": 15,
+      "nome": "Miguel Peixoto Lemes",
+      "nascimento": "30/04/2020",
+      "idade": 6,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Samuel Peixoto Pereira",
+        "parentesco": "Outro",
+        "telefone": "(62) 9 9282-5271",
+        "email": "samuelpxtp@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Livia Maria Peixoto",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9417-9877"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 16,
+      "nome": "Heloisa Borges Rodrigues",
+      "nascimento": "09/05/2015",
+      "idade": 11,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Rosiane Borges Cabral",
+        "parentesco": "Mãe",
+        "telefone": "(86) 9 9507-0974",
+        "email": "rosianeborgescabral2@gmail.com.br"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Natanael Vila Nova Rodrigues",
+        "parentesco": "Pai",
+        "telefone": "(86) 9 9407-2500"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Não",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 17,
+      "nome": "Helena Oliveira Dias",
+      "nascimento": "08/06/2021",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Sim",
+      "descAlergia": "Intolerância a Lactose",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Polyana Teixeira de Sousa Dias",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8151-1632",
+        "email": "polyanateixeiradsd@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Polyana Teixeira de Sousa Dias",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8151-1632"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 18,
+      "nome": "Gabriela Oliveira Machado",
+      "nascimento": "24/06/2015",
+      "idade": 11,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Fabiana de Fátima Machado",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9449-4218",
+        "email": ""
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Jean",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9287-1102"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 19,
+      "nome": "Manuela Oliveira Machado",
+      "nascimento": "03/04/2018",
+      "idade": 8,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Fabiana de Fátima Machado",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9449-4218",
+        "email": ""
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Jean",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9287-1102"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 20,
+      "nome": "Calebe",
+      "nascimento": "05/09/2019",
+      "idade": 6,
+      "sexo": "M",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Fabiana de Fátima Machado",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 9449-4218",
+        "email": ""
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Jean",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 9287-1102"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Sus",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 21,
+      "nome": "Emanuel Araújo Silva",
+      "nascimento": "14/03/2014",
+      "idade": 12,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Atentah",
+      "responsavel": {
+        "nome": "Larissa Araújo Silva Carvalho",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9247-4430",
+        "email": "larissavaldiner@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Larissa Araujo",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9247-4430"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 22,
+      "nome": "Luísa Aires Felipe Nogueira",
+      "nascimento": "04/12/2018",
+      "idade": 7,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "LYUDIMILA REGINA AIRES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8208-0692",
+        "email": "lyudimilaf@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "LYUDIMILA REGINA AIRES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8208-0692"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 23,
+      "nome": "Mateus Aires Felipe Nogueira",
+      "nascimento": "07/07/2016",
+      "idade": 10,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "LYUDIMILA REGINA AIRES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8208-0692",
+        "email": "lyudimilaf@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "LYUDIMILA REGINA AIRES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8208-0692"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 24,
+      "nome": "Felipe Pereira Camargo",
+      "nascimento": "19/03/2017",
+      "idade": 9,
+      "sexo": "M",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Neozine e Canabidiol",
+      "responsavel": {
+        "nome": "Ingrid Pereira Batista",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9362-3803",
+        "email": "pereiraingrid1985@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Tiago Humberto Araújo de Oliveira",
+        "parentesco": "Outro",
+        "telefone": "(62) 9 9484-3564"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 25,
+      "nome": "Gabriel RAG Aguiar Teles",
+      "nascimento": "22/02/2022",
+      "idade": 4,
+      "sexo": "M",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Adenise Silva Aguiar",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8198-3063",
+        "email": "adenisetelles@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "ROBERTO TELES FARIAS",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 8170-8960"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Mais saúde",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 26,
+      "nome": "Hadasaa Liz Silva Aguiar Costa",
+      "nascimento": "13/12/2019",
+      "idade": 6,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Carla Silva Aguiar Costa",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8198-3063",
+        "email": "adenisetelles@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Noelson Costa Silva",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 8198-3063"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 27,
+      "nome": "Raphael David Wulfert Ramos",
+      "nascimento": "10/08/2026",
+      "idade": -1,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Sim",
+      "descMedicacao": "Baccopa e Gaba",
+      "responsavel": {
+        "nome": "Hurssula Camila Wulfert da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9363-0402",
+        "email": "milla276@yahoo.com.br"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Carlos José David Ramos",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9324-2529"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "Unimed",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 28,
+      "nome": "Maria Fernanda Martins Ferreira",
+      "nascimento": "22/05/2019",
+      "idade": 7,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Luciene Pereira Ferreira Martins",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9296-7259",
+        "email": "lucienebiomartins@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Luciene",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9296-7259"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 29,
+      "nome": "Mariana Oliveira de Carvalho",
+      "nascimento": "22/02/2018",
+      "idade": 8,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Marivalda Oliveira Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9295-1025",
+        "email": "marioliverlima@hotmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Marivalda Oliveira Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9295-1025"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 30,
+      "nome": "Helena Oliveira Lima Alves",
+      "nascimento": "24/12/2019",
+      "idade": 6,
+      "sexo": "F",
+      "atipica": "Sim",
+      "diagnostico": "TEA",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Lindinalva Oliveira Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9517-4749",
+        "email": "lindinalvalimaamanda@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Lindinalva Oliveira Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9517-4749"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 31,
+      "nome": "Pedro Henrique Martins Ferreira",
+      "nascimento": "19/04/2024",
+      "idade": 2,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Luciene P F Martins",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9296-7259",
+        "email": "lucienebiomartins@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Luciene Martins",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9296-7259"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 32,
+      "nome": "Maria Eduarda Oliveira Teles",
+      "nascimento": "25/01/2021",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Lindacy Oliveira Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9215-6090",
+        "email": "lindacy.ol@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Eduardo Sousa Teles",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9411-6877"
+      },
+      "origem": "Amigos/família",
+      "planoSaude": "Unimed",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 33,
+      "nome": "RAVI FELIX DE JESUS",
+      "nascimento": "04/05/2021",
+      "idade": 5,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Kariny de Jesus da Mata",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9278-7864",
+        "email": "karinyjesus@icloud.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Kariny de Jesus",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9278-7864"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Unimed",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 34,
+      "nome": "Maria Laura Amorim de Jesus",
+      "nascimento": "12/04/2016",
+      "idade": 10,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Kariny de Jesus da Mata",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9278-7864",
+        "email": "karinyjesus@icloud.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Kariny de Jesus",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9278-7864"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Unimed",
+      "dataInscricao": "22/06/2026"
+    },
+    {
+      "nro": 35,
+      "nome": "Arthur Martins Sousa",
+      "nascimento": "12/02/2017",
+      "idade": 9,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Aline Martins Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8226-2310",
+        "email": "alinemartinsdjjsousa@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Aline Martins Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8226-2310"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "",
+      "dataInscricao": "21/06/2026"
+    },
+    {
+      "nro": 36,
+      "nome": "Miguel Vencerlencio Martins Freire",
+      "nascimento": "05/06/2016",
+      "idade": 10,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "DANIELLE VENCERLENCIO SOUTO",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8242-7432",
+        "email": "daniellevencerlencio@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Andressa Vencerlencio Souto",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 8406-0496"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "20/06/2026"
+    },
+    {
+      "nro": 37,
+      "nome": "Laura Vencerlencio Martins",
+      "nascimento": "30/06/2017",
+      "idade": 9,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Andressa Vencerlencio Souto",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8242-7432",
+        "email": "andressasoutovencerlencio@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "DANIELLE VENCERLENCIO SOUTO",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 8242-7432"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "20/06/2026"
+    },
+    {
+      "nro": 38,
+      "nome": "Yasmin Vencerlencio Martins",
+      "nascimento": "24/02/2023",
+      "idade": 3,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Andressa Vencerlencio Souto",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 8406-0496",
+        "email": "andressasoutovencerlencio@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "DANIELLE VENCERLENCIO SOUTO",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 8242-7432"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "20/06/2026"
+    },
+    {
+      "nro": 39,
+      "nome": "Marcos Theofilo de Almeida Guimarães",
+      "nascimento": "09/12/2019",
+      "idade": 6,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Lilly Cristina",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8532-6527",
+        "email": "lilly.crisalmeida@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Lilly",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8532-6527"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Ipasgo",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 40,
+      "nome": "Maria Fernanda Campos Ferreira",
+      "nascimento": "21/03/2018",
+      "idade": 8,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Fernanda Campos Aquino",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8426-4912",
+        "email": "anelviariodistribuidordevidros@hotmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Fernanda",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8426-4912"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "Unimed",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 41,
+      "nome": "Maria Alice Almeida de Souza",
+      "nascimento": "26/04/2016",
+      "idade": 10,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Adriana Ferreira de Almeida Souza",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9367-8468",
+        "email": "ferreiradealmeida88@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Jefferson Vieira",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9999-7315"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Mais saúde",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 42,
+      "nome": "Lucas Daniel de Jesus Silva",
+      "nascimento": "08/06/2023",
+      "idade": 3,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Elizangela Clara de Jesus",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8232-1335",
+        "email": "elizangela-clara@hotmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Daniel Jacob",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 8541-1714"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 43,
+      "nome": "Emilly Vitória Lemes Vieira",
+      "nascimento": "20/11/2020",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Raquel Santos",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9542-1327",
+        "email": "santosraquellemes.24@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Raquel Lemes dos Santos",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9542-1327"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 44,
+      "nome": "Calebe Macedo Silva",
+      "nascimento": "06/02/2018",
+      "idade": 8,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Larissa Xavier",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9231-1304",
+        "email": "larissaxmcamilo@gmail.con"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Gustavo Camilo",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9247-6278"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 45,
+      "nome": "Joseph Emanuel Macedo Silva",
+      "nascimento": "03/01/2023",
+      "idade": 3,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Larissa Xavier",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9231-1304",
+        "email": "larissaxmcamiko@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Larissa Xavier",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9247-6278"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 46,
+      "nome": "ANA MENDES BERÇOT",
+      "nascimento": "09/03/2016",
+      "idade": 10,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "LYDIANNE MENDES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9870-4464",
+        "email": "ly.lipe@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "LYDIANNE MENDES FELIPE",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9870-4464"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "IPASGO",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 47,
+      "nome": "Lorena Maria Florentino",
+      "nascimento": "25/03/2019",
+      "idade": 7,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "TATIANE FLORENTINO",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9136-1265",
+        "email": "cfocada18@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Adson Louredo",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9196-0484"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 48,
+      "nome": "Lorenzo Josué Florentino Silva",
+      "nascimento": "23/11/2021",
+      "idade": 4,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "TATIANE FLORENTINO",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9136-1265",
+        "email": "cfocada18@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Louredo Adson Silva",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9196-0484"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 49,
+      "nome": "Ana Cecília Simões Lemos",
+      "nascimento": "02/12/2015",
+      "idade": 10,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Lucélia Camila Simões Lemos",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9141-0393",
+        "email": "luceliacamila@hotmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Lucélia Camila Simões Lemos",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9141-0393"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "Mais saúde",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 50,
+      "nome": "David Brian Rocha Silva",
+      "nascimento": "25/04/2016",
+      "idade": 10,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Kênia Susana Dias da Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8521-5441",
+        "email": ""
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Kênia",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8521-5441"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 51,
+      "nome": "Manuella Vitória Costa Silva",
+      "nascimento": "07/08/2020",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Lucimone Costa Ramos",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9114-5708",
+        "email": "Lucy2013_kiss@hotmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Pedro Pereira da",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 8117-9203"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 52,
+      "nome": "Zoe Lima de Sa",
+      "nascimento": "06/06/2015",
+      "idade": 11,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Sabrina L Lima de Sq",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9350-1650",
+        "email": "sleitelima@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Sabrina Lima",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9350-1650"
+      },
+      "origem": "WhatsApp",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 53,
+      "nome": "Sara Silva Cavalcante",
+      "nascimento": "24/04/2013",
+      "idade": 13,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Hitala Rayane Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 8340-2808",
+        "email": "bigubatera@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Hitala Rayane Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 8340-2808"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 54,
+      "nome": "Rayssa Silva Cavalcante",
+      "nascimento": "18/04/2013",
+      "idade": 13,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Hitala Rayane Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 8340-2808",
+        "email": "biguduarte@gmail.com"
+      },
+      "acompanha": "Não",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Hitala Rayane Silva",
+        "parentesco": "Mãe",
+        "telefone": "(62) 8340-2808"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 55,
+      "nome": "Miguel Ferreira Carvalho",
+      "nascimento": "16/08/2017",
+      "idade": 8,
+      "sexo": "M",
+      "atipica": "Sim",
+      "diagnostico": "Autismo",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Dalila Ferreira Barbosa",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9261-8345",
+        "email": "dalila.f.barbosa@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Não",
+      "emergencia": {
+        "nome": "Dalila",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9261-8345"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "Unimed",
+      "dataInscricao": "18/06/2026"
+    },
+    {
+      "nro": 56,
+      "nome": "Caleb Mariano dos Santos",
+      "nascimento": "04/11/2022",
+      "idade": 3,
+      "sexo": "M",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "JOANA DARC BATISTA DOS SANTOS",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8142-2641",
+        "email": "joanneflor000@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Damião Mariano",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 9402-5498"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "Hapvida",
+      "dataInscricao": "19/06/2026"
+    },
+    {
+      "nro": 57,
+      "nome": "Maria Julia Dias Norobha",
+      "nascimento": "16/08/2020",
+      "idade": 5,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Nilma Noronha",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8470-7128",
+        "email": "nilmanoronha640@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Tia Simone",
+        "parentesco": "Tio(a)",
+        "telefone": "(62) 9 8470-7128"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "",
+      "dataInscricao": "19/06/2026"
+    },
+    {
+      "nro": 58,
+      "nome": "Laura Pires de Oliveira",
+      "nascimento": "19/03/2018",
+      "idade": 8,
+      "sexo": "F",
+      "atipica": "Não",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Raquel Helena Ferreira",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9691-9783",
+        "email": "raquelh_f@hotmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Raquel Helena Ferreira",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 9691-9783"
+      },
+      "origem": "Redes sociais",
+      "planoSaude": "Unimed",
+      "dataInscricao": "19/06/2026"
+    },
+    {
+      "nro": 59,
+      "nome": "Manuzita",
+      "nascimento": "04/04/2022",
+      "idade": 4,
+      "sexo": "F",
+      "atipica": "Sim",
+      "diagnostico": "",
+      "alergia": "Não",
+      "descAlergia": "",
+      "medicacao": "Não",
+      "descMedicacao": "",
+      "responsavel": {
+        "nome": "Nay Guimarães",
+        "parentesco": "Mãe",
+        "telefone": "(62) 9 8563-8302",
+        "email": "nayyr.guimaraes01@gmail.com"
+      },
+      "acompanha": "Sim",
+      "membro": "Sim",
+      "emergencia": {
+        "nome": "Natanael",
+        "parentesco": "Pai",
+        "telefone": "(62) 9 8563-8301"
+      },
+      "origem": "Membro da Igreja",
+      "planoSaude": "",
+      "dataInscricao": "17/06/2026"
+    }
+  ]
+}

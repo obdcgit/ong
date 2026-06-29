@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inscritos EBF 2026 · Hope Kids</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#27AE60;--green-dark:#1a8a4a;--green-light:#e8f8ef;
+  --blue:#2980B9;--blue-sky:#D6EAF8;--blue-dark:#1a5a8a;
+  --yellow:#F1C40F;--yellow-light:#FEF9E7;--yellow-dark:#d4a800;
+  --orange:#E67E22;--red:#E74C3C;--purple:#8E44AD;
+  --white:#fff;--gray:#f5f6fa;--text:#2c3e50;--text-muted:#7f8c8d;
+  --shadow:0 4px 20px rgba(0,0,0,.1);--radius:16px
+}
+body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);min-height:100vh}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,var(--green-dark) 0%,var(--green) 60%,#2ecc71 100%);padding:0;position:relative;overflow:hidden}
+.header-clouds{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.cloud{position:absolute;opacity:.15}
+.header-content{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:24px 32px 20px;flex-wrap:wrap;gap:16px}
+.header-left{display:flex;align-items:center;gap:20px}
+.globe-wrap{position:relative;width:90px;height:90px;flex-shrink:0}
+.globe{width:90px;height:90px}
+.header-title h1{font-family:'Fredoka One',sans-serif;color:var(--white);font-size:2rem;line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.header-title p{color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600;margin-top:4px}
+.header-right{text-align:right}
+.header-badge{background:var(--yellow);color:var(--text);font-family:'Fredoka One',sans-serif;font-size:1.5rem;padding:10px 20px;border-radius:50px;box-shadow:0 4px 12px rgba(0,0,0,.2);display:inline-block}
+.header-badge small{display:block;font-family:'Nunito',sans-serif;font-size:.75rem;font-weight:700;color:rgba(0,0,0,.6);line-height:1}
+.update-bar{background:rgba(0,0,0,.2);text-align:center;padding:8px 16px;color:rgba(255,255,255,.9);font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+.update-bar a{color:var(--yellow);text-decoration:none;font-weight:800}
+.update-bar a:hover{text-decoration:underline}
+
+/* STATS */
+.stats-section{padding:24px 24px 0;max-width:1200px;margin:0 auto}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px}
+.stat-card{background:var(--white);border-radius:var(--radius);padding:20px 16px;text-align:center;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .2s}
+.stat-card:hover{transform:translateY(-3px)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.stat-card.total::before{background:var(--green)}
+.stat-card.boys::before{background:var(--blue)}
+.stat-card.girls::before{background:#e91e8c}
+.stat-card.special::before{background:var(--orange)}
+.stat-card.accompanied::before{background:var(--purple)}
+.stat-card.solo::before{background:var(--text-muted)}
+.stat-num{font-family:'Fredoka One',sans-serif;font-size:2.6rem;line-height:1}
+.stat-card.total .stat-num{color:var(--green)}
+.stat-card.boys .stat-num{color:var(--blue)}
+.stat-card.girls .stat-num{color:#e91e8c}
+.stat-card.special .stat-num{color:var(--orange)}
+.stat-card.accompanied .stat-num{color:var(--purple)}
+.stat-card.solo .stat-num{color:var(--text-muted)}
+.stat-icon{font-size:1.8rem;margin-bottom:4px}
+.stat-label{font-size:.78rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+
+/* FILTERS */
+.filters-section{padding:20px 24px;max-width:1200px;margin:0 auto}
+.filters-bar{background:var(--white);border-radius:var(--radius);padding:16px 20px;box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.search-wrap{position:relative;flex:1;min-width:200px}
+.search-wrap input{width:100%;padding:10px 16px 10px 40px;border:2px solid #e0e0e0;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.95rem;outline:none;transition:border .2s}
+.search-wrap input:focus{border-color:var(--green)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem;color:var(--text-muted)}
+.filter-group{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:8px 14px;border:2px solid #e0e0e0;border-radius:50px;background:var(--white);font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.filter-btn:hover{border-color:var(--green);color:var(--green)}
+.filter-btn.active{background:var(--green);border-color:var(--green);color:var(--white)}
+.filter-btn.active-blue{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.filter-btn.active-pink{background:#e91e8c;border-color:#e91e8c;color:var(--white)}
+.filter-btn.active-orange{background:var(--orange);border-color:var(--orange);color:var(--white)}
+.results-count{font-size:.85rem;font-weight:700;color:var(--text-muted);margin-left:auto;white-space:nowrap}
+
+/* TABLE */
+.table-section{padding:0 24px 40px;max-width:1200px;margin:0 auto}
+.table-wrap{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.table-header{padding:16px 20px;background:linear-gradient(135deg,var(--green-dark),var(--green));display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.table-header h2{font-family:'Fredoka One',sans-serif;color:var(--white);font-size:1.2rem}
+.view-toggle{display:flex;gap:4px}
+.view-btn{background:rgba(255,255,255,.2);border:none;color:white;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:1rem;transition:background .2s}
+.view-btn.active{background:rgba(255,255,255,.4)}
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--gray)}
+th{padding:12px 16px;text-align:left;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);white-space:nowrap}
+td{padding:12px 16px;border-bottom:1px solid #f0f0f0;font-size:.9rem;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafafa}
+.nro{font-weight:800;color:var(--text-muted);font-size:.85rem}
+.child-name{font-weight:700;color:var(--text)}
+.child-birth{font-size:.82rem;color:var(--text-muted)}
+.age-badge{display:inline-flex;align-items:center;gap:4px;background:var(--gray);padding:3px 10px;border-radius:50px;font-weight:700;font-size:.82rem}
+.sex-m .age-badge{background:var(--blue-sky);color:var(--blue-dark)}
+.sex-f .age-badge{background:#fce4ec;color:#c2185b}
+.gender-icon{font-size:1rem}
+.badges{display:flex;flex-wrap:wrap;gap:4px}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 8px;border-radius:50px;font-size:.75rem;font-weight:700}
+.badge-tea{background:#fff3e0;color:#e65100}
+.badge-allergy{background:#fce4ec;color:#c62828}
+.badge-med{background:#e8f5e9;color:#1b5e20}
+.badge-no{background:var(--gray);color:var(--text-muted)}
+.badge-yes{background:var(--green-light);color:var(--green-dark)}
+.responsible-name{font-weight:600;font-size:.88rem}
+.responsible-rel{font-size:.78rem;color:var(--text-muted)}
+.responsible-tel{font-size:.82rem;color:var(--blue);font-weight:600}
+.origem-chip{font-size:.78rem;font-weight:700;padding:2px 8px;border-radius:50px;background:var(--gray)}
+.data-chip{font-size:.78rem;font-weight:700;color:var(--text-muted)}
+
+/* CARD VIEW */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:20px}
+.child-card{border-radius:12px;border:2px solid #f0f0f0;overflow:hidden;transition:transform .2s,box-shadow .2s;background:var(--white)}
+.child-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.child-card.sex-m{border-top:4px solid var(--blue)}
+.child-card.sex-f{border-top:4px solid #e91e8c}
+.child-card.atipica{border-top:4px solid var(--orange)}
+.card-top{padding:16px 16px 8px;display:flex;align-items:flex-start;gap:12px}
+.card-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.sex-m .card-avatar{background:var(--blue-sky)}
+.sex-f .card-avatar{background:#fce4ec}
+.card-info{flex:1;min-width:0}
+.card-name{font-weight:800;font-size:.95rem;color:var(--text);line-height:1.2}
+.card-meta{font-size:.8rem;color:var(--text-muted);margin-top:2px}
+.card-badges{padding:0 16px 12px;display:flex;flex-wrap:wrap;gap:4px}
+.card-body{padding:0 16px 12px;border-top:1px solid #f5f5f5;margin-top:4px;padding-top:10px}
+.card-row{display:flex;gap:6px;margin-bottom:4px;font-size:.83rem;align-items:baseline}
+.card-label{color:var(--text-muted);font-weight:700;min-width:90px;flex-shrink:0}
+.card-val{color:var(--text);font-weight:600;word-break:break-word}
+.card-footer{background:var(--gray);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.78rem}
+.card-nro{font-weight:800;color:var(--text-muted)}
+.card-date{color:var(--text-muted);font-weight:600}
+
+/* SPECIAL ATTENTION */
+.special-section{padding:0 24px 24px;max-width:1200px;margin:0 auto}
+.special-header{background:linear-gradient(135deg,#e65100,var(--orange));padding:14px 20px;border-radius:var(--radius) var(--radius) 0 0;display:flex;align-items:center;gap:10px}
+.special-header h2{font-family:'Fredoka One',sans-serif;color:var(--white);font-size:1.1rem}
+.special-grid{background:var(--white);border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.special-item{padding:14px 20px;border-bottom:1px solid #f0f0f0;display:grid;grid-template-columns:40px 1fr auto;gap:16px;align-items:center}
+.special-item:last-child{border-bottom:none}
+.special-nro{font-weight:800;font-size:1rem;color:var(--orange);text-align:center}
+.special-name{font-weight:700;color:var(--text)}
+.special-detail{font-size:.82rem;color:var(--text-muted);margin-top:2px}
+.special-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px;background:var(--white);border-top:2px solid var(--gray)}
+.footer-logo{font-family:'Fredoka One',sans-serif;color:var(--green);font-size:1.2rem}
+.footer-text{font-size:.8rem;color:var(--text-muted);margin-top:6px}
+
+/* EMPTY / LOADING */
+.empty-state{padding:60px 20px;text-align:center;color:var(--text-muted)}
+.empty-state .icon{font-size:3rem;margin-bottom:12px}
+.loading{padding:40px;text-align:center}
+.spinner{width:40px;height:40px;border:4px solid var(--gray);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .header-content{padding:16px}
+  .header-title h1{font-size:1.5rem}
+  .globe-wrap{width:60px;height:60px}
+  .globe{width:60px;height:60px}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .table-section,.filters-section,.stats-section,.special-section{padding-left:12px;padding-right:12px}
+  .desktop-col{display:none}
+  th,td{padding:10px 12px}
+  .header-badge{font-size:1.2rem;padding:8px 14px}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-num{font-size:2rem}
+  .filters-bar{flex-direction:column;align-items:stretch}
+  .search-wrap{min-width:unset}
+  .results-count{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <svg class="header-clouds" viewBox="0 0 1440 200" preserveAspectRatio="none">
+    <ellipse class="cloud" cx="120" cy="60" rx="80" ry="40" fill="white"/>
+    <ellipse class="cloud" cx="80" cy="55" rx="55" ry="30" fill="white"/>
+    <ellipse class="cloud" cx="160" cy="50" rx="60" ry="32" fill="white"/>
+    <ellipse class="cloud" cx="900" cy="80" rx="70" ry="35" fill="white"/>
+    <ellipse class="cloud" cx="860" cy="75" rx="50" ry="28" fill="white"/>
+    <ellipse class="cloud" cx="940" cy="72" rx="55" ry="30" fill="white"/>
+    <ellipse class="cloud" cx="1300" cy="50" rx="65" ry="33" fill="white"/>
+    <ellipse class="cloud" cx="1260" cy="45" rx="45" ry="26" fill="white"/>
+    <ellipse class="cloud" cx="1340" cy="42" rx="50" ry="28" fill="white"/>
+  </svg>
+  <div class="header-content">
+    <div class="header-left">
+      <div class="globe-wrap">
+        <svg class="globe" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" fill="#2980B9" stroke="white" stroke-width="2"/>
+          <ellipse cx="50" cy="50" rx="20" ry="46" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+          <ellipse cx="50" cy="50" rx="46" ry="16" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+          <ellipse cx="50" cy="50" rx="46" ry="30" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+          <path d="M15 35 Q30 28 50 32 Q70 28 85 35" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+          <path d="M10 50 Q30 44 50 46 Q70 44 90 50" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+          <path d="M15 65 Q30 60 50 62 Q70 60 85 65" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+          <text x="50" y="58" text-anchor="middle" font-family="Fredoka One,sans-serif" font-size="20" font-weight="bold" fill="white" style="text-shadow:0 1px 4px rgba(0,0,0,.4)">IDE</text>
+        </svg>
+      </div>
+      <div class="header-title">
+        <h1>🌍 Inscritos EBF 2026</h1>
+        <p>Escola Bíblica de Férias · Hope Kids · IDE</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-badge">
+        <span id="header-total">59</span>
+        <small>INSCRITOS</small>
+      </div>
+    </div>
+  </div>
+  <div class="update-bar">
+    <span>📅 Última atualização: <strong id="last-update">–</strong></span>
+    <span>·</span>
+    <span>Inscrições até <strong id="encerramento">11/07/2026</strong></span>
+    <span>·</span>
+    <a href="/inscricaoebf" target="_blank">🔗 Fazer inscrição</a>
+    <span>·</span>
+    <button onclick="loadData()" style="background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);color:white;padding:3px 10px;border-radius:50px;cursor:pointer;font-size:.8rem;font-weight:700">🔄 Atualizar</button>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card total">
+      <div class="stat-icon">👦🏻👧🏻</div>
+      <div class="stat-num" id="stat-total">–</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat-card boys">
+      <div class="stat-icon">👦</div>
+      <div class="stat-num" id="stat-boys">–</div>
+      <div class="stat-label">Meninos</div>
+    </div>
+    <div class="stat-card girls">
+      <div class="stat-icon">👧</div>
+      <div class="stat-num" id="stat-girls">–</div>
+      <div class="stat-label">Meninas</div>
+    </div>
+    <div class="stat-card special">
+      <div class="stat-icon">🧡</div>
+      <div class="stat-num" id="stat-special">–</div>
+      <div class="stat-label">Atípicas</div>
+    </div>
+    <div class="stat-card accompanied">
+      <div class="stat-icon">👨‍👧</div>
+      <div class="stat-num" id="stat-accompanied">–</div>
+      <div class="stat-label">Acompanhadas</div>
+    </div>
+    <div class="stat-card solo">
+      <div class="stat-icon">🚶</div>
+      <div class="stat-num" id="stat-solo">–</div>
+      <div class="stat-label">Sem acomp.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ATENÇÃO ESPECIAL -->
+<div class="special-section" id="special-section" style="display:none">
+  <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-top:20px">
+    <div class="special-header">
+      <span style="font-size:1.3rem">⚠️</span>
+      <h2>Atenção Especial</h2>
+      <span style="background:rgba(255,255,255,.25);padding:2px 10px;border-radius:50px;color:white;font-size:.85rem;font-weight:700;margin-left:auto" id="special-count"></span>
+    </div>
+    <div class="special-grid" id="special-list"></div>
+  </div>
+</div>
+
+<!-- FILTERS -->
+<div class="filters-section">
+  <div class="filters-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" placeholder="Buscar por nome, responsável..." oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="sexo" data-val="" onclick="setFilter('sexo','',this)">Todos</button>
+      <button class="filter-btn" data-filter="sexo" data-val="M" onclick="setFilter('sexo','M',this)">👦 Meninos</button>
+      <button class="filter-btn" data-filter="sexo" data-val="F" onclick="setFilter('sexo','F',this)">👧 Meninas</button>
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="atipica" data-val="" onclick="setFilter('atipica','',this)">Todos</button>
+      <button class="filter-btn" data-filter="atipica" data-val="Sim" onclick="setFilter('atipica','Sim',this)">🧡 Atípicas</button>
+    </div>
+    <div class="filter-group">
+      <button class="filter-btn active" data-filter="faixa" data-val="" onclick="setFilter('faixa','',this)">Todas idades</button>
+      <button class="filter-btn" data-filter="faixa" data-val="0-3" onclick="setFilter('faixa','0-3',this)">0–3</button>
+      <button class="filter-btn" data-filter="faixa" data-val="4-6" onclick="setFilter('faixa','4-6',this)">4–6</button>
+      <button class="filter-btn" data-filter="faixa" data-val="7-9" onclick="setFilter('faixa','7-9',this)">7–9</button>
+      <button class="filter-btn" data-filter="faixa" data-val="10-12" onclick="setFilter('faixa','10-12',this)">10–12</button>
+      <button class="filter-btn" data-filter="faixa" data-val="13+" onclick="setFilter('faixa','13+',this)">13+</button>
+    </div>
+    <span class="results-count" id="results-count"></span>
+  </div>
+</div>
+
+<!-- TABLE/CARDS -->
+<div class="table-section">
+  <div class="table-wrap">
+    <div class="table-header">
+      <h2>📋 Lista de Inscritos</h2>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-table" onclick="setView('table')" title="Tabela">☰</button>
+        <button class="view-btn" id="btn-cards" onclick="setView('cards')" title="Cards">⊞</button>
+      </div>
+    </div>
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p style="color:var(--text-muted);font-weight:600">Carregando dados...</p>
+    </div>
+    <!-- TABLE VIEW -->
+    <div id="table-view">
+      <table id="main-table">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Nome</th>
+            <th>Nasc.</th>
+            <th>Idade</th>
+            <th class="desktop-col">Responsável</th>
+            <th class="desktop-col">Contato</th>
+            <th>Alertas</th>
+            <th class="desktop-col">Origem</th>
+            <th class="desktop-col">Plano</th>
+            <th>Inscrição</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+    <!-- CARDS VIEW -->
+    <div id="cards-view" style="display:none">
+      <div class="cards-grid" id="cards-body"></div>
+    </div>
+    <div id="empty-state" class="empty-state" style="display:none">
+      <div class="icon">🔍</div>
+      <p style="font-weight:700;font-size:1.1rem">Nenhum inscrito encontrado</p>
+      <p style="font-size:.9rem;margin-top:6px">Tente ajustar os filtros</p>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">🌍 Hope Kids · IDE · EBF 2026</div>
+  <div class="footer-text">Sistema de gestão de inscrições · Dados atualizados automaticamente às 12h diariamente</div>
+</footer>
+
+<script>
+let allData = [];
+let currentView = 'table';
+let filters = {sexo:'', atipica:'', faixa:''};
+
+async function loadData() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('table-view').style.display = 'none';
+  document.getElementById('cards-view').style.display = 'none';
+  document.getElementById('empty-state').style.display = 'none';
+
+  try {
+    const r = await fetch('./inscritos-data.json?t=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+
+    allData = data.inscritos || [];
+
+    // Stats
+    document.getElementById('stat-total').textContent = data.total || allData.length;
+    document.getElementById('stat-boys').textContent = data.meninos || allData.filter(c=>c.sexo==='M').length;
+    document.getElementById('stat-girls').textContent = data.meninas || allData.filter(c=>c.sexo==='F').length;
+    document.getElementById('stat-special').textContent = data.atipicas || allData.filter(c=>c.atipica==='Sim').length;
+    document.getElementById('stat-accompanied').textContent = data.acompanhados || allData.filter(c=>c.acompanha==='Sim').length;
+    document.getElementById('stat-solo').textContent = (data.total||allData.length) - (data.acompanhados||allData.filter(c=>c.acompanha==='Sim').length);
+    document.getElementById('header-total').textContent = data.total || allData.length;
+    document.getElementById('last-update').textContent = data.ultimaAtualizacao || '–';
+    if(data.encerramento) document.getElementById('encerramento').textContent = data.encerramento;
+
+    renderSpecial();
+    applyFilters();
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#e74c3c;font-weight:700">⚠️ Erro ao carregar dados.<br><small>'+e.message+'</small></p>';
+    console.error(e);
+  }
+}
+
+function renderSpecial() {
+  const special = allData.filter(c => c.atipica==='Sim' || c.alergia==='Sim' || c.medicacao==='Sim');
+  const section = document.getElementById('special-section');
+  const list = document.getElementById('special-list');
+  const count = document.getElementById('special-count');
+  if(special.length === 0){section.style.display='none';return;}
+  section.style.display='block';
+  count.textContent = special.length + ' crianças';
+  list.innerHTML = special.map(c => {
+    const tags = [];
+    if(c.atipica==='Sim') tags.push('<span class="badge badge-tea">🧡 '+( c.diagnostico||'Atípica')+'</span>');
+    if(c.alergia==='Sim') tags.push('<span class="badge badge-allergy">🌿 Alergia: '+c.descAlergia+'</span>');
+    if(c.medicacao==='Sim') tags.push('<span class="badge badge-med">💊 '+c.descMedicacao+'</span>');
+    return `<div class="special-item">
+      <div class="special-nro">#${c.nro}</div>
+      <div>
+        <div class="special-name">${c.nome}</div>
+        <div class="special-detail">${c.nascimento} · ${c.responsavel.nome} · ${c.responsavel.telefone}</div>
+      </div>
+      <div class="special-tags">${tags.join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function faixaOf(c) {
+  const i = c.idade;
+  if(i <= 3) return '0-3';
+  if(i <= 6) return '4-6';
+  if(i <= 9) return '7-9';
+  if(i <= 12) return '10-12';
+  return '13+';
+}
+
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  let filtered = allData.filter(c => {
+    if(filters.sexo && c.sexo !== filters.sexo) return false;
+    if(filters.atipica && c.atipica !== filters.atipica) return false;
+    if(filters.faixa && faixaOf(c) !== filters.faixa) return false;
+    if(q) {
+      const hay = (c.nome + ' ' + c.responsavel.nome + ' ' + c.responsavel.telefone + ' ' + c.origem).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('results-count').textContent = filtered.length + ' resultado' + (filtered.length!==1?'s':'');
+  document.getElementById('loading').style.display = 'none';
+
+  if(filtered.length === 0) {
+    document.getElementById('table-view').style.display='none';
+    document.getElementById('cards-view').style.display='none';
+    document.getElementById('empty-state').style.display='block';
+    return;
+  }
+  document.getElementById('empty-state').style.display='none';
+
+  renderTable(filtered);
+  renderCards(filtered);
+
+  if(currentView === 'table') {
+    document.getElementById('table-view').style.display='block';
+    document.getElementById('cards-view').style.display='none';
+  } else {
+    document.getElementById('table-view').style.display='none';
+    document.getElementById('cards-view').style.display='block';
+  }
+}
+
+function badgesHtml(c) {
+  const b = [];
+  if(c.atipica==='Sim') b.push('<span class="badge badge-tea">🧡 '+(c.diagnostico||'Atípica')+'</span>');
+  if(c.alergia==='Sim') b.push('<span class="badge badge-allergy">🌿 Alergia</span>');
+  if(c.medicacao==='Sim') b.push('<span class="badge badge-med">💊 Med.</span>');
+  if(b.length===0) b.push('<span class="badge badge-no">–</span>');
+  return b.join('');
+}
+
+function renderTable(data) {
+  document.getElementById('table-body').innerHTML = data.map(c => {
+    const sexClass = 'sex-' + c.sexo.toLowerCase();
+    const idadeStr = c.idade < 0 ? '<1' : c.idade + ' anos';
+    const icon = c.sexo==='M' ? '👦' : '👧';
+    return `<tr class="${sexClass}">
+      <td class="nro">${c.nro}</td>
+      <td>
+        <div class="child-name">${icon} ${c.nome}</div>
+        <div class="child-birth">${c.nascimento}</div>
+      </td>
+      <td>${c.nascimento}</td>
+      <td><span class="age-badge">${idadeStr}</span></td>
+      <td class="desktop-col">
+        <div class="responsible-name">${c.responsavel.nome}</div>
+        <div class="responsible-rel">${c.responsavel.parentesco}</div>
+      </td>
+      <td class="desktop-col">
+        <div class="responsible-tel">${c.responsavel.telefone}</div>
+        <div class="responsible-rel">${c.responsavel.email||'–'}</div>
+      </td>
+      <td><div class="badges">${badgesHtml(c)}</div></td>
+      <td class="desktop-col"><span class="origem-chip">${c.origem||'–'}</span></td>
+      <td class="desktop-col"><span class="origem-chip">${c.planoSaude||'–'}</span></td>
+      <td><span class="data-chip">${c.dataInscricao}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderCards(data) {
+  document.getElementById('cards-body').innerHTML = data.map(c => {
+    const sexClass = 'sex-' + c.sexo.toLowerCase() + (c.atipica==='Sim' ? ' atipica' : '');
+    const icon = c.sexo==='M' ? '👦' : '👧';
+    const idadeStr = c.idade < 0 ? 'Bebê' : c.idade + ' anos';
+    const badgs = [];
+    if(c.atipica==='Sim') badgs.push('<span class="badge badge-tea">🧡 '+(c.diagnostico||'Atípica')+'</span>');
+    if(c.alergia==='Sim') badgs.push('<span class="badge badge-allergy">🌿 '+c.descAlergia+'</span>');
+    if(c.medicacao==='Sim') badgs.push('<span class="badge badge-med">💊 '+c.descMedicacao+'</span>');
+    return `<div class="child-card ${sexClass}">
+      <div class="card-top">
+        <div class="card-avatar">${icon}</div>
+        <div class="card-info">
+          <div class="card-name">${c.nome}</div>
+          <div class="card-meta">${c.nascimento} · ${idadeStr}</div>
+        </div>
+      </div>
+      ${badgs.length?`<div class="card-badges">${badgs.join('')}</div>`:''}
+      <div class="card-body">
+        <div class="card-row"><span class="card-label">Responsável</span><span class="card-val">${c.responsavel.nome} (${c.responsavel.parentesco})</span></div>
+        <div class="card-row"><span class="card-label">Telefone</span><span class="card-val">${c.responsavel.telefone}</span></div>
+        <div class="card-row"><span class="card-label">Emergência</span><span class="card-val">${c.emergencia.nome} ${c.emergencia.telefone}</span></div>
+        <div class="card-row"><span class="card-label">Acompanha?</span><span class="card-val"><span class="badge ${c.acompanha==='Sim'?'badge-yes':'badge-no'}">${c.acompanha}</span></span></div>
+        <div class="card-row"><span class="card-label">Membro?</span><span class="card-val"><span class="badge ${c.membro==='Sim'?'badge-yes':'badge-no'}">${c.membro}</span></span></div>
+        <div class="card-row"><span class="card-label">Origem</span><span class="card-val">${c.origem||'–'}</span></div>
+        <div class="card-row"><span class="card-label">Plano</span><span class="card-val">${c.planoSaude||'–'}</span></div>
+      </div>
+      <div class="card-footer">
+        <span class="card-nro">#${c.nro}</span>
+        <span class="card-date">📅 ${c.dataInscricao}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setFilter(key, val, btn) {
+  filters[key] = val;
+  // Reset other buttons in same group
+  document.querySelectorAll(`[data-filter="${key}"]`).forEach(b => {
+    b.className = 'filter-btn';
+  });
+  btn.className = 'filter-btn active';
+  applyFilters();
+}
+
+function setView(v) {
+  currentView = v;
+  document.getElementById('btn-table').className = 'view-btn' + (v==='table'?' active':'');
+  document.getElementById('btn-cards').className = 'view-btn' + (v==='cards'?' active':'');
+  applyFilters();
+}
+
+loadData();
+</script>
+</body>
+</html>
