@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Crianças – Ministério Hope Kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:        #29ABE2;
+      --blue-dark:   #0076B6;
+      --blue-light:  #7DD4F0;
+      --blue-pale:   #EBF8FF;
+      --yellow:      #F7C300;
+      --yellow-light:#FFE566;
+      --yellow-pale: #FFFBEB;
+      --green:       #8DC63F;
+      --green-dark:  #5D9E1F;
+      --green-pale:  #F0FFF4;
+      --orange:      #F6821F;
+      --red:         #E53E3E;
+      --white:       #FFFFFF;
+      --dark:        #152535;
+      --gray:        #F4F7FA;
+      --border:      #E2E8F0;
+      --text:        #2D3748;
+      --muted:       #718096;
+      --radius:      16px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--gray);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, #005F94 0%, #29ABE2 55%, #7DD4F0 100%);
+      padding: 36px 20px 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      pointer-events: none;
+    }
+    .blob1 { width:340px;height:180px; top:-60px; right:-60px; transform:rotate(-25deg); }
+    .blob2 { width:260px;height:110px; bottom:-30px; left:-40px; transform:rotate(18deg); }
+    .blob3 { width:100px;height:100px; top:50%; left:10%; background:rgba(247,195,0,.12); border-radius:50%; }
+
+    .hero-inner { position:relative; z-index:2; max-width:720px; margin:0 auto; }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .church-badge, .ministry-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.18);
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 50px;
+      padding: 6px 16px;
+      backdrop-filter: blur(8px);
+    }
+    .badge-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 900;
+    }
+    .badge-dot.blue  { background: var(--blue-dark); color:#fff; }
+    .badge-dot.green { background: var(--green-dark); color:#fff; }
+    .badge-text { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:#fff; letter-spacing:.3px; }
+
+    /* Globe */
+    .globe-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .globe-svg { width:90px; height:90px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.25)); }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem,6vw,3.2rem);
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -.5px;
+      margin-bottom: 8px;
+      text-shadow: 0 3px 12px rgba(0,0,0,.2);
+    }
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.88);
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    /* Cloud */
+    .cloud-row {
+      position:absolute; bottom:0; left:0; width:100%;
+      line-height:0; pointer-events:none; z-index:1;
+    }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-wrap {
+      background:#fff;
+      padding: 20px 24px 0;
+      max-width: 720px;
+      margin: -24px auto 0;
+      border-radius: var(--radius) var(--radius) 0 0;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.08);
+    }
+    .progress-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 10px;
+    }
+    .steps-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+    .step-item::after {
+      content:'';
+      position:absolute;
+      top: 14px;
+      left: 50%;
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .step-item:last-child::after { display:none; }
+    .step-item.done::after { background: var(--green); }
+    .step-item.active::after { background: var(--border); }
+
+    .step-dot {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      transition: all .3s;
+    }
+    .step-item.active .step-dot { background: var(--blue); color:#fff; box-shadow:0 0 0 4px var(--blue-pale); }
+    .step-item.done .step-dot   { background: var(--green); color:#fff; }
+    .step-name { font-size:10px; font-weight:700; color:var(--muted); margin-top:4px; text-align:center; line-height:1.2; }
+    .step-item.active .step-name { color:var(--blue); }
+    .step-item.done .step-name   { color:var(--green-dark); }
+
+    /* ─── FORM CONTAINER ─── */
+    .form-wrap {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      background: #fff;
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 8px 40px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+
+    /* ─── SECTION ─── */
+    .section {
+      display: none;
+      padding: 28px 28px 32px;
+      border-top: 1px solid var(--border);
+    }
+    .section.active { display: block; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .icon-blue   { background: var(--blue-pale); }
+    .icon-green  { background: var(--green-pale); }
+    .icon-yellow { background: var(--yellow-pale); }
+    .icon-orange { background: #FFF5EB; }
+    .icon-purple { background: #F5F0FF; }
+
+    .section-title { font-family:'Fredoka One',cursive; font-size:1.4rem; color:var(--dark); }
+    .section-desc  { font-size:13px; color:var(--muted); font-weight:600; margin-top:2px; }
+
+    /* ─── FIELDS ─── */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .field-grid.cols-1 { grid-template-columns: 1fr; }
+    .field-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    @media(max-width:560px) {
+      .field-grid, .field-grid.cols-3 { grid-template-columns: 1fr; }
+    }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full  { grid-column: 1 / -1; }
+
+    label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: .2px;
+    }
+    label .req { color: var(--red); margin-left: 2px; }
+    label .opt { color: var(--muted); font-weight: 600; font-size: 12px; margin-left: 4px; }
+
+    input[type=text], input[type=date], input[type=tel], input[type=email],
+    input[type=file], select, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      background: #FAFAFA;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-pale);
+      background: #fff;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    select { cursor: pointer; }
+    input[type=file] { cursor: pointer; padding: 8px 14px; }
+
+    /* Radio / Checkbox groups */
+    .radio-group, .check-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .radio-group label, .check-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      background: var(--gray);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 16px;
+      transition: all .2s;
+    }
+    .radio-group input[type=radio], .check-group input[type=checkbox] {
+      width: auto; padding: 0; border: none; box-shadow: none; background: none;
+      accent-color: var(--blue);
+      width: 16px; height: 16px;
+    }
+    .radio-group label:has(input:checked), .check-group label:has(input:checked) {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+      color: var(--blue-dark);
+    }
+
+    /* Conditional reveal */
+    .conditional {
+      display: none;
+      margin-top: 12px;
+      padding: 14px;
+      background: var(--yellow-pale);
+      border: 1.5px dashed var(--yellow);
+      border-radius: 10px;
+    }
+    .conditional.show { display: block; }
+
+    /* Alert Vermelho */
+    .alerta-box {
+      background: #FFF5F5;
+      border: 2px solid #FEB2B2;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .alerta-icon { font-size: 20px; flex-shrink: 0; }
+    .alerta-text { font-size: 13px; color: #742A2A; font-weight: 700; line-height: 1.5; }
+
+    /* Termo box */
+    .termo-card {
+      background: var(--gray);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: border-color .2s, background .2s;
+    }
+    .termo-card:has(input:checked) {
+      border-color: var(--green);
+      background: var(--green-pale);
+    }
+    .termo-card input[type=checkbox] {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+    .termo-text { font-size: 14px; font-weight: 700; color: var(--dark); line-height: 1.5; }
+    .termo-text small { display:block; font-weight:600; color:var(--muted); margin-top:2px; font-size:12px; }
+
+    /* Authorized persons */
+    .person-card {
+      background: var(--gray);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .person-card-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 12px;
+    }
+
+    /* Divider */
+    .divider { height:1px; background:var(--border); margin:20px 0; }
+
+    /* ─── NAV BUTTONS ─── */
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-back {
+      background: var(--gray);
+      color: var(--muted);
+      border: 2px solid var(--border);
+    }
+    .btn-back:hover { background: var(--border); color:var(--text); }
+    .btn-next {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(41,171,226,.35);
+    }
+    .btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(41,171,226,.4); }
+    .btn-submit {
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(93,158,31,.35);
+      font-size: 16px;
+      padding: 14px 32px;
+    }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(93,158,31,.4); }
+    .btn-submit:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+    /* ─── SUCCESS STATE ─── */
+    .success-wrap {
+      display: none;
+      padding: 48px 28px;
+      text-align: center;
+    }
+    .success-wrap.show { display: block; }
+    .success-icon { font-size: 72px; margin-bottom: 16px; }
+    .success-title { font-family:'Fredoka One',cursive; font-size:2rem; color:var(--green-dark); margin-bottom:8px; }
+    .success-msg { font-size:1rem; color:var(--muted); font-weight:600; max-width:460px; margin:0 auto; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align:center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ─── FIELD HINT ─── */
+    .hint { font-size: 12px; color: var(--muted); font-weight: 600; }
+
+    /* Validation */
+    .invalid { border-color: var(--red) !important; }
+    .error-msg { font-size: 12px; color: var(--red); font-weight: 700; display: none; }
+    .error-msg.show { display: block; }
+
+    @media(max-width:480px) {
+      .section { padding: 20px 16px 24px; }
+      .btn-row { flex-direction: column-reverse; }
+      .btn { width: 100%; justify-content: center; }
+      .progress-wrap { padding: 16px 16px 0; }
+      .step-name { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-inner">
+    <div class="top-row">
+      <div class="church-badge">
+        <div class="badge-dot blue">✝</div>
+        <span class="badge-text">OBDC – Igreja Batista</span>
+      </div>
+      <div class="ministry-badge">
+        <div class="badge-dot green">🌍</div>
+        <span class="badge-text">Hope Kids</span>
+      </div>
+    </div>
+
+    <div class="globe-wrap">
+      <!-- Globe SVG -->
+      <svg class="globe-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="gGlobe" cx="38%" cy="32%">
+            <stop offset="0%" stop-color="#7DD4F0"/>
+            <stop offset="100%" stop-color="#0076B6"/>
+          </radialGradient>
+        </defs>
+        <circle cx="60" cy="60" r="54" fill="url(#gGlobe)" opacity=".95"/>
+        <ellipse cx="60" cy="60" rx="22" ry="54" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+        <ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
+        <line x1="6" y1="60" x2="114" y2="60" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/>
+        <line x1="60" y1="6" x2="60" y2="114" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/>
+        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.5"/>
+        <!-- Children silhouettes -->
+        <text x="50" y="68" font-family="sans-serif" font-size="28" text-anchor="middle" fill="rgba(255,255,255,.9)">👧🧒</text>
+      </svg>
+    </div>
+
+    <h1>Cadastro de Crianças</h1>
+    <p class="hero-sub">Ministério Infantil Hope Kids · Preencha com carinho e atenção ❤️</p>
+  </div>
+
+  <!-- Cloud -->
+  <div class="cloud-row">
+    <svg viewBox="0 0 1440 54" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,54 L0,30 Q60,4 120,20 Q180,36 240,20 Q300,4 360,22 Q420,40 480,22 Q540,4 600,20 Q660,36 720,18 Q780,0 840,18 Q900,36 960,20 Q1020,4 1080,22 Q1140,40 1200,22 Q1260,4 1320,20 Q1380,36 1440,20 L1440,54 Z" fill="#F4F7FA"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ═══ PROGRESS ═══ -->
+<div class="progress-wrap">
+  <div class="progress-label">Etapa <span id="stepNum">1</span> de 5</div>
+  <div class="steps-row">
+    <div class="step-item active" data-step="1">
+      <div class="step-dot">1</div>
+      <div class="step-name">Criança</div>
+    </div>
+    <div class="step-item" data-step="2">
+      <div class="step-dot">2</div>
+      <div class="step-name">Responsáveis</div>
+    </div>
+    <div class="step-item" data-step="3">
+      <div class="step-dot">3</div>
+      <div class="step-name">Saúde</div>
+    </div>
+    <div class="step-item" data-step="4">
+      <div class="step-dot">4</div>
+      <div class="step-name">Retirada</div>
+    </div>
+    <div class="step-item" data-step="5">
+      <div class="step-dot">5</div>
+      <div class="step-name">Termos</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FORM ═══ -->
+<div class="form-wrap">
+  <form id="cadastroForm"
+        action="https://formsubmit.co/ofertahopekids@gmail.com"
+        method="POST"
+        enctype="multipart/form-data">
+
+    <!-- FormSubmit hidden config -->
+    <input type="hidden" name="_subject" value="🌍 Novo Cadastro – Ministério Hope Kids">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://hopekids.com.br/cadastro/obrigado.html">
+    <input type="hidden" name="Formulário" value="Cadastro de Criança – Hope Kids">
+    <!-- Webhook Google Sheets – cole a URL do Apps Script aqui -->
+    <input type="hidden" name="_webhook" value="https://script.google.com/macros/s/AKfycbydMHdLFnzpGFyYGswHVIlMku_MfP7gkVYm_mcZHa-LOpirwXtjy_m08YT5_y3nX5-VWg/exec">
+
+    <!-- ══════════════════════════════════════
+         SEÇÃO 1 – DADOS DA CRIANÇA
+    ══════════════════════════════════════ -->
+    <div class="section active" id="sec1">
+      <div class="section-header">
+        <div class="section-icon icon-blue">🧒</div>
+        <div>
+          <div class="section-title">Dados da Criança</div>
+          <div class="section-desc">Informações básicas sobre a criança a ser cadastrada</div>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field full">
+          <label for="nomeCompleto">Nome Completo <span class="req">*</span></label>
+          <input type="text" id="nomeCompleto" name="Nome Completo" placeholder="Ex: Maria Clara Santos" required>
+        </div>
+
+        <div class="field">
+          <label for="dataNascimento">Data de Nascimento <span class="req">*</span></label>
+          <input type="date" id="dataNascimento" name="Data de Nascimento" required>
+        </div>
+
+        <div class="field">
+          <label>Sexo <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="Sexo" value="Feminino" required> 👧 Feminino</label>
+            <label><input type="radio" name="Sexo" value="Masculino"> 🧒 Masculino</label>
+          </div>
+        </div>
+
+        <div class="field full">
+          <label for="foto">Foto da Criança <span class="opt">(opcional)</span></label>
+          <input type="file" id="foto" name="Foto da Criança" accept="image/*">
+          <span class="hint">📸 Foto recente e nítida. Formatos: JPG, PNG. Máx. 5MB.</span>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <div></div>
+        <button type="button" class="btn btn-next" onclick="nextStep(1)">Próximo ›</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SEÇÃO 2 – DADOS DOS RESPONSÁVEIS
+    ══════════════════════════════════════ -->
+    <div class="section" id="sec2">
+      <div class="section-header">
+        <div class="section-icon icon-green">👨‍👩‍👧</div>
+        <div>
+          <div class="section-title">Dados dos Responsáveis</div>
+          <div class="section-desc">Informações de contato e endereço da família</div>
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="nomePai">Nome do Pai / Responsável Masculino</label>
+          <input type="text" id="nomePai" name="Nome do Pai/Responsável Masculino" placeholder="Nome completo">
+        </div>
+        <div class="field">
+          <label for="nomeMae">Nome da Mãe / Responsável Feminina</label>
+          <input type="text" id="nomeMae" name="Nome da Mãe/Responsável Feminina" placeholder="Nome completo">
+        </div>
+        <div class="field full">
+          <label for="nomeResponsavelAdicional">Outro Responsável <span class="opt">(opcional)</span></label>
+          <input type="text" id="nomeResponsavelAdicional" name="Outro Responsável" placeholder="Ex: Avó, Tia...">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="telPrincipal">Telefone Principal <span class="req">*</span></label>
+          <input type="tel" id="telPrincipal" name="Telefone Principal" placeholder="(00) 00000-0000" required>
+        </div>
+        <div class="field">
+          <label for="telEmergencia">Telefone de Emergência <span class="req">*</span></label>
+          <input type="tel" id="telEmergencia" name="Telefone de Emergência" placeholder="(00) 00000-0000" required>
+        </div>
+        <div class="field full">
+          <label for="email">E-mail <span class="opt">(opcional)</span></label>
+          <input type="email" id="email" name="E-mail" placeholder="familia@email.com">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-grid">
+        <div class="field full">
+          <label for="ruaNumero">Rua e Número <span class="req">*</span></label>
+          <input type="text" id="ruaNumero" name="Rua e Número" placeholder="Ex: Rua das Flores, 123" required>
+        </div>
+        <div class="field">
+          <label for="complemento">Complemento <span class="opt">(opcional)</span></label>
+          <input type="text" id="complemento" name="Complemento" placeholder="Apto, Bloco...">
+        </div>
+        <div class="field">
+          <label for="bairro">Bairro <span class="req">*</span></label>
+          <input type="text" id="bairro" name="Bairro" placeholder="Nome do bairro" required>
+        </div>
+        <div class="field">
+          <label for="cidade">Cidade <span class="req">*</span></label>
+          <input type="text" id="cidade" name="Cidade" placeholder="Sua cidade" required>
+        </div>
+        <div class="field">
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" name="CEP" placeholder="00000-000" maxlength="9">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-back" onclick="prevStep(2)">‹ Anterior</button>
+        <button type="button" class="btn btn-next" onclick="nextStep(2)">Próximo ›</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SEÇÃO 3 – SAÚDE E SEGURANÇA
+    ══════════════════════════════════════ -->
+    <div class="section" id="sec3">
+      <div class="section-header">
+        <div class="section-icon icon-yellow">🏥</div>
+        <div>
+          <div class="section-title">Saúde e Segurança</div>
+          <div class="section-desc">Informações médicas importantes para o cuidado da criança</div>
+        </div>
+      </div>
+
+      <!-- Alergias alimentares -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui alergias alimentares? <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Alergia Alimentar" value="Não" onclick="toggle('alergia-detail','Não')" required> ✅ Não</label>
+          <label><input type="radio" name="Alergia Alimentar" value="Sim" onclick="toggle('alergia-detail','Sim')"> ⚠️ Sim</label>
+        </div>
+        <div class="conditional" id="alergia-detail">
+          <label for="alergia-desc">Quais alimentos?</label>
+          <input type="text" id="alergia-desc" name="Alergias Alimentares (Detalhes)" placeholder="Ex: Amendoim, leite, ovos...">
+        </div>
+      </div>
+
+      <!-- Intolerâncias -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui intolerâncias alimentares?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="Intolerância Alimentar" value="Não" onclick="toggle('intol-detail','Não')"> ✅ Não</label>
+          <label><input type="radio" name="Intolerância Alimentar" value="Sim" onclick="toggle('intol-detail','Sim')"> ⚠️ Sim</label>
+        </div>
+        <div class="conditional" id="intol-detail">
+          <label for="intol-desc">Quais intolerâncias?</label>
+          <input type="text" id="intol-desc" name="Intolerâncias Alimentares (Detalhes)" placeholder="Ex: Glúten, lactose...">
+        </div>
+      </div>
+
+      <!-- Alergia a medicamentos -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui alergia a medicamentos?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="Alergia a Medicamentos" value="Não" onclick="toggle('alergiamed-detail','Não')"> ✅ Não</label>
+          <label><input type="radio" name="Alergia a Medicamentos" value="Sim" onclick="toggle('alergiamed-detail','Sim')"> ⚠️ Sim</label>
+        </div>
+        <div class="conditional" id="alergiamed-detail">
+          <label for="alergiamed-desc">Quais medicamentos?</label>
+          <input type="text" id="alergiamed-desc" name="Alergia a Medicamentos (Detalhes)" placeholder="Ex: Dipirona, Penicilina...">
+        </div>
+      </div>
+
+      <!-- Alergia a insetos -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui alergia a insetos?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="Alergia a Insetos" value="Não" onclick="toggle('inseto-detail','Não')"> ✅ Não</label>
+          <label><input type="radio" name="Alergia a Insetos" value="Sim" onclick="toggle('inseto-detail','Sim')"> ⚠️ Sim</label>
+        </div>
+        <div class="conditional" id="inseto-detail">
+          <label for="inseto-desc">Descrição:</label>
+          <input type="text" id="inseto-desc" name="Alergia a Insetos (Detalhes)" placeholder="Ex: Abelhas, formigas...">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Diagnóstico / Síndrome / Deficiência -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui diagnóstico, síndrome ou deficiência? <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Diagnóstico/Síndrome/Deficiência" value="Não" onclick="toggle('diag-detail','Não')" required> ✅ Não</label>
+          <label><input type="radio" name="Diagnóstico/Síndrome/Deficiência" value="Sim" onclick="toggle('diag-detail','Sim')"> ⚠️ Sim</label>
+        </div>
+        <div class="conditional" id="diag-detail">
+          <label for="diag-desc">Qual(is) diagnóstico(s)?</label>
+          <input type="text" id="diag-desc" name="Diagnóstico (Detalhes)" placeholder="Ex: TEA, TDAH, Diabetes, Síndrome de Down...">
+          <div class="hint" style="margin-top:6px">Informações sigilosas usadas apenas para o cuidado adequado da criança</div>
+        </div>
+      </div>
+
+      <!-- Medicação contínua -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Faz uso de medicação contínua? <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Medicação Contínua" value="Não" onclick="toggle('med-detail','Não')" required> ✅ Não</label>
+          <label><input type="radio" name="Medicação Contínua" value="Sim" onclick="toggle('med-detail','Sim')"> 💊 Sim</label>
+        </div>
+        <div class="conditional" id="med-detail">
+          <div class="field-grid">
+            <div class="field full">
+              <label for="med-nome">Nome do medicamento:</label>
+              <input type="text" id="med-nome" name="Medicamento (Nome)" placeholder="Nome do remédio">
+            </div>
+            <div class="field">
+              <label for="med-dose">Dosagem:</label>
+              <input type="text" id="med-dose" name="Medicamento (Dosagem)" placeholder="Ex: 5mg">
+            </div>
+            <div class="field">
+              <label for="med-horario">Horário:</label>
+              <input type="text" id="med-horario" name="Medicamento (Horário)" placeholder="Ex: 12h e 18h">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Primeiros socorros -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Autorizo a equipe a prestar primeiros socorros em caso de emergência? <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Autorização Primeiros Socorros" value="Sim" required> ✅ Sim, autorizo</label>
+          <label><input type="radio" name="Autorização Primeiros Socorros" value="Não"> ❌ Não autorizo</label>
+        </div>
+      </div>
+
+      <!-- Plano de saúde -->
+      <div class="field" style="margin-bottom:16px">
+        <label>Possui plano de saúde?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="Plano de Saúde" value="Não" onclick="toggle('plano-detail','Não')"> Não</label>
+          <label><input type="radio" name="Plano de Saúde" value="Sim" onclick="toggle('plano-detail','Sim')"> Sim</label>
+        </div>
+        <div class="conditional" id="plano-detail">
+          <label for="plano-nome">Nome do plano:</label>
+          <input type="text" id="plano-nome" name="Plano de Saúde (Nome)" placeholder="Ex: Unimed, Bradesco Saúde...">
+        </div>
+      </div>
+
+      <!-- Observações -->
+      <div class="field">
+        <label for="obsAdicionais">Observações de Saúde Adicionais <span class="opt">(opcional)</span></label>
+        <textarea id="obsAdicionais" name="Observações de Saúde Adicionais" placeholder="Qualquer outra informação importante sobre saúde da criança..."></textarea>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-back" onclick="prevStep(3)">‹ Anterior</button>
+        <button type="button" class="btn btn-next" onclick="nextStep(3)">Próximo ›</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SEÇÃO 4 – LOGÍSTICA / RETIRADA
+    ══════════════════════════════════════ -->
+    <div class="section" id="sec4">
+      <div class="section-header">
+        <div class="section-icon icon-orange">🔐</div>
+        <div>
+          <div class="section-title">Logística e Retirada</div>
+          <div class="section-desc">Quem está autorizado a buscar a criança</div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--muted);font-weight:600;margin-bottom:16px;">
+        Informe as pessoas autorizadas a retirar a criança do ministério. Somente essas pessoas poderão buscar a criança. O RG será solicitado na entrega.
+      </p>
+
+      <!-- Pessoa autorizada 1 -->
+      <div class="person-card">
+        <div class="person-card-title">👤 Pessoa Autorizada 1 <span style="color:var(--red)">*</span></div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="aut1nome">Nome Completo <span class="req">*</span></label>
+            <input type="text" id="aut1nome" name="Autorizado 1 – Nome" placeholder="Nome completo" required>
+          </div>
+          <div class="field">
+            <label for="aut1rg">RG / Documento <span class="req">*</span></label>
+            <input type="text" id="aut1rg" name="Autorizado 1 – RG" placeholder="Ex: 12.345.678-9" required>
+          </div>
+          <div class="field">
+            <label for="aut1parentesco">Parentesco</label>
+            <select id="aut1parentesco" name="Autorizado 1 – Parentesco">
+              <option value="">Selecione...</option>
+              <option>Pai</option>
+              <option>Mãe</option>
+              <option>Avô</option>
+              <option>Avó</option>
+              <option>Tio(a)</option>
+              <option>Irmão(ã)</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="aut1tel">Telefone</label>
+            <input type="tel" id="aut1tel" name="Autorizado 1 – Telefone" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pessoa autorizada 2 -->
+      <div class="person-card">
+        <div class="person-card-title">👤 Pessoa Autorizada 2 <span style="color:var(--muted)">(opcional)</span></div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="aut2nome">Nome Completo</label>
+            <input type="text" id="aut2nome" name="Autorizado 2 – Nome" placeholder="Nome completo">
+          </div>
+          <div class="field">
+            <label for="aut2rg">RG / Documento</label>
+            <input type="text" id="aut2rg" name="Autorizado 2 – RG" placeholder="Ex: 12.345.678-9">
+          </div>
+          <div class="field">
+            <label for="aut2parentesco">Parentesco</label>
+            <select id="aut2parentesco" name="Autorizado 2 – Parentesco">
+              <option value="">Selecione...</option>
+              <option>Pai</option>
+              <option>Mãe</option>
+              <option>Avô</option>
+              <option>Avó</option>
+              <option>Tio(a)</option>
+              <option>Irmão(ã)</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="aut2tel">Telefone</label>
+            <input type="tel" id="aut2tel" name="Autorizado 2 – Telefone" placeholder="(00) 00000-0000">
+          </div>
+        </div>
+      </div>
+
+      <!-- Pessoa autorizada 3 -->
+      <div class="person-card">
+        <div class="person-card-title">👤 Pessoa Autorizada 3 <span style="color:var(--muted)">(opcional)</span></div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="aut3nome">Nome Completo</label>
+            <input type="text" id="aut3nome" name="Autorizado 3 – Nome" placeholder="Nome completo">
+          </div>
+          <div class="field">
+            <label for="aut3rg">RG / Documento</label>
+            <input type="text" id="aut3rg" name="Autorizado 3 – RG" placeholder="Ex: 12.345.678-9">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Alerta Vermelho -->
+      <div class="alerta-box">
+        <div class="alerta-icon">🔴</div>
+        <div class="alerta-text">
+          <strong>ALERTA VERMELHO – Restrição Judicial de Guarda</strong><br>
+          Se existir medida judicial que impeça algum familiar de ter contato com a criança, informe abaixo. Esta informação é tratada com total sigilo e usada para proteção da criança.
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:16px">
+        <label>Existe restrição judicial de guarda (Alerta Vermelho)? <span class="req">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="Restrição Judicial" value="Não" onclick="toggle('restric-detail','Não')" required> ✅ Não</label>
+          <label><input type="radio" name="Restrição Judicial" value="Sim" onclick="toggle('restric-detail','Sim')"> 🔴 Sim</label>
+        </div>
+        <div class="conditional" id="restric-detail">
+          <label for="restric-desc">Descreva a situação:</label>
+          <textarea id="restric-desc" name="Restrição Judicial (Detalhes)" placeholder="Nome da pessoa impedida e situação judicial..."></textarea>
+          <div class="hint" style="margin-top:6px">⚠️ Informação confidencial. Usada apenas para proteção da criança.</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-back" onclick="prevStep(4)">‹ Anterior</button>
+        <button type="button" class="btn btn-next" onclick="nextStep(4)">Próximo ›</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SEÇÃO 5 – TERMOS DE CONSENTIMENTO
+    ══════════════════════════════════════ -->
+    <div class="section" id="sec5">
+      <div class="section-header">
+        <div class="section-icon icon-purple">✍️</div>
+        <div>
+          <div class="section-title">Termos de Consentimento</div>
+          <div class="section-desc">Leia atentamente e marque as opções abaixo</div>
+        </div>
+      </div>
+
+      <div class="termo-card">
+        <input type="checkbox" id="termoImagem" name="Termo – Uso de Imagem" value="Autorizado" required>
+        <div class="termo-text">
+          Autorizo o uso de imagens (fotos e vídeos) da criança para fins ministeriais e comunicação do ministério Hope Kids, incluindo redes sociais e materiais internos da igreja.
+          <small>Obrigatório para participação nas atividades do ministério.</small>
+        </div>
+      </div>
+
+      <div class="termo-card">
+        <input type="checkbox" id="termoAtividades" name="Termo – Participação em Atividades" value="Autorizado" required>
+        <div class="termo-text">
+          Autorizo a participação da criança em todas as atividades do ministério Hope Kids, incluindo dinâmicas, brincadeiras, apresentações e eventos especiais.
+          <small>A equipe possui suporte de primeiros socorros e protocolos de segurança.</small>
+        </div>
+      </div>
+
+      <div class="termo-card">
+        <input type="checkbox" id="termoRegulamento" name="Termo – Ciência do Regulamento" value="Confirmado" required>
+        <div class="termo-text">
+          Estou ciente e concordo com o regulamento do ministério Hope Kids, incluindo normas de conduta, segurança, entrega/busca de crianças e responsabilidades dos pais/responsáveis.
+          <small>O regulamento completo está disponível na secretaria da igreja ou com a liderança do ministério.</small>
+        </div>
+      </div>
+
+      <div class="termo-card">
+        <input type="checkbox" id="termoDados" name="Termo – Dados Pessoais (LGPD)" value="Autorizado" required>
+        <div class="termo-text">
+          Autorizo o armazenamento e uso dos dados informados neste cadastro, conforme a Lei Geral de Proteção de Dados (LGPD), exclusivamente para fins ministeriais e de segurança da criança.
+          <small>Os dados são armazenados com segurança e não serão compartilhados com terceiros.</small>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field-grid">
+        <div class="field full">
+          <label for="assinatura">Assinatura do Responsável (Nome Completo) <span class="req">*</span></label>
+          <input type="text" id="assinatura" name="Assinatura do Responsável" placeholder="Digite seu nome completo como assinatura" required>
+          <span class="hint">Ao digitar seu nome você concorda eletronicamente com os termos acima.</span>
+        </div>
+        <div class="field">
+          <label for="dataAssinatura">Data <span class="req">*</span></label>
+          <input type="date" id="dataAssinatura" name="Data da Assinatura" required>
+        </div>
+        <div class="field">
+          <label for="parentescoAssinante">Sua relação com a criança <span class="req">*</span></label>
+          <select id="parentescoAssinante" name="Parentesco do Assinante" required>
+            <option value="">Selecione...</option>
+            <option>Pai</option>
+            <option>Mãe</option>
+            <option>Responsável Legal</option>
+            <option>Avô</option>
+            <option>Avó</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-back" onclick="prevStep(5)">‹ Anterior</button>
+        <button type="submit" class="btn btn-submit" id="submitBtn">
+          ✅ Enviar Cadastro
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SUCESSO
+    ══════════════════════════════════════ -->
+    <div class="success-wrap" id="successMsg">
+      <div class="success-icon">🌍✨</div>
+      <div class="success-title">Cadastro Enviado!</div>
+      <p class="success-msg">
+        Recebemos o cadastro com sucesso! Em breve nossa equipe entrará em contato para confirmação. Que Deus abençoe cada criança do Hope Kids! 🙏
+      </p>
+    </div>
+
+  </form>
+</div>
+
+<footer>
+  © Ministério Infantil Hope Kids · OBDC – Igreja Batista · Todos os dados são tratados com sigilo e conforme a LGPD
+</footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  // Set today's date as default for assinatura
+  document.getElementById('dataAssinatura').valueAsDate = new Date();
+
+  function toggle(id, val) {
+    const el = document.getElementById(id);
+    el.classList.toggle('show', val === 'Sim');
+  }
+
+  function updateProgress(step) {
+    document.getElementById('stepNum').textContent = step;
+    document.querySelectorAll('.step-item').forEach((item, i) => {
+      const n = i + 1;
+      item.classList.remove('active','done');
+      if (n === step) item.classList.add('active');
+      else if (n < step) item.classList.add('done');
+    });
+  }
+
+  function showSection(step) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('sec'+step).classList.add('active');
+    updateProgress(step);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function validateSection(step) {
+    const sec = document.getElementById('sec'+step);
+    const required = sec.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      const isRadio = el.type === 'radio';
+      if (isRadio) {
+        const group = sec.querySelectorAll(`input[name="${el.name}"]`);
+        const checked = [...group].some(r => r.checked);
+        if (!checked) {
+          valid = false;
+          group.forEach(r => r.closest('.radio-group').style.outline = '2px solid var(--red)');
+        }
+      } else if (el.type === 'checkbox') {
+        if (!el.checked) { valid = false; el.style.outline = '2px solid var(--red)'; }
+      } else {
+        if (!el.value.trim()) { valid = false; el.classList.add('invalid'); }
+        else el.classList.remove('invalid');
+      }
+    });
+    return valid;
+  }
+
+  function nextStep(from) {
+    if (!validateSection(from)) {
+      alert('Por favor, preencha todos os campos obrigatórios antes de continuar.');
+      return;
+    }
+    currentStep = from + 1;
+    showSection(currentStep);
+  }
+
+  function prevStep(from) {
+    currentStep = from - 1;
+    showSection(currentStep);
+  }
+
+  // Handle form submit
+  document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+    if (!validateSection(5)) {
+      e.preventDefault();
+      alert('Por favor, preencha todos os campos obrigatórios e marque os termos de consentimento.');
+      return;
+    }
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').textContent = 'Enviando... ⏳';
+  });
+
+  // Remove invalid class on input
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('invalid'));
+    el.addEventListener('change', () => el.classList.remove('invalid'));
+  });
+
+  // CEP mask
+  document.getElementById('cep').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'');
+    if (v.length > 5) v = v.slice(0,5)+'-'+v.slice(5,8);
+    this.value = v;
+  });
+
+  // Phone mask
+  document.querySelectorAll('input[type=tel]').forEach(el => {
+    el.addEventListener('input', function() {
+      let v = this.value.replace(/\D/g,'');
+      if (v.length <= 10) v = v.replace(/(\d{2})(\d{4})(\d{4})/,'($1) $2-$3');
+      else v = v.replace(/(\d{2})(\d{5})(\d{4})/,'($1) $2-$3');
+      this.value = v;
+    });
+  });
+</script>
+
+</body>
+</html>
