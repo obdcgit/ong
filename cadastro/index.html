@@ -84,15 +84,14 @@
     .badge-dot.green { background: var(--green-dark); color:#fff; }
     .badge-text { font-family:'Nunito',sans-serif; font-weight:800; font-size:13px; color:#fff; letter-spacing:.3px; }
 
-    /* Globe */
-    .globe-wrap {
+    /* Logo */
+    .logo-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
-    .globe-svg { width:90px; height:90px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.25)); }
+    .logo-img { width:130px; height:130px; object-fit:contain; filter: drop-shadow(0 8px 24px rgba(0,0,0,.35)); }
 
     .hero h1 {
       font-family: 'Fredoka One', cursive;
@@ -462,7 +461,7 @@
     <div class="top-row">
       <div class="church-badge">
         <div class="badge-dot blue">✝</div>
-        <span class="badge-text">OBDC – Igreja Batista</span>
+        <span class="badge-text">Igreja Esperança</span>
       </div>
       <div class="ministry-badge">
         <div class="badge-dot green">🌍</div>
@@ -470,24 +469,10 @@
       </div>
     </div>
 
-    <div class="globe-wrap">
-      <!-- Globe SVG -->
-      <svg class="globe-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="gGlobe" cx="38%" cy="32%">
-            <stop offset="0%" stop-color="#7DD4F0"/>
-            <stop offset="100%" stop-color="#0076B6"/>
-          </radialGradient>
-        </defs>
-        <circle cx="60" cy="60" r="54" fill="url(#gGlobe)" opacity=".95"/>
-        <ellipse cx="60" cy="60" rx="22" ry="54" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
-        <ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1.5"/>
-        <line x1="6" y1="60" x2="114" y2="60" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/>
-        <line x1="60" y1="6" x2="60" y2="114" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/>
-        <circle cx="60" cy="60" r="54" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2.5"/>
-        <!-- Children silhouettes -->
-        <text x="50" y="68" font-family="sans-serif" font-size="28" text-anchor="middle" fill="rgba(255,255,255,.9)">👧🧒</text>
-      </svg>
+    <div class="logo-wrap">
+      <img class="logo-img"
+           src="https://lh3.googleusercontent.com/pw/AP1GczMBK6nUhHHxujy604WUW_UBos1-SvXiOjOO6ZsuNTRqjd1I2lJD6KlwnzwPDbBFkIgBK92pCtRm5sin2BWX3OAADCyWRd-xalHrJSMb8sSDdsUotRoV9Aks-a3r4jhQM2_cq-nHet3Fp-LWqZaypXx3ug=s300"
+           alt="Logomarca Hope Kids">
     </div>
 
     <h1>Cadastro de Crianças</h1>
@@ -1023,7 +1008,7 @@
 </div>
 
 <footer>
-  © Ministério Infantil Hope Kids · OBDC – Igreja Batista · Todos os dados são tratados com sigilo e conforme a LGPD
+  © Ministério Infantil Hope Kids · Igreja Esperança · Todos os dados são tratados com sigilo e conforme a LGPD
 </footer>
 
 <script>
